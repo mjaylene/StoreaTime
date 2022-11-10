@@ -18,6 +18,12 @@ export default function App() {
           <View style={styles.signUpButton}>
             <Text style={styles.signUpText}>Sign up</Text>
           </View>
+        <View style={styles.loginArea}>
+          <Text style={{ color: 'white' }}>Already have an account? </Text>
+          <Pressable>
+            <Text style={styles.loginText}>Log in here</Text>
+          </Pressable>
+        </View>
         </Pressable>
       </ImageBackground>
     </View>
@@ -50,11 +56,25 @@ const styles = StyleSheet.create({
     borderRadius: 12, 
     justifyContent: 'center',
     alignItems: 'center',
-    top: 280
+    top: 280,
+    shadowColor: 'black',
+    shadowOffset: {width: 3, height: 6},
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
   },
   signUpText: {
     color: '#FF6F52',
     fontSize: 16,
     fontWeight: 'bold'
+  },
+  loginArea: {
+    top: 300,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  loginText: {
+    color: 'white',
+    textDecorationLine: 'underline',
+    fontWeight: 'bold',
   }
 });
