@@ -1,5 +1,6 @@
 import { ImageBackground, StyleSheet, Text, View, Pressable, Image } from 'react-native';
 import OnboardingScreens from './components/onboarding';
+import ListenPlayback from './components/listenPlayback';
 
 /*
       <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
@@ -8,6 +9,6 @@ import OnboardingScreens from './components/onboarding';
 */ 
 export default function App() {
   return (
-      <OnboardingScreens></OnboardingScreens>
+      <ListenPlayback></ListenPlayback>
   );
 }
