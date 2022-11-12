@@ -1,5 +1,7 @@
 import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView } from 'react-native';
 import React from "react";
+import { useFonts } from 'expo-font';
+
 
 
 export default function Signup({ navigation }) {
@@ -40,10 +42,13 @@ const styles = StyleSheet.create({
         fontFamily: 'Romana-Bold',
     },
     input: {
+        fontStyle: 'italic',
+        fontSize: 25,
+        fontFamily: 'Plus Jakarta Sans',
         color: 'white',
         bottom: 40,
         width: "80%",
-        height: 40,
+        height: 60,
         margin: 12,
         borderWidth: 5,
         borderBottomColor: 'white',
