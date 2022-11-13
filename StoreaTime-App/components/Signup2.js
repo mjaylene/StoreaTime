@@ -40,7 +40,6 @@ export default function Signup2({ navigation }) {
                     value={text}
                     placeholder="Email address"
                     placeholderTextColor={'#ebdedd'}
-                    keyboardType="numeric"
                 />
                 {(text != "") ?
                     <Pressable onPress={() => navigation.navigate('Signup3')}>

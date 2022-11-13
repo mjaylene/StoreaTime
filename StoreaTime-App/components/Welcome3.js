@@ -1,17 +1,17 @@
-import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
+import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image, TouchableOpacity } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
-import GradientText from './GradientText';
+//import GradientText from './GradientText';
 
-export default function Welcome3({ navigation }) {
+export default function Welcome1({ navigation }) {
   return (
     <View style={styles.container}>
-        <View style={styles.shareIMG}>
-        <Image style={styles.listen}
+    <TouchableOpacity onPress={() => navigation.navigate('ListenPlayback')}>
+            
+      <Image style={styles.listen}
             source={require('../assets/onboarding/onboarding_3.png')}></Image>
-        </View>
         <View style={styles.title}>
-            <GradientText style={styles.textStyle}>Engage</GradientText>
+            <Text style={styles.textStyle}>Engage</Text>
             <Text style={styles.about}>Find communities of shared {'\n'} 
             interests</Text>
         </View>
@@ -20,13 +20,15 @@ export default function Welcome3({ navigation }) {
                 source={require('../assets/icons/toggle_3.png')}></Image>
         </View>
         <View style={styles.footer}>
-            <Pressable>
+            <Pressable onPress={() => navigation.navigate('ListenPlayback')}>
                 <Text style={styles.skip}>Skip</Text>
             </Pressable>
             <Pressable onPress={() => navigation.navigate('ListenPlayback')}>
                 <Text style={styles.next}>Next</Text>
             </Pressable>
         </View>
+    
+    </TouchableOpacity>
     </View>
   );
 }
@@ -38,27 +40,22 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'center',
   },
-  shareIMG: {
-      width: '95%',
-      height: '45%',
-      marginBottom: 50,
-      //backgroundColor: 'cyan'
-  },
   listen: {
-      flex: 1,
-      width: null,
-      height: null,
-      resizeMode: 'contain',
-      //width: '95%',
-      //height: '75%',
+      top: 40,
+      aspectRatio: 1,
+      marginRight: 100,
+      marginLeft: 100,
+      width: '65%',
+      height: '55%',
   },
   textStyle: {
       fontSize: 48,
       fontFamily: 'Romana-Bold',
+      color: '#ED765E',
   },
   title: {
       //backgroundColor: 'yellow',
-      bottom: 10,
+      top: 95,
       alignItems: 'center',
   },
   about: {
@@ -67,11 +64,13 @@ const styles = StyleSheet.create({
       marginTop: 25
   },
   toggleBox: {
-      top: 40,
+      top: 160,
+      marginLeft: 245,
   },
   footer: {
-      top: 100,
+      top: 200,
       flexDirection: 'row',
+      marginLeft: 105,
   },
   skip: {
       color: '#C1C1C1',
@@ -82,6 +81,6 @@ const styles = StyleSheet.create({
       color: '#ED765E',
       fontWeight: 'bold',
       fontSize: 16,
-      marginLeft: 270
+      left: 270
   }
 });

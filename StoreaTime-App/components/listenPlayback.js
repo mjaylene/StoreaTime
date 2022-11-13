@@ -6,7 +6,7 @@ import { Audio } from 'expo-av';
 import PlayButton from '../assets/icons/play_button.svg'
 import ClappingHands from '../assets/icons/clapping_hands.svg'
 
-export default function ListenPlayback() {
+export default function ListenPlayback({navigation}) {
   const [sound, setSound] = useState();
 
   async function playSound() {

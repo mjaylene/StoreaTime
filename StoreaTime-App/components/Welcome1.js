@@ -1,15 +1,17 @@
-import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
+import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image, TouchableOpacity } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
-import GradientText from './GradientText';
+//import GradientText from './GradientText';
 
 export default function Welcome1({ navigation }) {
   return (
     <View style={styles.container}>
+    <TouchableOpacity onPress={() => navigation.navigate('Welcome2')}>
+            
       <Image style={styles.listen}
             source={require('../assets/onboarding/onboarding_1.png')}></Image>
         <View style={styles.title}>
-            <GradientText style={styles.textStyle}>Listen</GradientText>
+            <Text style={styles.textStyle}>Listen</Text>
             <Text style={styles.about}>Hear other people's stories about {'\n'} 
             their favorite dishes</Text>
         </View>
@@ -18,13 +20,15 @@ export default function Welcome1({ navigation }) {
                 source={require('../assets/icons/toggle_1.png')}></Image>
         </View>
         <View style={styles.footer}>
-            <Pressable>
+            <Pressable onPress={() => navigation.navigate('ListenPlayback')}>
                 <Text style={styles.skip}>Skip</Text>
             </Pressable>
             <Pressable onPress={() => navigation.navigate('Welcome2')}>
                 <Text style={styles.next}>Next</Text>
             </Pressable>
         </View>
+    
+    </TouchableOpacity>
     </View>
   );
 }
@@ -37,18 +41,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   listen: {
-      bottom: 50,
-      aspectRatio: 0.8,
-      width: '55%',
-      height: '45%',
+      top: 40,
+      aspectRatio: 1,
+      marginRight: 100,
+      marginLeft: 100,
+      width: '65%',
+      height: '55%',
   },
   textStyle: {
       fontSize: 48,
       fontFamily: 'Romana-Bold',
+      color: '#ED765E',
   },
   title: {
       //backgroundColor: 'yellow',
-      bottom: 3,
+      top: 95,
       alignItems: 'center',
   },
   about: {
@@ -57,11 +64,13 @@ const styles = StyleSheet.create({
       marginTop: 25
   },
   toggleBox: {
-      top: 60,
+      top: 160,
+      marginLeft: 240,
   },
   footer: {
-      top: 120,
+      top: 200,
       flexDirection: 'row',
+      marginLeft: 105
   },
   skip: {
       color: '#C1C1C1',

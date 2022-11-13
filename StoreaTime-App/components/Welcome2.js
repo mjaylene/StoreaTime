@@ -1,18 +1,18 @@
-import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
+import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image, TouchableOpacity } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
-import GradientText from './GradientText';
+//import GradientText from './GradientText';
 
-export default function Welcome2({ navigation }) {
+export default function Welcome1({ navigation }) {
   return (
     <View style={styles.container}>
-        <View style={styles.shareIMG}>
-        <Image style={styles.listen}
+    <TouchableOpacity onPress={() => navigation.navigate('Welcome3')}>
+            
+      <Image style={styles.listen}
             source={require('../assets/onboarding/onboarding_2.png')}></Image>
-        </View>
         <View style={styles.title}>
-            <GradientText style={styles.textStyle}>Share</GradientText>
-            <Text style={styles.about}>Record and share your own stories {'\n'} 
+            <Text style={styles.textStyle}>Share</Text>
+            <Text style={styles.about}>Record and share your stories {'\n'} 
             with others</Text>
         </View>
         <View style={styles.toggleBox}>
@@ -20,14 +20,15 @@ export default function Welcome2({ navigation }) {
                 source={require('../assets/icons/toggle_2.png')}></Image>
         </View>
         <View style={styles.footer}>
-            <Pressable>
+            <Pressable onPress={() => navigation.navigate('ListenPlayback')}>
                 <Text style={styles.skip}>Skip</Text>
             </Pressable>
             <Pressable onPress={() => navigation.navigate('Welcome3')}>
                 <Text style={styles.next}>Next</Text>
             </Pressable>
-            
         </View>
+    
+    </TouchableOpacity>
     </View>
   );
 }
@@ -39,27 +40,22 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'center',
   },
-  shareIMG: {
-      width: '95%',
-      height: '45%',
-      marginBottom: 140,
-      //backgroundColor: 'cyan'
-  },
   listen: {
-      flex: 1,
-      width: null,
-      height: null,
-      resizeMode: 'contain',
-      //width: '95%',
-      //height: '75%',
+      top: 40,
+      aspectRatio: 1,
+      marginRight: 100,
+      marginLeft: 100,
+      width: '65%',
+      height: '55%',
   },
   textStyle: {
       fontSize: 48,
       fontFamily: 'Romana-Bold',
+      color: '#ED765E',
   },
   title: {
       //backgroundColor: 'yellow',
-      bottom: 110,
+      top: 95,
       alignItems: 'center',
   },
   about: {
@@ -68,11 +64,13 @@ const styles = StyleSheet.create({
       marginTop: 25
   },
   toggleBox: {
-      bottom: 45,
+      top: 160,
+      marginLeft: 245,
   },
   footer: {
-      top: 55,
+      top: 200,
       flexDirection: 'row',
+      marginLeft: 105,
   },
   skip: {
       color: '#C1C1C1',
@@ -83,6 +81,6 @@ const styles = StyleSheet.create({
       color: '#ED765E',
       fontWeight: 'bold',
       fontSize: 16,
-      marginLeft: 270
+      left: 270
   }
 });

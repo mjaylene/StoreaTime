@@ -11,6 +11,7 @@ import Login from './Login';
 import Welcome1 from './Welcome1';
 import Welcome2 from './Welcome2';
 import Welcome3 from './Welcome3';
+import ListenPlayback from './listenPlayback';
 
 const token = false
 //const Stack = createStackNavigator();
@@ -47,7 +48,7 @@ function HomeScreen({ navigation }) {
                 </View>
                 <View style={styles.loginArea}>
                     <Text style={{ color: 'white' }}>Already have an account? </Text>
-                    <Pressable>
+                    <Pressable onPress={() => navigation.navigate('Login')}>
                         <Text style={styles.loginText}>Log in here</Text>
                     </Pressable>
                 </View>
@@ -67,12 +68,14 @@ export default function OnboardingScreens() {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name="Back " component={HomeScreen} options={{headerShown: false}} />
+                <Stack.Screen name="Login" component={Login} options={{headerShown: false}} /> 
                 <Stack.Screen name="Signup1" component={Signup1} options={{headerShown: false}} /> 
                 <Stack.Screen name="Signup2" component={Signup2} options={{headerShown: false}} />
                 <Stack.Screen name="Signup3" component={Signup3} options={{headerShown: false}} />
                 <Stack.Screen name="Welcome1" component={Welcome1}  options={{headerShown: false}} />
                 <Stack.Screen name="Welcome2" component={Welcome2}  options={{headerShown: false}} />
                 <Stack.Screen name="Welcome3" component={Welcome3}  options={{headerShown: false}} />
+                <Stack.Screen name="ListenPlayback" component={ListenPlayback} />
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -125,6 +128,6 @@ const styles = StyleSheet.create({
     loginText: {
         color: 'white',
         textDecorationLine: 'underline',
-        fontWeight: 'bold',
+        //fontWeight: 'bold',
     }
 });
