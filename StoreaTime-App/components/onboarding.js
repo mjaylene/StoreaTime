@@ -4,8 +4,13 @@ import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
-import Signup from './Signup';
+import Signup1 from './Signup1';
+import Signup2 from './Signup2';
+import Signup3 from './Signup3';
 import Login from './Login';
+import Welcome1 from './Welcome1';
+import Welcome2 from './Welcome2';
+import Welcome3 from './Welcome3';
 
 const token = false
 //const Stack = createStackNavigator();
@@ -23,8 +28,6 @@ const SignupFunction = ( {navigation} ) => {
 }
 */
 function HomeScreen({ navigation }) {
-    let contentDisplayed = null
-
     if (token) {
         console.log('returning user -> login')
         // render flatlist
@@ -38,7 +41,7 @@ function HomeScreen({ navigation }) {
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <Text style={styles.title}>StoreaTime</Text>
             <StatusBar style="auto" />
-            <Pressable onPress={() => navigation.navigate('Signup')}>
+            <Pressable onPress={() => navigation.navigate('Signup1')}>
                 <View style={styles.signUpButton}>
                     <Text style={styles.signUpText}>Sign up</Text>
                 </View>
@@ -58,13 +61,18 @@ export default function OnboardingScreens() {
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
-        //JakartaSans: require('./assets/fonts/PlusJakartaSans-VariableFont_wght'),
+        JakartaSans: require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
     });
     return (
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name="Back " component={HomeScreen} options={{headerShown: false}} />
-                <Stack.Screen name="Signup" component={Signup} options={{headerShown: false}} /> 
+                <Stack.Screen name="Signup1" component={Signup1} options={{headerShown: false}} /> 
+                <Stack.Screen name="Signup2" component={Signup2} options={{headerShown: false}} />
+                <Stack.Screen name="Signup3" component={Signup3} options={{headerShown: false}} />
+                <Stack.Screen name="Welcome1" component={Welcome1}  options={{headerShown: false}} />
+                <Stack.Screen name="Welcome2" component={Welcome2}  options={{headerShown: false}} />
+                <Stack.Screen name="Welcome3" component={Welcome3}  options={{headerShown: false}} />
             </Stack.Navigator>
         </NavigationContainer>
     );

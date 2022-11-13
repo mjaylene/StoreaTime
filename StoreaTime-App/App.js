@@ -9,6 +9,6 @@ import ListenPlayback from './components/listenPlayback';
 */ 
 export default function App() {
   return (
-      <ListenPlayback></ListenPlayback>
+      <Text>Hello world</Text>
   );
 }
