@@ -60,19 +60,24 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     backButton: {
+        width: 32,
+        height: 32,
         //bottom: 240,
-        left: 25
+        left: 20
     },
     screenTitle: {
+        //backgroundColor: 'cyan',
         color: 'white',
         fontSize: 17,
         fontWeight: 'bold',
-        marginLeft: 150
+        marginRight: 190,
+        left: 140
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        top: 60,
+        justifyContent: 'center',
+        top: 50,
         //backgroundColor: 'cyan',
         position: 'absolute'
     },
@@ -84,7 +89,8 @@ const styles = StyleSheet.create({
         //justifyContent: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft: 50
+        right: 5,
+        marginRight: 20
     },
     reviewText: {
         fontSize: 17,
