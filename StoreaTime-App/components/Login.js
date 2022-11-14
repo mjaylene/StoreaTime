@@ -52,7 +52,7 @@ export default function Signup1({ navigation }) {
                     secureTextEntry
                 />
                 {(user != "" && password != "") ?
-                    <Pressable onPress={() => navigation.navigate('ListenPlayback')}>
+                    <Pressable onPress={() => navigation.navigate('RecordScreen')}>
                         <Image style={styles.nextButton}
                             source={require('../assets/icons/next.png')}></Image>
                     </Pressable> : <DimmedNext></DimmedNext>}
