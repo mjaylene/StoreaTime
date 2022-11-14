@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 2,
   },
   listenBox: {
     width: 358,
