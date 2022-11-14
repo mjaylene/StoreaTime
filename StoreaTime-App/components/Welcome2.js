@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   listen: {
       top: 40,
-      aspectRatio: 1,
+      aspectRatio: 1.1,
       marginRight: 100,
       marginLeft: 100,
       width: '65%',
@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
   },
   toggleBox: {
       top: 160,
-      marginLeft: 245,
+      left: 260,
+      //backgroundColor:'yellow'
   },
   footer: {
       top: 200,

@@ -84,11 +84,15 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     backButton: {
+        width: 32,
+        height: 32,
         bottom: 240,
-        marginLeft: '8%'
+        left: 20
     },
     nextButton: {
-        top: 275,
+        width: 64,
+        height: 64,
+        top: 260,
         marginLeft: 280,
     },
 });
