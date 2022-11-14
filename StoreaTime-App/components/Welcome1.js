@@ -84,5 +84,9 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 16,
       left: 260
+  },
+  toggle1:{
+      width: 64,
+      height: 12
   }
 });

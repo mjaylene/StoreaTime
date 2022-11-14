@@ -5,6 +5,7 @@ import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import Prompt from '../components/Prompt';
 
 const DimmedNext = () => {
     return (
@@ -44,15 +45,9 @@ export default function Signup1({ navigation }) {
                 source={require('../assets/icons/mic.png')}></Image>
             <Image style={styles.type}
                 source={require('../assets/icons/type.png')}></Image>
-            <View style={styles.promptBox}>
-            <Image style={styles.backArrow}
-                    source={require('../assets/icons/back.png')}></Image>
-                <View style={styles.promptContainer}>
-                    <Text style={styles.prompt}>Tell us about your first memory of Xiao Long Bao</Text>
-                </View>
-                <Image style={styles.nextArrow}
-                    source={require('../assets/icons/next_arrow.png')}></Image>
-            </View>
+            <Prompt 
+                text={'Xiao Long Bao'}
+            />
         </ImageBackground>
     );
 }
@@ -106,37 +101,4 @@ const styles = StyleSheet.create({
         height: 76,
         top: 70
     },
-    prompt: {
-        color: 'white',
-        fontSize: 17,
-        fontWeight: 'bold',
-        fontStyle: 'italic',
-        textAlign: 'center'
-    },
-    promptBox: {
-        width: 304,
-        height: 120,
-        backgroundColor: 'rgba(255, 255, 255, 0.25)',
-        borderRadius: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        top: 130
-        //left: 190
-    },
-    promptContainer: {
-        //backgroundColor: 'blue',
-        width: '60%'
-    },
-    backArrow: {
-        width: 9.88,
-        height: 16,
-        right: 35,
-        //backgroundColor: 'blue'
-    },
-    nextArrow: {
-        width: 9.88,
-        height: 16,
-        left: 35
-    }
 });
