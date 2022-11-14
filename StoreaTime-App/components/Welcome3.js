@@ -6,7 +6,7 @@ import React from "react";
 export default function Welcome1({ navigation }) {
   return (
     <View style={styles.container}>
-    <TouchableOpacity onPress={() => navigation.navigate('ListenPlayback')}>
+    <TouchableOpacity onPress={() => navigation.navigate('RecordScreen')}>
             
       <Image style={styles.listen}
             source={require('../assets/onboarding/onboarding_3.png')}></Image>
@@ -20,10 +20,10 @@ export default function Welcome1({ navigation }) {
                 source={require('../assets/icons/toggle_3.png')}></Image>
         </View>
         <View style={styles.footer}>
-            <Pressable onPress={() => navigation.navigate('ListenPlayback')}>
+            <Pressable onPress={() => navigation.navigate('RecordScreen')}>
                 <Text style={styles.skip}>Skip</Text>
             </Pressable>
-            <Pressable onPress={() => navigation.navigate('ListenPlayback')}>
+            <Pressable onPress={() => navigation.navigate('RecordScreen')}>
                 <Text style={styles.next}>Next</Text>
             </Pressable>
         </View>
@@ -76,11 +76,12 @@ const styles = StyleSheet.create({
       color: '#C1C1C1',
       //fontWeight: 'bold',
       fontSize: 16,
+      left: 10
   },
   next: {
       color: '#ED765E',
       fontWeight: 'bold',
       fontSize: 16,
-      left: 270
+      left: 260
   }
 });

@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
       marginLeft: 240,
   },
   footer: {
+      //backgroundColor: 'yellow',
       top: 200,
       flexDirection: 'row',
       marginLeft: 105
@@ -76,11 +77,12 @@ const styles = StyleSheet.create({
       color: '#C1C1C1',
       //fontWeight: 'bold',
       fontSize: 16,
+      left: 10
   },
   next: {
       color: '#ED765E',
       fontWeight: 'bold',
       fontSize: 16,
-      marginLeft: 270
+      left: 260
   }
 });

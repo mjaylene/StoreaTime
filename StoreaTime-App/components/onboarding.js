@@ -12,6 +12,7 @@ import Welcome1 from './Welcome1';
 import Welcome2 from './Welcome2';
 import Welcome3 from './Welcome3';
 import ListenPlayback from './listenPlayback';
+import RecordScreen from '../screens/RecordScreen';
 
 const token = false
 //const Stack = createStackNavigator();
@@ -75,7 +76,7 @@ export default function OnboardingScreens() {
                 <Stack.Screen name="Welcome1" component={Welcome1}  options={{headerShown: false}} />
                 <Stack.Screen name="Welcome2" component={Welcome2}  options={{headerShown: false}} />
                 <Stack.Screen name="Welcome3" component={Welcome3}  options={{headerShown: false}} />
-                <Stack.Screen name="ListenPlayback" component={ListenPlayback} />
+                <Stack.Screen name="RecordScreen" component={RecordScreen} options={{headerShown: false}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

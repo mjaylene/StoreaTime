@@ -76,11 +76,12 @@ const styles = StyleSheet.create({
       color: '#C1C1C1',
       //fontWeight: 'bold',
       fontSize: 16,
+      left: 10
   },
   next: {
       color: '#ED765E',
       fontWeight: 'bold',
       fontSize: 16,
-      left: 270
+      left: 260
   }
 });
