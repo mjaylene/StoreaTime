@@ -21,6 +21,18 @@ export default function Signup1({ navigation }) {
     const [isEmpty, empty] = React.useState(true);
     const [text, onChangeText] = React.useState("");
 
+    // These lines of code
+    useEffect(() => {
+        navigation.getParent()?.setOptions({
+          tabBarStyle: {
+            display: "none"
+          }
+        });
+        return () => navigation.getParent()?.setOptions({
+          tabBarStyle: undefined
+        });
+      }, [navigation]);
+      // 
 
     useEffect(() => {
         console.log('side effect function 2');
@@ -30,7 +42,7 @@ export default function Signup1({ navigation }) {
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
                     
-            <Pressable onPress={() => navigation.navigate('Back ')}>
+            <Pressable onPress={() => navigation.navigate('RecordScreen1')}>
                 <Image style={styles.backButton}
                     source={require('../assets/icons/back.png')}></Image>
             </Pressable>

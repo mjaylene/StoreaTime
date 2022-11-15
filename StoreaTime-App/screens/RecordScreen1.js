@@ -12,7 +12,8 @@ import RecordScreen from './RecordScreen'
 
 const Stack = createStackNavigator();
 
-function RecordScreen2Content({ navigation }) {
+function RecordScreen1Content({ navigation, displayTabBar, setDisplayTabBar }) {
+
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
@@ -33,7 +34,10 @@ function RecordScreen2Content({ navigation }) {
                 <Text style={styles.questionStyle}>What are you </Text>
                 <Text style={styles.questionStyle}>cooking today?</Text>
             </View>
-            <Pressable onPress={() => navigation.navigate('RecordScreen')}>
+            <Pressable onPress={() => navigation.navigate('RecordScreen', {
+                displayTabBar: displayTabBar,
+                setDisplayTabBar: setDisplayTabBar
+            })}>
                 <LitNextArrow style={styles.nextArrow}></LitNextArrow>
             </Pressable>
 
@@ -41,11 +45,12 @@ function RecordScreen2Content({ navigation }) {
     )
 }
 
-export default function RecordScreen2({ navigation }) {
+export default function RecordScreen2({ navigation, displayTabBar, setDisplayTabBar }) {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="RecordScreen2" component={RecordScreen2Content} options={{headerShown: false}}/>
-            <Stack.Screen name="RecordScreen" component={RecordScreen}options={{headerShown: false}}/>
+            <Stack.Screen name="RecordScreen1" component={RecordScreen1Content} options={{ headerShown: false }} />
+            <Stack.Screen name="RecordScreen" component={RecordScreen} options={{ headerShown: false }} />
+            {/* ADD THE REST OF THE RECORD SCREENS */}
         </Stack.Navigator>
     )
 }
@@ -53,7 +58,7 @@ export default function RecordScreen2({ navigation }) {
 const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
-       // alignItems: 'center',
+        // alignItems: 'center',
         justifyContent: 'center',
         top: 61,
         //backgroundColor: 'cyan',
@@ -69,8 +74,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 17,
         fontWeight: 'bold',
-     //   marginRight: 190,
-       // left: 140
+        //   marginRight: 190,
+        // left: 140
     },
     body: {
         flex: 1

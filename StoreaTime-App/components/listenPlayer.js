@@ -18,6 +18,8 @@ export default function ListenPlayer({ textLine1, textLine2, endDuration }) {
     Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
     'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
     JakartaSans: require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
+    JakartaSansBold: require('../assets/fonts/PlusJakartaText-Bold.otf'),
+    JarkartaDisplayBold: require('../assets/fonts/PlusJakartaDisplay-Bold.otf'),
   });
 
   const [sound, setSound] = useState();
@@ -114,12 +116,10 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: Themes.colors.white,
-    fontFamily: 'JakartaSans',
-    fontSize: 20,
-    fontWeight: 'bold'
+    fontFamily: 'JakartaSansBold',
+    fontSize: 19,
   },
   clappingHands: {
-    left: 15,
     top: 22
   },
   playbar: {
