@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import Themes from '../assets/Themes/themes';
 import ListenPlayer from '../components/listenPlayer';
 import DownArrow from '../assets/icons/down_arrow.svg';
+import BackArrow from '../assets/icons/back_arrow.svg'
 import ExploreIconGray from '../assets/icons/explore_icon_gray.svg'
 import ExploreIconOrange from '../assets/icons/explore_icon_orange.svg'
 import RecordTabIcon from '../assets/icons/record_tab_icon.svg'
@@ -11,16 +12,16 @@ import CommunityIconGray from '../assets/icons/community_icon.svg';
 import CommunityIconOrange from '../assets/icons/community_icon_orange.svg';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import RecordScreen from '../screens/RecordScreen';
+import RecordScreen from './RecordScreen';
 import RecordScreen1 from './RecordScreen1';
-import CommunityScreen1 from '../screens/CommunityScreen1';
+import CommunityScreen1 from './CommunityScreen1';
 
 const Tab = createBottomTabNavigator();
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-function ListenScreen() {
+export default function RamenListenScreen({ navigation }) {
     const [index, setIndex] = useState(1);
 
     const [loaded] = useFonts({
@@ -58,9 +59,11 @@ function ListenScreen() {
             <View>
                 <ScrollView centerContent={true}>
                     <View style={styles.headerBox}>
-                        <View style={styles.arrowStyle}>
-                            <DownArrow></DownArrow>
-                        </View>
+                            <View style={styles.arrowStyle}>
+                            <Pressable onPress={() => navigation.navigate("TodaysListens")}>
+                                <BackArrow></BackArrow>
+                            </Pressable>
+                            </View>
                         <View style={styles.headerStyle}>
                             <Text style={styles.textStyle}>Listen</Text>
                         </View>
@@ -80,37 +83,6 @@ function ListenScreen() {
             </View>
         </ImageBackground>
     );
-}
-
-export default function ListenScreen1({ navigation, route }) {
-    const [displayTabBar, setDisplayTabBar] = useState("flex")
-    return (
-        <Tab.Navigator
-            screenOptions={({ route }) => ({
-                tabBarShowLabel: false,
-                tabBarStyle:
-                {
-                    display: "flex"
-                },
-                tabBarIcon: ({ focused }) => {
-                    let iconName;
-
-                    if (route.name === "Explore") {
-                        iconName = focused ? <ExploreIconOrange style={{ marginTop: 15 }} /> : <ExploreIconGray style={{ marginTop: 15 }} />
-                    }
-                    else if (route.name === "Record") {
-                        iconName = focused ? <RecordTabIcon /> : <RecordTabIcon />
-                    } else if (route.name === "Community") {
-                        iconName = focused ? <CommunityIconOrange style={{ marginTop: 15 }} /> : <CommunityIconGray style={{ marginTop: 15 }} />
-                    }
-                    return iconName;
-                }
-            })}>
-            <Tab.Screen name="Explore" component={ListenScreen} options={{ headerShown: false }} />
-            <Tab.Screen name="Record" component={RecordScreen1} options={{ headerShown: false }} />
-            <Tab.Screen name="Community" component={CommunityScreen1} options={{ headerShown: false }} />
-        </Tab.Navigator>
-    )
 }
 
 const styles = StyleSheet.create({

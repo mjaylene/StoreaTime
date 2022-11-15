@@ -27,7 +27,7 @@ export default function ListenPlayer({ textLine1, textLine2, endDuration }) {
 
   async function playSound() {
     if (!played) {
-      const { sound } = await Audio.Sound.createAsync(require('../assets/sounds/test_sound1.mp3')
+      const { sound } = await Audio.Sound.createAsync(require('../assets/sounds/ramen_story.mp3')
       );
       setSound(sound);
 

@@ -1,7 +1,6 @@
 import { ImageBackground, StyleSheet, Text, View, Pressable, Image } from 'react-native';
 import OnboardingScreens from './components/onboarding';
 import RecordScreen1 from './screens/RecordScreen1';
-import ListenScreen1 from './screens/ListenScreen1';
 import ExploreIconGray from './assets/icons/explore_icon_gray.svg'
 import ExploreIconOrange from './assets/icons/explore_icon_orange.svg'
 import RecordTabIcon from './assets/icons/record_tab_icon.svg'
