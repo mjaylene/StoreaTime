@@ -60,7 +60,7 @@ export default function RamenListenScreen({ navigation }) {
                 <ScrollView centerContent={true}>
                     <View style={styles.headerBox}>
                             <View style={styles.arrowStyle}>
-                            <Pressable onPress={() => navigation.navigate("TodaysListens")}>
+                            <Pressable onPress={() => navigation.goBack()}>
                                 <BackArrow></BackArrow>
                             </Pressable>
                             </View>
