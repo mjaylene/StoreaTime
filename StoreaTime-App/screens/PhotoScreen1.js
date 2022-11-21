@@ -5,11 +5,150 @@ import { useFonts } from 'expo-font';
 import BackArrow from '../assets/icons/back_arrow.svg';
 import Next from '../assets/icons/next_text.svg';
 import BlankImage from '../assets/icons/blank_image.svg';
+import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
+import * as ImagePicker from 'expo-image-picker';
+import { Keyboard, TouchableWithoutFeedback } from 'react-native';
 
 
+const PhotoBox = () => {
+    return (
+        <Pressable onPress={() => pickImage()} style={{ marginTop: 30 }}>
+            <BlankImage style={styles.blank}></BlankImage>
+        </Pressable>
+    )
+}
 
-export default function PhotoScreen1({ navigation }) {
-    const Pulse = require('react-native-pulse').default;
+export default function PhotoScreen1({ navigation, route }) {
+    loadBackgroundImageAsync();
+    // Image Picker source: Bug Ninza 
+    const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
+    const [image, setImage] = useState(null);
+    const [image2, setImage2] = useState(null);
+    const [image3, setImage3] = useState(null);
+
+    const [image4, setImage4] = useState(null);
+    const [image5, setImage5] = useState(null);
+    const [image6, setImage6] = useState(null);
+
+    const dishName = route.params.paramDish;
+
+
+    useEffect(() => {
+        (async () => {
+            const galleryStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            setHasGalleryPermission(galleryStatus.status === 'granted');
+        })();
+    }, []);
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+
+        console.log(result);
+        console.log('------------------------------------------------')
+        //console.log('URI', result.assets[0].uri)
+
+        if (!result.canceled) {
+            setImage(result.assets[0].uri);
+        }
+    };
+    const pickImage2 = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+
+        console.log(result);
+        console.log('------------------------------------------------')
+        //console.log('URI', result.assets[0].uri)
+
+        if (!result.canceled) {
+            setImage2(result.assets[0].uri);
+        }
+    };
+
+    const pickImage3 = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+
+        console.log(result);
+        console.log('------------------------------------------------')
+        //console.log('URI', result.assets[0].uri)
+
+        if (!result.canceled) {
+            setImage3(result.assets[0].uri);
+        }
+    };
+    const pickImage4 = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+
+        console.log(result);
+        console.log('------------------------------------------------')
+        //console.log('URI', result.assets[0].uri)
+
+        if (!result.canceled) {
+            setImage4(result.assets[0].uri);
+        }
+    };
+
+    const pickImage5 = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+
+        console.log(result);
+        console.log('------------------------------------------------')
+        //console.log('URI', result.assets[0].uri)
+
+        if (!result.canceled) {
+            setImage5(result.assets[0].uri);
+        }
+    };
+
+    const pickImage6 = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+
+        console.log(result);
+        console.log('------------------------------------------------')
+        //console.log('URI', result.assets[0].uri)
+
+        if (!result.canceled) {
+            setImage6(result.assets[0].uri);
+        }
+    };
+
+    if (hasGalleryPermission === false) {
+        return <Text>No access to Internal Storage</Text>
+    }
 
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
@@ -17,10 +156,6 @@ export default function PhotoScreen1({ navigation }) {
         JakartaSans: require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
         JakartaSansBold: require('../assets/fonts/PlusJakartaText-Bold.otf'),
     });
-
-    const [click, checkCircle] = React.useState(false);
-    const [click1, checkCircle1] = React.useState(false);
-
 
     // These lines of code
     useEffect(() => {
@@ -34,32 +169,51 @@ export default function PhotoScreen1({ navigation }) {
         });
     }, [navigation]);
     // 
-
     return (
-        <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
-            <View style={styles.header}>
-                <Pressable onPress={() => navigation.navigate('RecordScreen')}>
-                    <BackArrow style={styles.backButton}></BackArrow>
-                </Pressable>
-                <Text style={styles.screenTitle}>Photos</Text>
-                <Pressable onPress={() => navigation.navigate("ShareScreen1")}>
-                    <Next style={styles.nextButton}></Next>
-                </Pressable>
-            </View>
-            <View style={styles.body}>
-                <Text style={styles.optional}>Add photos (Optional)</Text>
-                <View style={styles.topRow}>
-                    <BlankImage style={styles.blank}></BlankImage>
-                    <BlankImage style={styles.blank}></BlankImage>
-                    <BlankImage style={styles.blank}></BlankImage>
+            <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
+                <View style={styles.header}>
+                    <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
+                        <BackArrow style={styles.backButton}></BackArrow>
+                    </Pressable>
+                    <Text style={styles.screenTitle}>Photos</Text>
+                    <Pressable onPress={() => navigation.navigate("ShareScreen1")}>
+                        <Next style={styles.nextButton}></Next>
+                    </Pressable>
                 </View>
-                <View style={styles.bottomRow}>
-                    <BlankImage style={styles.blank}></BlankImage>
-                    <BlankImage style={styles.blank}></BlankImage>
-                    <BlankImage style={styles.blank}></BlankImage>
+                <View style={styles.body}>
+                    <Text style={styles.optional}>Add photos (Optional)</Text>
+                    <View style={styles.topRow}>
+                        {!image ? <Pressable onPress={() => pickImage()}>
+                            <BlankImage style={styles.blank}></BlankImage>
+                        </Pressable> :
+                            <Image source={{ uri: image }} style={styles.selectedImage} />}
+
+                        {!image2 ? <Pressable onPress={() => pickImage2()}>
+                            <BlankImage style={styles.blank}></BlankImage>
+                        </Pressable> :
+                            <Image source={{ uri: image2 }} style={styles.selectedImage} />}
+
+                        {!image3 ? <Pressable onPress={() => pickImage3()}>
+                            <BlankImage style={styles.blank}></BlankImage>
+                        </Pressable> :
+                            <Image source={{ uri: image3 }} style={styles.selectedImage} />}
+                    </View>
+                    <View style={styles.bottomRow}>
+                        {!image4 ? <Pressable onPress={() => pickImage4()}>
+                            <BlankImage style={styles.blank}></BlankImage>
+                        </Pressable> :
+                            <Image source={{ uri: image4 }} style={styles.selectedImage} />}
+                        {!image5 ? <Pressable onPress={() => pickImage()}>
+                            <BlankImage style={styles.blank}></BlankImage>
+                        </Pressable> :
+                            <Image source={{ uri: image5 }} style={styles.selectedImage} />}
+                        {!image6 ? <Pressable onPress={() => pickImage()}>
+                            <BlankImage style={styles.blank}></BlankImage>
+                        </Pressable> :
+                            <Image source={{ uri: image6 }} style={styles.selectedImage} />}
+                    </View>
                 </View>
-            </View>
-        </ImageBackground>
+            </ImageBackground>
     );
 }
 
@@ -119,5 +273,11 @@ const styles = StyleSheet.create({
     body: {
         bottom: 150,
         justifyContent: 'center'
+    },
+    selectedImage: {
+        width: 112,
+        height: 112,
+        borderRadius: 24,
+        margin: 5
     }
 });

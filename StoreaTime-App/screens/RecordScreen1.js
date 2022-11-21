@@ -14,6 +14,7 @@ import TextScreen1 from './TextScreen1';
 import ShareScreen1 from './ShareScreen1';
 import ShareScreen2 from './ShareScreen2';
 import PhotoScreen1 from './PhotoScreen1';
+import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 
 let dish = ''
 
@@ -46,7 +47,7 @@ function RecordScreen1Content({ navigation, displayTabBar, setDisplayTabBar }) {
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-            <Pressable onPress={() => navigation.navigate("Back ")}>
+            <Pressable onPress={() => navigation.navigate("TodaysListens")}>
                 <BackArrow style={styles.backButton}></BackArrow>
             </Pressable>
                 <Text style={styles.screenTitle}>Record</Text>
@@ -79,6 +80,7 @@ function RecordScreen1Content({ navigation, displayTabBar, setDisplayTabBar }) {
 }
 
 export default function RecordScreen2({ navigation, displayTabBar, setDisplayTabBar }) {
+    loadBackgroundImageAsync();
     return (
         <Stack.Navigator>
             <Stack.Screen name="RecordScreen1" component={RecordScreen1Content} options={{ headerShown: false }} />
@@ -99,7 +101,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         top: 61,
         //backgroundColor: 'cyan',
-        flex: 1
+        flex: 1,
+        left: 20
     },
     image: {
         justifyContent: 'center',
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         //   marginRight: 190,
-        // left: 140
+        right: 35
     },
     body: {
         flex: 1,
@@ -133,6 +136,7 @@ const styles = StyleSheet.create({
         width: 32,
         height: 32,
         bottom: 240,
+        //right: 90
     },
     nextButton: {
         width: 64,

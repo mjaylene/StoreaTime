@@ -8,6 +8,9 @@ import CommunityIconGray from './assets/icons/community_icon.svg';
 import CommunityIconOrange from './assets/icons/community_icon_orange.svg';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 export default function App() {
   return (

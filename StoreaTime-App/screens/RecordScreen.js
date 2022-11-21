@@ -7,6 +7,7 @@ import MicCircle from '../assets/icons/mic_circle.svg';
 import TypeInstead from '../assets/icons/type.svg';
 import RecordAnimation from '../assets/icons/circle_animation.svg'
 import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
+import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 
 
 
@@ -19,6 +20,7 @@ const animationFunction = () => {
 }
 
 export default function RecordScreen({ navigation, route }) {
+    loadBackgroundImageAsync();
     const Pulse = require('react-native-pulse').default;
     const dishName  = route.params.paramDish;
     let contentDisplayed = null;
@@ -58,7 +60,7 @@ export default function RecordScreen({ navigation, route }) {
                 </Pressable>
                 <Text style={styles.screenTitle}>Record</Text>
                 {count % 2 !== 1 && count !== 0 ?
-                    <Pressable onPress={() => navigation.navigate("PhotoScreen1")}>
+                    <Pressable onPress={() => navigation.navigate("PhotoScreen1", {paramDish: dishName})}>
                         <View style={styles.reviewFilledButton}>
                             <Text style={styles.reviewFilledText}>Review</Text></View>
                     </Pressable>
@@ -76,7 +78,7 @@ export default function RecordScreen({ navigation, route }) {
                     </View>
                 }
             </Pressable>
-            <Pressable onPress={() => navigation.navigate('TextScreen1')}>
+            <Pressable onPress={() => navigation.navigate('TextScreen1', {paramDish:dishName})}>
                 <TypeInstead style={styles.type}></TypeInstead>
             </Pressable>
             <Prompt
@@ -97,7 +99,8 @@ const styles = StyleSheet.create({
         width: 32,
         height: 32,
         //bottom: 240,
-        left: 30,
+        left: 40,
+        top: 7
         //backgroundColor: 'cyan'
     },
     screenTitle: {
@@ -106,7 +109,8 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         marginRight: 190,
-        left: 145
+        left: 145,
+        top: 7
     },
     header: {
         flexDirection: 'row',

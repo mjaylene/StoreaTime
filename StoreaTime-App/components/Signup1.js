@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
+import { Text, TouchableWithoutFeedback, Keyboard, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
 import { useFonts } from 'expo-font';
@@ -9,6 +9,7 @@ import BackArrow from '../assets/icons/back_arrow.svg';
 import DimmedNextArrow from '../assets/icons/dimmed_next_arrow.svg';
 import NextArrow from '../assets/icons/next_arrow.svg';
 import loadBackgroundImageAsync from './LoadBackgroundImageAsync';
+
 
 const DimmedNext = () => {
     return (
@@ -36,7 +37,9 @@ export default function Signup1({ navigation }) {
         console.log(text)
     }, [text]);
     return (
-        <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+            <View>
+            <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <Pressable onPress={() => navigation.navigate("Back ")}>
                 <BackArrow style={styles.backButton}></BackArrow>
             </Pressable>
@@ -57,6 +60,8 @@ export default function Signup1({ navigation }) {
                     </Pressable> : <DimmedNext></DimmedNext>}
             </View>
         </ImageBackground>
+            </View>
+        </TouchableWithoutFeedback>
     );
 }
 

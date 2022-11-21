@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import React from "react";
 import { useFonts } from 'expo-font';
 import BackArrow from '../assets/icons/back_arrow.svg';
+import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 
 
 
 export default function ShareScreen2({ navigation }) {
+    loadBackgroundImageAsync();
     const Pulse = require('react-native-pulse').default;
 
     const [loaded] = useFonts({
@@ -38,7 +40,6 @@ export default function ShareScreen2({ navigation }) {
             <View style={styles.header}>
                 <Text style={styles.screenTitle}>Share</Text>
             </View>
-            <Pulse color='white' numPulses={3} diameter={400} speed={20} duration={2000} />
         </ImageBackground>
     );
 }

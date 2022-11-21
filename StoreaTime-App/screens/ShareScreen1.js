@@ -15,9 +15,11 @@ import DimmedNext from '../assets/icons/dimmed_text_next.svg';
 import CommunityBox from '../components/CommunityBox.js';
 import DimmedSend from '../assets/icons/dimmed_send.svg';
 import Send from '../assets/icons/send.svg';
+import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 
 
 export default function RecordScreen({ navigation }) {
+    loadBackgroundImageAsync();
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
