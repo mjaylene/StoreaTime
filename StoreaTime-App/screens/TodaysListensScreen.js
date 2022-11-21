@@ -1,7 +1,7 @@
-import { Text, View, StyleSheet, ImageBackground, SafeAreaView, Pressable, Image, FlatList } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, Pressable, Image, FlatList } from 'react-native';
 import { useFonts } from 'expo-font';
+import { Asset } from "expo-asset";
 import Themes from '../assets/Themes/themes';
-import ChurrosAudioCard from '../assets/explore_photocards/churros_audio_card.svg'
 import DownArrow from '../assets/icons/down_arrow.svg'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -36,6 +36,17 @@ const STORIES = [
         community: "Asian Food Collective"
     }
 ]
+
+async function loadStoryCardImages() {
+    const x = await Promise.all([
+        Asset.loadAsync([
+            require('../assets/explore_photocards/ramen_audio_card.png'),
+            require('../assets/explore_photocards/churros_audio_card.png'),
+            require('../assets/explore_photocards/dimsum_audio_card.png'),
+        ]),
+    ]);
+    return x
+}
 
 const renderStoryCard = ({ item, index }, navigation) => {
     let cardStyle;
@@ -84,6 +95,7 @@ function ListenStack({ navigation }) {
 }
 
 function TodaysListensScreenContent( { navigation }) {
+    loadStoryCardImages();
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),

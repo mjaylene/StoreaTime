@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import BackArrow from '../assets/icons/back_arrow.svg';
 import DimmedNextArrow from '../assets/icons/dimmed_next_arrow.svg';
 import NextArrow from '../assets/icons/next_arrow.svg';
-
+import loadBackgroundImageAsync from './LoadBackgroundImageAsync';
 
 const DimmedNext = () => {
     return (
@@ -19,6 +19,7 @@ const DimmedNext = () => {
 }
 
 export default function Signup1({ navigation }) {
+    loadBackgroundImageAsync();
     let contentDisplayed = null
     const [isEmpty, empty] = React.useState(true);
     const [user, onChangeUser] = React.useState("");
