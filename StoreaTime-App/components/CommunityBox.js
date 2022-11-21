@@ -29,7 +29,7 @@ export default function community({name, memberCount, privacy, clicked, picture}
                     <Person></Person>
                     <Text style={styles.count}>{memberCount}</Text>
 
-                    {privacy === 'Public' ? <Public></Public> : <Private></Private>}
+                    {privacy === 'Public' ? <Public></Public> : <Private style={styles.priv}></Private>}
                     <Text style={styles.count}>{privacy}</Text>
                 </View>
             </View>
@@ -85,5 +85,8 @@ const styles = StyleSheet.create({
         left: 30,
         //backgroundColor: 'blue',
         width: '60%'
+    },
+    priv: {
+        marginLeft: 13
     }
 });

@@ -66,6 +66,7 @@ export default function OnboardingScreens() {
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
         JakartaSans: require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
+        JakartaSansBold: require('../assets/fonts/PlusJakartaText-Bold.otf'),
     });
     if (!loaded) {
         return null;

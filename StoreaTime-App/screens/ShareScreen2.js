@@ -7,6 +7,8 @@ import BackArrow from '../assets/icons/back_arrow.svg';
 
 
 export default function ShareScreen2({ navigation }) {
+    const Pulse = require('react-native-pulse').default;
+
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
@@ -36,6 +38,7 @@ export default function ShareScreen2({ navigation }) {
             <View style={styles.header}>
                 <Text style={styles.screenTitle}>Share</Text>
             </View>
+            <Pulse color='white' numPulses={3} diameter={400} speed={20} duration={2000} />
         </ImageBackground>
     );
 }

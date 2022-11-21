@@ -14,7 +14,7 @@ import Next from '../assets/icons/next_text.svg';
 import DimmedNext from '../assets/icons/dimmed_text_next.svg'
 
 
-export default function RecordScreen({ navigation }) {
+export default function TextScreen({ navigation }) {
     let contentDisplayed = null
     const [isEmpty, empty] = React.useState(true);
     const [text, onChangeText] = React.useState("");

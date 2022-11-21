@@ -1,42 +1,49 @@
-import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
-import { useEffect, useState } from 'react';
+import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image, Animated } from 'react-native';
+import { useState, useRef, useEffect } from 'react';
 import React from "react";
-import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
 import Prompt from '../components/Prompt';
 import BackArrow from '../assets/icons/back_arrow.svg';
 import MicCircle from '../assets/icons/mic_circle.svg';
 import TypeInstead from '../assets/icons/type.svg';
+import RecordAnimation from '../assets/icons/circle_animation.svg'
 
-const DimmedNext = () => {
+
+
+const animationFunction = () => {
+    console.log('hi')
+    const Pulse = require('react-native-pulse').default;
     return (
-        <Pressable>
-            <Image style={styles.nextButton}
-                source={require('../assets/icons/dimmed_next.png')}></Image>
-        </Pressable>
+        <Pulse color='white' numPulses={3} diameter={400} speed={20} duration={2000} />
     );
 }
 
 export default function RecordScreen({ navigation }) {
-    let contentDisplayed = null
-    const [isEmpty, empty] = React.useState(true);
-    const [text, onChangeText] = React.useState("");
+    const Pulse = require('react-native-pulse').default;
 
+    let contentDisplayed = null;
+    const [text, onChangeText] = React.useState("");
     // These lines of code hide the tab bar
     useEffect(() => {
         navigation.getParent()?.setOptions({
-          tabBarStyle: {
-            display: "none"
-          }
+            tabBarStyle: {
+                display: "none"
+            }
         });
         return () => navigation.getParent()?.setOptions({
-          tabBarStyle: undefined
+            tabBarStyle: undefined
         });
-      }, [navigation]);
-      // 
+    }, [navigation]);
+    // 
+    const [isActive, setIsActive] = useState(false);
+    const [count, isClicked] = useState(0);
+    const handleClick = () => {
+        console.log('record clicked')
+        console.log(count)
+        isClicked(count + 1)
+        setIsActive(current => !current);
 
+        // setIsActive(true);
+    };
     useEffect(() => {
         console.log('side effect function 2');
         console.log(text)
@@ -44,24 +51,34 @@ export default function RecordScreen({ navigation }) {
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-                    
-            <Pressable onPress={() => navigation.navigate('RecordScreen1')}>
-                <BackArrow style={styles.backButton}></BackArrow>
-            </Pressable>
-            <Text style={styles.screenTitle}>Record</Text>
-            <Pressable>
-                <View style={styles.reviewButton}>
-                    <Text style={styles.reviewText}>Review</Text>
-                </View>
-            </Pressable>
+
+                <Pressable onPress={() => navigation.navigate('RecordScreen1')}>
+                    <BackArrow style={styles.backButton}></BackArrow>
+                </Pressable>
+                <Text style={styles.screenTitle}>Record</Text>
+                {count % 2 !== 1 && count !== 0 ?
+                    <Pressable onPress={() => navigation.navigate("PhotoScreen1")}>
+                        <View style={styles.reviewFilledButton}>
+                            <Text style={styles.reviewFilledText}>Review</Text></View>
+                    </Pressable>
+                    : <View style={styles.reviewButton}>
+                        <Text style={styles.reviewText}>Review</Text>
+                    </View>}
             </View>
-            <Pressable>
-            <MicCircle style={styles.micIcon}></MicCircle>
+            <Pressable onPress={handleClick}>
+                {!isActive ? <MicCircle style={styles.micIcon}></MicCircle> :
+                    <View>
+                        <View style={styles.pulse}>
+                            <Pulse color='white' numPulses={3} diameter={400} speed={10} duration={1000} initialDiameter={200} />
+                        </View>
+                        <MicCircle style={styles.micIcon}></MicCircle>
+                    </View>
+                }
             </Pressable>
             <Pressable onPress={() => navigation.navigate('TextScreen1')}>
                 <TypeInstead style={styles.type}></TypeInstead>
             </Pressable>
-            <Prompt 
+            <Prompt
                 text={'Xiao Long Bao'}
             />
         </ImageBackground>
@@ -114,6 +131,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'rgba(255, 255, 255, 0.49)'
     },
+    reviewFilledText: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: '#43009B'
+    },
+    reviewFilledButton: {
+        width: 102,
+        height: 35,
+        backgroundColor: 'white',
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        left: 0,
+        marginRight: 20
+    },
     micIcon: {
         width: 255,
         height: 255,
@@ -124,4 +156,12 @@ const styles = StyleSheet.create({
         height: 76,
         top: 70
     },
+    pulse: {
+        top: 150
+    },
+    review: {
+        width: 102,
+        height: 35,
+        backgroundColor: 'red',
+    }
 });

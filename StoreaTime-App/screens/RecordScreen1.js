@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
+import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image, Animated } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
 import { useFonts } from 'expo-font';
@@ -13,6 +13,7 @@ import NextArrow from '../assets/icons/next_arrow.svg';
 import TextScreen1 from './TextScreen1';
 import ShareScreen1 from './ShareScreen1';
 import ShareScreen2 from './ShareScreen2';
+import PhotoScreen1 from './PhotoScreen1';
 
 const DimmedNext = () => {
     return (
@@ -82,6 +83,7 @@ export default function RecordScreen2({ navigation, displayTabBar, setDisplayTab
             <Stack.Screen name="TextScreen1" component={TextScreen1} options={{ headerShown: false }} />
             <Stack.Screen name="ShareScreen1" component={ShareScreen1} options={{ headerShown: false }} />
             <Stack.Screen name="ShareScreen2" component={ShareScreen2} options={{ headerShown: false }} />
+            <Stack.Screen name="PhotoScreen1" component={PhotoScreen1} options={{ headerShown: false }} />
             {/* ADD THE REST OF THE RECORD SCREENS */}
         </Stack.Navigator>
     )
