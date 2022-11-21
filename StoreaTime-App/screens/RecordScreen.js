@@ -6,6 +6,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import Prompt from '../components/Prompt';
+import BackArrow from '../assets/icons/back_arrow.svg';
+import MicCircle from '../assets/icons/mic_circle.svg';
+import TypeInstead from '../assets/icons/type.svg';
 
 const DimmedNext = () => {
     return (
@@ -16,7 +19,7 @@ const DimmedNext = () => {
     );
 }
 
-export default function Signup1({ navigation }) {
+export default function RecordScreen({ navigation }) {
     let contentDisplayed = null
     const [isEmpty, empty] = React.useState(true);
     const [text, onChangeText] = React.useState("");
@@ -43,8 +46,7 @@ export default function Signup1({ navigation }) {
             <View style={styles.header}>
                     
             <Pressable onPress={() => navigation.navigate('RecordScreen1')}>
-                <Image style={styles.backButton}
-                    source={require('../assets/icons/back.png')}></Image>
+                <BackArrow style={styles.backButton}></BackArrow>
             </Pressable>
             <Text style={styles.screenTitle}>Record</Text>
             <Pressable>
@@ -53,10 +55,12 @@ export default function Signup1({ navigation }) {
                 </View>
             </Pressable>
             </View>
-            <Image style={styles.micIcon}
-                source={require('../assets/icons/mic.png')}></Image>
-            <Image style={styles.type}
-                source={require('../assets/icons/type.png')}></Image>
+            <Pressable>
+            <MicCircle style={styles.micIcon}></MicCircle>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate('TextScreen1')}>
+                <TypeInstead style={styles.type}></TypeInstead>
+            </Pressable>
             <Prompt 
                 text={'Xiao Long Bao'}
             />
@@ -75,7 +79,8 @@ const styles = StyleSheet.create({
         width: 32,
         height: 32,
         //bottom: 240,
-        left: 20
+        left: 30,
+        //backgroundColor: 'cyan'
     },
     screenTitle: {
         //backgroundColor: 'cyan',
@@ -83,13 +88,13 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         marginRight: 190,
-        left: 140
+        left: 145
     },
     header: {
         flexDirection: 'row',
-        alignItems: 'center',
+        //alignItems: 'center',
         justifyContent: 'center',
-        top: 50,
+        top: 55,
         //backgroundColor: 'cyan',
         position: 'absolute'
     },
@@ -101,7 +106,7 @@ const styles = StyleSheet.create({
         //justifyContent: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        right: 5,
+        left: 0,
         marginRight: 20
     },
     reviewText: {

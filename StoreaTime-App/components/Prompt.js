@@ -1,6 +1,9 @@
 import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
+import BackArrow from '../assets/icons/back_arrow.svg';
+import RightArrow from '../assets/icons/keyboard_arrow_right.svg'
+import LeftArrow from '../assets/icons/keyboard_arrow_left.svg'
 
 function next(index, list) {
     if (index + 1 < list.length) {
@@ -34,15 +37,13 @@ export default function prompt({text}) {
     return (
         <View style={styles.promptBox}>
         <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1):  onChangeIndex(promptIndex + 0)}>
-        <Image style={styles.backArrow}
-                source={require('../assets/icons/back_arrow.png')}></Image>
+            <LeftArrow style={styles.backArrow}></LeftArrow>
         </Pressable>
             <View style={styles.promptContainer}>
                 <Text style={styles.prompt}>{promptArray[promptIndex]}</Text>
             </View>
             <Pressable onPress={() => promptIndex + 1 < promptArray.length ? onChangeIndex(promptIndex + 1) : onChangeIndex(promptIndex - 0)}>
-            <Image style={styles.nextArrow}
-                source={require('../assets/icons/next_arrow.png')}></Image>
+                <RightArrow style={styles.nextArrow}></RightArrow>
             </Pressable>
         </View>
   );
@@ -75,13 +76,13 @@ const styles = StyleSheet.create({
     backArrow: {
         width: 9.88,
         height: 16,
-        right: 35,
+        right: 20,
         //backgroundColor: 'blue'
     },
     nextArrow: {
         width: 9.88,
         height: 16,
-        left: 35,
+        left: 20,
         //backgroundColor: 'blue'
-    }
+    },
 });

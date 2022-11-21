@@ -1,16 +1,18 @@
 import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
+import BackArrow from '../assets/icons/back_arrow.svg'
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import DimmedNextArrow from '../assets/icons/dimmed_next_arrow.svg';
+import NextArrow from '../assets/icons/next_arrow.svg';
 
 const DimmedNext = () => {
     return (
         <Pressable>
-            <Image style={styles.nextButton}
-                source={require('../assets/icons/dimmed_next.png')}></Image>
+            <DimmedNextArrow style={styles.nextButton}></DimmedNextArrow>
         </Pressable>
     );
 }
@@ -20,6 +22,12 @@ export default function Signup3({ navigation }) {
     const [isEmpty, empty] = React.useState(true);
     const [text, onChangeText] = React.useState("");
 
+    const [loaded] = useFonts({
+        Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
+        'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
+        JakartaSans: require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
+        JakartaSansBold: require('../assets/fonts/PlusJakartaText-Bold.otf'),
+    });
 
     useEffect(() => {
         console.log('side effect function 2');
@@ -28,8 +36,7 @@ export default function Signup3({ navigation }) {
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <Pressable onPress={() => navigation.navigate('Signup2')}>
-                <Image style={styles.backButton}
-                    source={require('../assets/icons/back.png')}></Image>
+                <BackArrow style={styles.backButton}></BackArrow>
             </Pressable>
             <Text style={styles.title}>Password</Text>
             <View style={styles.inputBox}>
@@ -40,13 +47,13 @@ export default function Signup3({ navigation }) {
                     value={text}
                     placeholder="Top-secret password"
                     placeholderTextColor={'#ebdedd'}
+                    //placeholderFontFamily={'JakartaSans'}
                     secureTextEntry={true}
                 />
                 {(text != "") ?
                     <Pressable onPress={() => navigation.navigate('Welcome1')}>
-                        <Image style={styles.nextButton}
-                            source={require('../assets/icons/next.png')}></Image>
-                    </Pressable> : <DimmedNext></DimmedNext>}
+                    <NextArrow style={styles.nextButton}></NextArrow>
+                </Pressable> : <DimmedNext></DimmedNext>}
             </View>
         </ImageBackground>
     );
@@ -69,9 +76,9 @@ const styles = StyleSheet.create({
         fontFamily: 'Romana-Bold',
     },
     input: {
-        fontStyle: 'italic',
+        //fontStyle: 'italic',
         fontSize: 25,
-        //fontFamily: 'Plus Jakarta Sans',
+        fontFamily: 'JakartaSans',
         color: 'white',
         bottom: 10,
         width: "80%",

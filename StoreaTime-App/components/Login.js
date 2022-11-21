@@ -5,12 +5,15 @@ import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import BackArrow from '../assets/icons/back_arrow.svg';
+import DimmedNextArrow from '../assets/icons/dimmed_next_arrow.svg';
+import NextArrow from '../assets/icons/next_arrow.svg';
+
 
 const DimmedNext = () => {
     return (
         <Pressable>
-            <Image style={styles.nextButton}
-                source={require('../assets/icons/dimmed_next.png')}></Image>
+            <DimmedNextArrow style={styles.nextButton}></DimmedNextArrow>
         </Pressable>
     );
 }
@@ -29,8 +32,7 @@ export default function Signup1({ navigation }) {
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <Pressable onPress={() => navigation.navigate('Back ')}>
-                <Image style={styles.backButton}
-                    source={require('../assets/icons/back.png')}></Image>
+                <BackArrow style={styles.backButton}></BackArrow>
             </Pressable>
             <Text style={styles.title}>Login</Text>
             <View style={styles.inputBox}>
@@ -52,9 +54,8 @@ export default function Signup1({ navigation }) {
                     secureTextEntry
                 />
                 {(user != "" && password != "") ?
-                    <Pressable onPress={() => navigation.navigate('RecordScreen')}>
-                        <Image style={styles.nextButton}
-                            source={require('../assets/icons/next.png')}></Image>
+                    <Pressable onPress={() => navigation.navigate('Home')}>
+                        <NextArrow style={styles.nextButton}></NextArrow>
                     </Pressable> : <DimmedNext></DimmedNext>}
             </View>
         </ImageBackground>
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     input: {
         fontStyle: 'italic',
         fontSize: 25,
-        //fontFamily: 'Plus Jakarta Sans',
+        fontFamily: 'JakartaSans',
         color: 'white',
         bottom: 10,
         width: "80%",

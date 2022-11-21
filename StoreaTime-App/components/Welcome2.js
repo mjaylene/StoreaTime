@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
   about: {
       textAlign: 'center',
       fontSize: 15,
-      marginTop: 25
+      marginTop: 25,
+      fontFamily: 'JakartaSans'
   },
   toggleBox: {
       top: 160,
