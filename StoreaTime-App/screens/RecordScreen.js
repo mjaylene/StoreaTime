@@ -6,6 +6,7 @@ import BackArrow from '../assets/icons/back_arrow.svg';
 import MicCircle from '../assets/icons/mic_circle.svg';
 import TypeInstead from '../assets/icons/type.svg';
 import RecordAnimation from '../assets/icons/circle_animation.svg'
+import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
 
 
 
@@ -17,9 +18,9 @@ const animationFunction = () => {
     );
 }
 
-export default function RecordScreen({ navigation }) {
+export default function RecordScreen({ navigation, route }) {
     const Pulse = require('react-native-pulse').default;
-
+    const dishName  = route.params.paramDish;
     let contentDisplayed = null;
     const [text, onChangeText] = React.useState("");
     // These lines of code hide the tab bar
@@ -79,7 +80,7 @@ export default function RecordScreen({ navigation }) {
                 <TypeInstead style={styles.type}></TypeInstead>
             </Pressable>
             <Prompt
-                text={'Xiao Long Bao'}
+                text={dishName}
             />
         </ImageBackground>
     );

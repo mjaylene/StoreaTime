@@ -22,7 +22,7 @@ function previous(index, list) {
 }
 
 export default function prompt({text}) {
-    const promptArray = ['Tell us about your first memory of ' + text + '?', 'Who are you reminded of when making ' + text + '?',
+    const promptArray = ['Tell us about your first memory of eating/making ' + text + '?', 'Who are you reminded of when making ' + text + '?',
                         'If you could only eat one meal or food item for the rest of your life, what would you eat and why?',
                         'What’s the first dish that you cooked on your own? How did it taste?',
                         'What is the cultural significance of ' + text + '?']

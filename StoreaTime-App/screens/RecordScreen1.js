@@ -15,6 +15,8 @@ import ShareScreen1 from './ShareScreen1';
 import ShareScreen2 from './ShareScreen2';
 import PhotoScreen1 from './PhotoScreen1';
 
+let dish = ''
+
 const DimmedNext = () => {
     return (
         <Pressable>
@@ -25,7 +27,6 @@ const DimmedNext = () => {
 const Stack = createStackNavigator();
 
 function RecordScreen1Content({ navigation, displayTabBar, setDisplayTabBar }) {
-
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
@@ -40,6 +41,8 @@ function RecordScreen1Content({ navigation, displayTabBar, setDisplayTabBar }) {
         console.log(text)
     }, [text]);
 
+    dish = text
+    console.log("dish", dish)
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
@@ -51,7 +54,7 @@ function RecordScreen1Content({ navigation, displayTabBar, setDisplayTabBar }) {
             <Text style={styles.questionStyle}>What are you {'\n'} cooking today?</Text>
             <Pressable onPress={() => navigation.navigate('RecordScreen', {
                 displayTabBar: displayTabBar,
-                setDisplayTabBar: setDisplayTabBar
+                setDisplayTabBar: setDisplayTabBar,
             })}>
 
             </Pressable>
@@ -67,7 +70,7 @@ function RecordScreen1Content({ navigation, displayTabBar, setDisplayTabBar }) {
             </View>
             <View style={styles.footer}>
             {(text != "") ?
-                    <Pressable onPress={() => navigation.navigate('RecordScreen')}>
+                    <Pressable onPress={() => navigation.navigate('RecordScreen', {paramDish:dish})}>
                         <NextArrow style={styles.nextButton}></NextArrow>
                     </Pressable> : <DimmedNext></DimmedNext>}
             </View>
