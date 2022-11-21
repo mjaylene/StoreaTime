@@ -18,8 +18,10 @@ import Send from '../assets/icons/send.svg';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 
 
-export default function RecordScreen({ navigation }) {
+export default function RecordScreen({ navigation, route }) {
     loadBackgroundImageAsync();
+    const dishName = route.params.paramDish;
+
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
@@ -86,7 +88,7 @@ export default function RecordScreen({ navigation }) {
             <Pressable onPress={() => navigation.navigate("ShareScreen2")} style={styles.share}>
                 <Send></Send>
             </Pressable> : <DimmedSend style={styles.share}></DimmedSend>}
-            <Pressable onPress={() => navigation.navigate('RecordScreen')}>
+            <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
                     <BackArrow style={styles.backButton}></BackArrow>
                 </Pressable>
         </ImageBackground>

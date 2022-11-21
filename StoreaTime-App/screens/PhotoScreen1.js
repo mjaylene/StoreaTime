@@ -176,7 +176,7 @@ export default function PhotoScreen1({ navigation, route }) {
                         <BackArrow style={styles.backButton}></BackArrow>
                     </Pressable>
                     <Text style={styles.screenTitle}>Photos</Text>
-                    <Pressable onPress={() => navigation.navigate("ShareScreen1")}>
+                    <Pressable onPress={() => navigation.navigate("ShareScreen1", { paramDish: dishName })}>
                         <Next style={styles.nextButton}></Next>
                     </Pressable>
                 </View>
