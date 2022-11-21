@@ -7,12 +7,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import RecordScreen1 from './RecordScreen1';
 import CommunityScreen1 from './CommunityScreen1';
+import CommunityFinds from './CommunityFindsScreen';
 import ExploreIconGray from '../assets/icons/explore_icon_gray.svg'
 import ExploreIconOrange from '../assets/icons/explore_icon_orange.svg'
 import RecordTabIcon from '../assets/icons/record_tab_icon.svg'
 import CommunityIconGray from '../assets/icons/community_icon.svg';
 import CommunityIconOrange from '../assets/icons/community_icon_orange.svg';
 import RamenListenScreen from './RamenListenScreen';
+import VerticalAnimation from '../components/animations/VerticalAnimation'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -35,10 +37,27 @@ const STORIES = [
     }
 ]
 
-const renderStoryCard = ({ item }, navigation) => {
-    console.log(item.card)
+const renderStoryCard = ({ item, index }, navigation) => {
+    let cardStyle;
+    if (index == 0) {
+        cardStyle = {
+            alignItems: 'center',
+            marginLeft: 53.325,
+        }
+    } else if (index == 1) {
+        cardStyle = {
+            alignItems: 'center',
+            marginLeft: 18,
+        } 
+    } else {
+        cardStyle = {
+            alignItems: 'center',
+            marginLeft: 18,
+            marginRight: 53.325
+        }
+     }
     return (
-    <View style={styles.storyCardContainer}>
+    <View style={cardStyle}>
         <Pressable onPress={() => navigation.navigate('RamenListenScreen')}>
         <Image style={styles.cardImage} source={item.card}/>
         </Pressable>
@@ -53,7 +72,12 @@ function ListenStack({ navigation }) {
     return (
         <Stack.Navigator>
             <Stack.Screen name="TodaysListens" component={TodaysListensScreenContent} options={{ headerShown: false }} />
-            <Stack.Screen name="RamenListenScreen" component={RamenListenScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="RamenListenScreen" component={RamenListenScreen}
+                options={{ headerShown: false}} 
+            />
+            <Stack.Screen name="CommunityFinds" component={CommunityFinds}
+                options={VerticalAnimation}
+            />
             {/* ADD THE REST OF THE LISTEN SCREENS */}
         </Stack.Navigator>
     )
@@ -71,36 +95,24 @@ function TodaysListensScreenContent( { navigation }) {
         return null;
     }
 
-    // return (
-    //     <View style={styles.container}>
-    //         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
-    //             <Text style={styles.title}>Today's Listens</Text>
-
-    //             <RamenAudioCard style={styles.ramenCard}></RamenAudioCard>
-    //             <View>
-    //                 <Text style={styles.communityName}>Asian Food Collective</Text>
-    //             </View>
-    //             <Text style={styles.viewMore}>VIEW MORE</Text>
-    //             <DownArrow style={{ opacity: 0.7, top: 106 }}></DownArrow>
-
-
-    //         </ImageBackground>
-    //     </View>
-    // )
     return (
         <View style={styles.container}>
              <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
-             <Text style={styles.title}>Today's Listens</Text>
-             <View style={styles.listContainer}>
-                <FlatList
-                    horizontal
-                    data={STORIES}
-                    renderItem={(params) => renderStoryCard(params, navigation)}
-                    keyExtractor={(item) => item.id}
-                />
-              </View>
-              <Text style={styles.viewMore}>VIEW MORE</Text>
-              <DownArrow style={{ opacity: 0.7, top: 106 }}></DownArrow>
+                <Text style={styles.title}>Today's Listens</Text>
+                <View style={styles.listContainer}>
+                    <FlatList
+                        horizontal
+                        data={STORIES}
+                        renderItem={(params) => renderStoryCard(params, navigation)}
+                        keyExtractor={(item) => item.id}
+                    />
+                </View>
+                <View style={styles.viewMoreBox}>
+                    <Pressable style={{alignItems: 'center'}} onPress={() => navigation.navigate("CommunityFinds")}>
+                        <Text style={styles.viewMore}>VIEW MORE</Text>
+                        <DownArrow style={{ opacity: 0.7, top: 108.33}}></DownArrow>
+                    </Pressable>
+                </View>
              </ImageBackground>
         </View>
     )
@@ -141,6 +153,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+        alignContent: 'center'
     },
 
     image: {
@@ -152,7 +165,7 @@ const styles = StyleSheet.create({
         fontSize: 32,
         fontFamily: 'Romana-Bold',
         color: Themes.colors.white,
-        bottom: 43
+        top: 134,
     },
     cardImage: {
         width: 283.35,
@@ -169,14 +182,24 @@ const styles = StyleSheet.create({
         color: Themes.colors.white,
         opacity: 0.7,
         fontSize: 11,
-        top: 94
+        top: 94,
     },
     listContainer: {
-        top: 200,
-        left: 19
+        flex: 1,
+        top: 177,
+        //marginLeft: 59,
+       //left: 19,
+       // backgroundColor: 'green',
     },
-    storyCardContainer: {
+    firstCardContainer: {
         alignItems: 'center',
-        margin: 20
+        marginLeft: 59,
+        //marginRight: 59
+        //margin: 20,
+    },
+    viewMoreBox: {
+        top: 80,
+        flex: 0.5,
+        alignItems: 'center'
     }
 })

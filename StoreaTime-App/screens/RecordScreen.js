@@ -24,7 +24,7 @@ export default function RecordScreen({ navigation }) {
     const [isEmpty, empty] = React.useState(true);
     const [text, onChangeText] = React.useState("");
 
-    // These lines of code
+    // These lines of code hide the tab bar
     useEffect(() => {
         navigation.getParent()?.setOptions({
           tabBarStyle: {
