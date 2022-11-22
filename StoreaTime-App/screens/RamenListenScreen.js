@@ -4,25 +4,15 @@ import { useFonts } from 'expo-font';
 import Themes from '../assets/Themes/themes';
 import ListenPlayer from '../components/listenPlayer';
 import DownArrow from '../assets/icons/down_arrow.svg';
-import BackArrow from '../assets/icons/back_arrow.svg'
-import ExploreIconGray from '../assets/icons/explore_icon_gray.svg'
-import ExploreIconOrange from '../assets/icons/explore_icon_orange.svg'
-import RecordTabIcon from '../assets/icons/record_tab_icon.svg'
-import CommunityIconGray from '../assets/icons/community_icon.svg';
-import CommunityIconOrange from '../assets/icons/community_icon_orange.svg';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import RecordScreen from './RecordScreen';
-import RecordScreen1 from './RecordScreen1';
-import CommunityScreen1 from './CommunityScreen1';
 import Comment from '../components/Comment';
 import SendUnfilled from '../assets/icons/send_unfilled.svg'
 import SendFilled from '../assets/icons/send_filled.svg'
+import Swiper from 'react-native-swiper'
 
 const Tab = createBottomTabNavigator();
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 export default function RamenListenScreen({ navigation }) {
     const [index, setIndex] = useState(1);
@@ -76,20 +66,68 @@ export default function RamenListenScreen({ navigation }) {
                     <View style={styles.headerBox}>
                             <View style={styles.arrowStyle}>
                             <Pressable onPress={() => navigation.goBack()}>
-                                <BackArrow></BackArrow>
+                                <DownArrow></DownArrow>
                             </Pressable>
                             </View>
                         <View style={styles.headerStyle}>
                             <Text style={styles.textStyle}>Listen</Text>
                         </View>
                     </View>
-                    <Pressable onPress={() => setImage()}>
+                    {/* <Pressable onPress={() => setImage()}>
                         {index === 1 ? <Image source={images.image1} style={styles.imageStyle} />
                             : index === 2 ? <Image source={images.image2} style={styles.imageStyle} />
                                 : index === 3 ? <Image source={images.image3} style={styles.imageStyle} />
                                     : <Image source={images.image4} style={styles.imageStyle} />
                         }
-                    </Pressable>
+                    </Pressable> */}
+                    <View style={{width: 358, height: 406}}>
+                        <Swiper
+                            removeClippedSubviews={false}
+                            loadMinimal={true}
+                            style={styles.wrapper}
+                            dot={
+                                <View
+                                  style={{
+                                    backgroundColor: 'rgba(0,0,0,.2)',
+                                    width: 12,
+                                    height: 12,
+                                    borderRadius: 12,
+                                    marginLeft: 3,
+                                    marginRight: 3,
+                                    marginTop: 3,
+                                    marginBottom: 16
+                                  }}
+                                />
+                            }
+                            activeDot={
+                                <View
+                                  style={{
+                                    backgroundColor: '#FFF',
+                                    width: 15,
+                                    height: 15,
+                                    borderRadius: 12,
+                                    marginLeft: 3,
+                                    marginRight: 3,
+                                    marginTop: 3,
+                                    marginBottom: 16
+                                  }}
+                                />
+                              }
+                        >
+                            <View style={{alignItems: 'center'}}>
+                                <Image source={images.image1} style={styles.imageStyle}></Image>
+                            </View>
+                            <View>
+                                <Image source={images.image2} style={styles.imageStyle}></Image>
+                            </View>
+                            <View>
+                                <Image source={images.image3} style={styles.imageStyle}></Image>
+                            </View>
+                            <View>
+                                <Image source={images.image4} style={styles.imageStyle}></Image>
+                            </View>
+                        </Swiper>
+                    </View>
                     <ListenPlayer textLine1={"How did you learn to make "} textLine2={"Kanagawa Ramen?"} endDuration={"1:20"}></ListenPlayer>
                     <View style={styles.commentSectionBox}>
                         <View style={styles.commentTitleBox}>
@@ -149,7 +187,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 61
+        marginTop: 61,
     },
     headerStyle: {
         alignItems: 'center'
@@ -173,7 +211,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     imageStyle: {
-        marginTop: 40,
+        marginTop: 32,
         width: 358,
         height: 353,
         borderRadius: 24,
@@ -184,7 +222,7 @@ const styles = StyleSheet.create({
         width: 358,
         height: 370,  // tentative to change
         borderRadius: 12,
-        marginTop: 12,
+        marginTop: 26,
     },
     commentTitleBox: {
         alignItems: 'center',
@@ -226,5 +264,6 @@ const styles = StyleSheet.create({
     },
     sendIcon: {
         marginRight: 9
-    }
+    },
+    wrapper: {}
 })

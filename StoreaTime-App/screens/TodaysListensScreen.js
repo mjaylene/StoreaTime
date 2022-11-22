@@ -84,7 +84,7 @@ function ListenStack({ navigation }) {
         <Stack.Navigator>
             <Stack.Screen name="TodaysListens" component={TodaysListensScreenContent} options={{ headerShown: false }} />
             <Stack.Screen name="RamenListenScreen" component={RamenListenScreen}
-                options={{ headerShown: false}} 
+                options={VerticalAnimation} 
             />
             <Stack.Screen name="CommunityFinds" component={CommunityFinds}
                 options={VerticalAnimation}
