@@ -1,33 +1,16 @@
 import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
-import BackArrow from '../assets/icons/back_arrow.svg';
 import RightArrow from '../assets/icons/keyboard_arrow_right.svg'
 import LeftArrow from '../assets/icons/keyboard_arrow_left.svg'
 
-function next(index, list) {
-    if (index + 1 < list.length) {
-        index += 1
-    console.log('next')
-    console.log(index) 
-    }
-}
 
-function previous(index, list) {
-    if (index - 1 > 0) {
-        index -= 1
-    }
-    console.log('prev')
-    console.log(index)
-}
-
-export default function prompt({text}) {
+export default function prompt({ text }) {
     const promptArray = ['Tell us about your first memory of eating/making ' + text + '?', 'Who are you reminded of when making ' + text + '?',
-                        'If you could only eat one meal or food item for the rest of your life, what would you eat and why?',
-                        'What’s the first dish that you cooked on your own? How did it taste?',
-                        'What is the cultural significance of ' + text + '?']
-   // console.log(promptArray)
-    //var promptIndex = 0
+        'If you could only eat one meal or food item for the rest of your life, what would you eat and why?',
+        'What’s the first dish that you cooked on your own? How did it taste?',
+    'What is the cultural significance of ' + text + '?']
+
     const [promptIndex, onChangeIndex] = React.useState(0);
 
     useEffect(() => {
@@ -36,9 +19,9 @@ export default function prompt({text}) {
     }, [promptIndex]);
     return (
         <View style={styles.promptBox}>
-        <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1):  onChangeIndex(promptIndex + 0)}>
-            <LeftArrow style={styles.backArrow}></LeftArrow>
-        </Pressable>
+            <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1) : onChangeIndex(promptIndex + 0)}>
+                <LeftArrow style={styles.backArrow}></LeftArrow>
+            </Pressable>
             <View style={styles.promptContainer}>
                 <Text style={styles.prompt}>{promptArray[promptIndex]}</Text>
             </View>
@@ -46,7 +29,7 @@ export default function prompt({text}) {
                 <RightArrow style={styles.nextArrow}></RightArrow>
             </Pressable>
         </View>
-  );
+    );
 }
 
 

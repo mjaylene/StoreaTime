@@ -1,9 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Pressable, Image, SafeAreaView, ImageBackground } from 'react-native';
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import {useNavigation} from '@react-navigation/native';
 import Signup1 from './Signup1';
 import Signup2 from './Signup2';
 import Signup3 from './Signup3';
@@ -11,34 +9,19 @@ import Login from './Login';
 import Welcome1 from './Welcome1';
 import Welcome2 from './Welcome2';
 import Welcome3 from './Welcome3';
-import ListenPlayback from './listenPlayback';
-import RecordScreen from '../screens/RecordScreen';
-import RamenListenScreen from '../screens/RamenListenScreen';
 import TodaysListensScreen from '../screens/TodaysListensScreen'
 
 const token = false
-//const Stack = createStackNavigator();
-
-//function HomeScreen({ navigation }) {
-
-//}
 const Stack = createStackNavigator();
 
-/*
-const SignupFunction = ( {navigation} ) => {
-    return (
 
-    );
-}
-*/
 function HomeScreen({ navigation }) {
     if (token) {
         console.log('returning user -> login')
-        // render flatlist
-        //contentDisplayed = <List trackList ={tracks} navigation={navigation}/>;
+
     } else {
         console.log('new user -> signup')
-        //contentDisplayed = <SignupFunction></SignupFunction>;
+
     }
 
     return (
@@ -60,7 +43,6 @@ function HomeScreen({ navigation }) {
     );
 }
 
-// options={{ headerShown: false }}
 export default function OnboardingScreens() {
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
@@ -72,18 +54,18 @@ export default function OnboardingScreens() {
         return null;
     }
     return (
-            <Stack.Navigator>
-                <Stack.Screen name="Back " component={HomeScreen} options={{headerShown: false}} />
-                <Stack.Screen name="Login" component={Login} options={{headerShown: false}} /> 
-                <Stack.Screen name="Signup1" component={Signup1} options={{headerShown: false}} /> 
-                <Stack.Screen name="Signup2" component={Signup2} options={{headerShown: false}} />
-                <Stack.Screen name="Signup3" component={Signup3} options={{headerShown: false}} />
-                <Stack.Screen name="Welcome1" component={Welcome1}  options={{headerShown: false}} />
-                <Stack.Screen name="Welcome2" component={Welcome2}  options={{headerShown: false}} />
-                <Stack.Screen name="Welcome3" component={Welcome3}  options={{headerShown: false}} />
-                <Stack.Screen name="Home" component={TodaysListensScreen} options={{headerShown: false}}/>
-            </Stack.Navigator>
-       
+        <Stack.Navigator>
+            <Stack.Screen name="Back " component={HomeScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+            <Stack.Screen name="Signup1" component={Signup1} options={{ headerShown: false }} />
+            <Stack.Screen name="Signup2" component={Signup2} options={{ headerShown: false }} />
+            <Stack.Screen name="Signup3" component={Signup3} options={{ headerShown: false }} />
+            <Stack.Screen name="Welcome1" component={Welcome1} options={{ headerShown: false }} />
+            <Stack.Screen name="Welcome2" component={Welcome2} options={{ headerShown: false }} />
+            <Stack.Screen name="Welcome3" component={Welcome3} options={{ headerShown: false }} />
+            <Stack.Screen name="Home" component={TodaysListensScreen} options={{ headerShown: false }} />
+        </Stack.Navigator>
+
     );
 }
 
@@ -95,7 +77,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         height: '100%',
-      },
+    },
     onboarding: {
         //backgroundColor: 'green',
         alignItems: 'center',

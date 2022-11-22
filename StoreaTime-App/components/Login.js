@@ -1,10 +1,6 @@
 import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
-import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
 import BackArrow from '../assets/icons/back_arrow.svg';
 import DimmedNextArrow from '../assets/icons/dimmed_next_arrow.svg';
 import NextArrow from '../assets/icons/next_arrow.svg';
@@ -20,8 +16,6 @@ const DimmedNext = () => {
 
 export default function Signup1({ navigation }) {
     loadBackgroundImageAsync();
-    let contentDisplayed = null
-    const [isEmpty, empty] = React.useState(true);
     const [user, onChangeUser] = React.useState("");
     const [password, onChangePass] = React.useState("");
 

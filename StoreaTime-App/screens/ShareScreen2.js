@@ -2,7 +2,6 @@ import { Text, View, StyleSheet, Button, ImageBackground, SafeAreaView, Pressabl
 import { useEffect, useState } from 'react';
 import React from "react";
 import { useFonts } from 'expo-font';
-import BackArrow from '../assets/icons/back_arrow.svg';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 
 

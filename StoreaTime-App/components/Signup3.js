@@ -3,9 +3,6 @@ import { useEffect, useState } from 'react';
 import React from "react";
 import BackArrow from '../assets/icons/back_arrow.svg'
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
 import DimmedNextArrow from '../assets/icons/dimmed_next_arrow.svg';
 import NextArrow from '../assets/icons/next_arrow.svg';
 import loadBackgroundImageAsync from './LoadBackgroundImageAsync';
@@ -20,8 +17,6 @@ const DimmedNext = () => {
 
 export default function Signup3({ navigation }) {
     loadBackgroundImageAsync();
-    let contentDisplayed = null
-    const [isEmpty, empty] = React.useState(true);
     const [text, onChangeText] = React.useState("");
 
     const [loaded] = useFonts({
@@ -49,13 +44,12 @@ export default function Signup3({ navigation }) {
                     value={text}
                     placeholder="Top-secret password"
                     placeholderTextColor={'#ebdedd'}
-                    //placeholderFontFamily={'JakartaSans'}
                     secureTextEntry={true}
                 />
                 {(text != "") ?
                     <Pressable onPress={() => navigation.navigate('Welcome1')}>
-                    <NextArrow style={styles.nextButton}></NextArrow>
-                </Pressable> : <DimmedNext></DimmedNext>}
+                        <NextArrow style={styles.nextButton}></NextArrow>
+                    </Pressable> : <DimmedNext></DimmedNext>}
             </View>
         </ImageBackground>
     );

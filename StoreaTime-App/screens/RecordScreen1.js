@@ -2,9 +2,7 @@ import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaVie
 import { useEffect, useState } from 'react';
 import React from "react";
 import { useFonts } from 'expo-font';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
 import Themes from '../assets/Themes/themes';
 import RecordScreen from './RecordScreen'
 import BackArrow from '../assets/icons/back_arrow.svg';
@@ -47,9 +45,9 @@ function RecordScreen1Content({ navigation, displayTabBar, setDisplayTabBar }) {
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-            <Pressable onPress={() => navigation.navigate("TodaysListens")}>
-                <BackArrow style={styles.backButton}></BackArrow>
-            </Pressable>
+                <Pressable onPress={() => navigation.navigate("TodaysListens")}>
+                    <BackArrow style={styles.backButton}></BackArrow>
+                </Pressable>
                 <Text style={styles.screenTitle}>Record</Text>
             </View>
             <Text style={styles.questionStyle}>What are you {'\n'} cooking today?</Text>
@@ -70,8 +68,8 @@ function RecordScreen1Content({ navigation, displayTabBar, setDisplayTabBar }) {
                 />
             </View>
             <View style={styles.footer}>
-            {(text != "") ?
-                    <Pressable onPress={() => navigation.navigate('RecordScreen', {paramDish:dish})}>
+                {(text != "") ?
+                    <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dish })}>
                         <NextArrow style={styles.nextButton}></NextArrow>
                     </Pressable> : <DimmedNext></DimmedNext>}
             </View>
@@ -175,7 +173,7 @@ const styles = StyleSheet.create({
     backButton: {
         width: 32,
         height: 32,
-        right: 135 
+        right: 135
     },
     nextButton: {
         width: 64,

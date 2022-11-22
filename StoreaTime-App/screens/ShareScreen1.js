@@ -2,16 +2,7 @@ import { Text, View, StyleSheet, Button, ImageBackground, SafeAreaView, Pressabl
 import { useEffect, useState } from 'react';
 import React from "react";
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
-import Prompt from '../components/Prompt';
 import BackArrow from '../assets/icons/back_arrow.svg';
-import MicCircle from '../assets/icons/mic_circle.svg';
-import TypeInstead from '../assets/icons/type.svg';
-import TryAudio from '../assets/icons/try_audio.svg';
-import Next from '../assets/icons/next_text.svg';
-import DimmedNext from '../assets/icons/dimmed_text_next.svg';
 import CommunityBox from '../components/CommunityBox.js';
 import DimmedSend from '../assets/icons/dimmed_send.svg';
 import Send from '../assets/icons/send.svg';
@@ -61,7 +52,7 @@ export default function RecordScreen({ navigation, route }) {
                 </Pressable>
 
                 <View style={styles.commBox}>
-                <Pressable onPress={() => checkCircle(!click)}>
+                    <Pressable onPress={() => checkCircle(!click)}>
                         <CommunityBox
                             style={styles.box}
                             name={'Asian Food Collective'}
@@ -70,27 +61,27 @@ export default function RecordScreen({ navigation, route }) {
                             clicked={click}
                             picture={'1'}
                         />
-                </Pressable>
-                        <CommunityBox
-                            style={styles.box}
-                            name={'Rivera Family'}
-                            memberCount={'5'}
-                            privacy={'Private'}
-                            clicked={click1}
-                            picture={'2'}
-                        />
+                    </Pressable>
+                    <CommunityBox
+                        style={styles.box}
+                        name={'Rivera Family'}
+                        memberCount={'5'}
+                        privacy={'Private'}
+                        clicked={click1}
+                        picture={'2'}
+                    />
                 </View>
                 <Pressable onPress={() => checkCircle1(!click1)}>
-                    <View style={styles.commTwo }></View>
+                    <View style={styles.commTwo}></View>
                 </Pressable>
             </View>
-            {click || click1 ? 
-            <Pressable onPress={() => navigation.navigate("ShareScreen2")} style={styles.share}>
-                <Send></Send>
-            </Pressable> : <DimmedSend style={styles.share}></DimmedSend>}
+            {click || click1 ?
+                <Pressable onPress={() => navigation.navigate("ShareScreen2")} style={styles.share}>
+                    <Send></Send>
+                </Pressable> : <DimmedSend style={styles.share}></DimmedSend>}
             <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
-                    <BackArrow style={styles.backButton}></BackArrow>
-                </Pressable>
+                <BackArrow style={styles.backButton}></BackArrow>
+            </Pressable>
         </ImageBackground>
     );
 }

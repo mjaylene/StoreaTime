@@ -1,14 +1,8 @@
 import { Text, View, StyleSheet, Button, ImageBackground, SafeAreaView, Pressable, Image, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
-import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
 import Prompt from '../components/Prompt';
 import BackArrow from '../assets/icons/back_arrow.svg';
-import MicCircle from '../assets/icons/mic_circle.svg';
-import TypeInstead from '../assets/icons/type.svg';
 import TryAudio from '../assets/icons/try_audio.svg';
 import Next from '../assets/icons/next_text.svg';
 import DimmedNext from '../assets/icons/dimmed_text_next.svg'
@@ -17,8 +11,6 @@ import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 export default function TextScreen({ navigation, route }) {
     loadBackgroundImageAsync();
     const dishName = route.params.paramDish;
-    let contentDisplayed = null
-    const [isEmpty, empty] = React.useState(true);
     const [text, onChangeText] = React.useState("");
 
     // These lines of code
@@ -40,38 +32,38 @@ export default function TextScreen({ navigation, route }) {
     }, [text]);
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <View>
-            <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
-                <View style={styles.header}>
+            <View>
+                <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
+                    <View style={styles.header}>
+
+                        <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
+                            <BackArrow style={styles.backButton}></BackArrow>
+                        </Pressable>
+                        <Text style={styles.screenTitle}>Record</Text>
+                    </View>
+                    <View style={styles.promptBox}>
+                        <Prompt
+                            text={dishName}
+                        />
+                    </View>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={onChangeText}
+                        value={text}
+                        placeholder='"I remember the time I..."'
+                        placeholderTextColor={'#CCCCCC'}
+                        multiline={true}
+                    />
+                    {(text != "") ?
+                        <Pressable onPress={() => navigation.navigate('ShareScreen1')}>
+                            <Next style={styles.nextButton}></Next>
+                        </Pressable> : <DimmedNext style={styles.nextButton}></DimmedNext>}
 
                     <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
-                        <BackArrow style={styles.backButton}></BackArrow>
+                        <TryAudio style={styles.audio}></TryAudio>
                     </Pressable>
-                    <Text style={styles.screenTitle}>Record</Text>
-                </View>
-                <View style={styles.promptBox}>
-                    <Prompt
-                        text={dishName}
-                    />
-                </View>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeText}
-                    value={text}
-                    placeholder='"I remember the time I..."'
-                    placeholderTextColor={'#CCCCCC'}
-                    multiline={true}
-                />
-                {(text != "") ?
-                    <Pressable onPress={() => navigation.navigate('ShareScreen1')}>
-                        <Next style={styles.nextButton}></Next>
-                    </Pressable> : <DimmedNext style={styles.nextButton}></DimmedNext>}
-
-                <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
-                    <TryAudio style={styles.audio}></TryAudio>
-                </Pressable>
-            </ImageBackground>
-        </View>
+                </ImageBackground>
+            </View>
         </TouchableWithoutFeedback>
     );
 }

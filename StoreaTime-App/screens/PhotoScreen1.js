@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Button, ImageBackground, SafeAreaView, Pressable, Image, TextInput } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, Pressable, Image, Alert } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
 import { useFonts } from 'expo-font';
@@ -8,27 +8,39 @@ import BlankImage from '../assets/icons/blank_image.svg';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 import * as ImagePicker from 'expo-image-picker';
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
-
-
-const PhotoBox = () => {
-    return (
-        <Pressable onPress={() => pickImage()} style={{ marginTop: 30 }}>
-            <BlankImage style={styles.blank}></BlankImage>
-        </Pressable>
-    )
-}
+import Delete from '../assets/icons/delete_image.svg';
+import { set } from 'react-native-reanimated';
 
 export default function PhotoScreen1({ navigation, route }) {
     loadBackgroundImageAsync();
+    // These lines of code
+    useEffect(() => {
+        navigation.getParent()?.setOptions({
+            tabBarStyle: {
+                display: "none"
+            }
+        });
+        return () => navigation.getParent()?.setOptions({
+            tabBarStyle: undefined
+        });
+    }, [navigation]);
+
     // Image Picker source: Bug Ninza 
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
     const [image, setImage] = useState(null);
     const [image2, setImage2] = useState(null);
     const [image3, setImage3] = useState(null);
-
     const [image4, setImage4] = useState(null);
     const [image5, setImage5] = useState(null);
     const [image6, setImage6] = useState(null);
+
+    const [wantsToDelete, deleteImage] = useState(false);
+    const [wantsToDelete2, deleteImage2] = useState(false);
+    const [wantsToDelete3, deleteImage3] = useState(false);
+    const [wantsToDelete4, deleteImage4] = useState(false);
+    const [wantsToDelete5, deleteImage5] = useState(false);
+    const [wantsToDelete6, deleteImage6] = useState(false);
+
 
     const dishName = route.params.paramDish;
 
@@ -53,7 +65,7 @@ export default function PhotoScreen1({ navigation, route }) {
         console.log('------------------------------------------------')
         //console.log('URI', result.assets[0].uri)
 
-        if (!result.canceled) {
+        if (result) {
             setImage(result.assets[0].uri);
         }
     };
@@ -70,7 +82,7 @@ export default function PhotoScreen1({ navigation, route }) {
         console.log('------------------------------------------------')
         //console.log('URI', result.assets[0].uri)
 
-        if (!result.canceled) {
+        if (result) {
             setImage2(result.assets[0].uri);
         }
     };
@@ -88,7 +100,7 @@ export default function PhotoScreen1({ navigation, route }) {
         console.log('------------------------------------------------')
         //console.log('URI', result.assets[0].uri)
 
-        if (!result.canceled) {
+        if (result) {
             setImage3(result.assets[0].uri);
         }
     };
@@ -105,7 +117,7 @@ export default function PhotoScreen1({ navigation, route }) {
         console.log('------------------------------------------------')
         //console.log('URI', result.assets[0].uri)
 
-        if (!result.canceled) {
+        if (result) {
             setImage4(result.assets[0].uri);
         }
     };
@@ -119,11 +131,11 @@ export default function PhotoScreen1({ navigation, route }) {
         });
 
 
-        console.log(result);
-        console.log('------------------------------------------------')
+        //console.log(result);
+        //console.log('------------------------------------------------')
         //console.log('URI', result.assets[0].uri)
 
-        if (!result.canceled) {
+        if (result) {
             setImage5(result.assets[0].uri);
         }
     };
@@ -141,14 +153,10 @@ export default function PhotoScreen1({ navigation, route }) {
         console.log('------------------------------------------------')
         //console.log('URI', result.assets[0].uri)
 
-        if (!result.canceled) {
+        if (result) {
             setImage6(result.assets[0].uri);
         }
     };
-
-    if (hasGalleryPermission === false) {
-        return <Text>No access to Internal Storage</Text>
-    }
 
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
@@ -157,63 +165,176 @@ export default function PhotoScreen1({ navigation, route }) {
         JakartaSansBold: require('../assets/fonts/PlusJakartaText-Bold.otf'),
     });
 
-    // These lines of code
-    useEffect(() => {
-        navigation.getParent()?.setOptions({
-            tabBarStyle: {
-                display: "none"
-            }
-        });
-        return () => navigation.getParent()?.setOptions({
-            tabBarStyle: undefined
-        });
-    }, [navigation]);
-    // 
+    const createAlert = () =>
+        Alert.alert(
+            "Confirm Deletion",
+            "Are you sure you want to delete this item?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "OK", onPress: () => deleteImage(true) }
+            ]
+        );
+
+    const createAlert2 = () =>
+        Alert.alert(
+            "Confirm Deletion",
+            "Are you sure you want to delete this item?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "OK", onPress: () => deleteImage2(true) }
+            ]
+        );
+
+    const createAlert3 = () =>
+        Alert.alert(
+            "Confirm Deletion",
+            "Are you sure you want to delete this item?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "OK", onPress: () => deleteImage3(true) }
+            ]
+        );
+
+    const createAlert4 = () =>
+        Alert.alert(
+            "Confirm Deletion",
+            "Are you sure you want to delete this item?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "OK", onPress: () => deleteImage4(true) }
+            ]
+        );
+
+    const createAlert5 = () =>
+        Alert.alert(
+            "Confirm Deletion",
+            "Are you sure you want to delete this item?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "OK", onPress: () => deleteImage5(true) }
+            ]
+        );
+
+    const createAlert6 = () =>
+        Alert.alert(
+            "Confirm Deletion",
+            "Are you sure you want to delete this item?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "OK", onPress: () => deleteImage6(true) }
+            ]
+        );
+
     return (
-            <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
-                <View style={styles.header}>
-                    <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
-                        <BackArrow style={styles.backButton}></BackArrow>
-                    </Pressable>
-                    <Text style={styles.screenTitle}>Photos</Text>
-                    <Pressable onPress={() => navigation.navigate("ShareScreen1", { paramDish: dishName })}>
-                        <Next style={styles.nextButton}></Next>
-                    </Pressable>
+        <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
+            <View style={styles.header}>
+                <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
+                    <BackArrow style={styles.backButton}></BackArrow>
+                </Pressable>
+                <Text style={styles.screenTitle}>Photos</Text>
+                <Pressable onPress={() => navigation.navigate("ShareScreen1", { paramDish: dishName })}>
+                    <Next style={styles.nextButton}></Next>
+                </Pressable>
+            </View>
+            <View style={styles.body}>
+                <Text style={styles.optional}>Add photos (Optional)</Text>
+                <View style={styles.topRow}>
+                    {(!image && !wantsToDelete) || (wantsToDelete) ?
+                        <Pressable onPress={() => pickImage()}>
+                            <BlankImage style={styles.blank}></BlankImage>
+                        </Pressable> :
+                        <View>
+                            <Image source={{ uri: image }} style={styles.selectedImage} />
+                            <Pressable onPress={() => createAlert()} style={styles.deleteButton}>
+                                <Delete></Delete>
+                            </Pressable>
+                        </View>
+                    }
+                    {(!image2 && !wantsToDelete2) || (wantsToDelete2) ?
+                        <Pressable onPress={() => pickImage2()}>
+                            <BlankImage style={styles.blank}></BlankImage>
+                        </Pressable> :
+                        <View>
+                            <Image source={{ uri: image2 }} style={styles.selectedImage} />
+                            <Pressable onPress={() => createAlert2()} style={styles.deleteButton}>
+                                <Delete></Delete>
+                            </Pressable>
+                        </View>
+                    }
+                    {(!image3 && !wantsToDelete3) || (wantsToDelete3) ?
+                        <Pressable onPress={() => pickImage3()}>
+                            <BlankImage style={styles.blank}></BlankImage>
+                        </Pressable> :
+                        <View>
+                            <Image source={{ uri: image3 }} style={styles.selectedImage} />
+                            <Pressable onPress={() => createAlert3()} style={styles.deleteButton}>
+                                <Delete></Delete>
+                            </Pressable>
+                        </View>
+                    }
                 </View>
-                <View style={styles.body}>
-                    <Text style={styles.optional}>Add photos (Optional)</Text>
-                    <View style={styles.topRow}>
-                        {!image ? <Pressable onPress={() => pickImage()}>
-                            <BlankImage style={styles.blank}></BlankImage>
-                        </Pressable> :
-                            <Image source={{ uri: image }} style={styles.selectedImage} />}
+                <View style={styles.bottomRow}>
 
-                        {!image2 ? <Pressable onPress={() => pickImage2()}>
+                    {(!image4 && !wantsToDelete4) || (wantsToDelete4) ?
+                        <Pressable onPress={() => pickImage4()}>
                             <BlankImage style={styles.blank}></BlankImage>
                         </Pressable> :
-                            <Image source={{ uri: image2 }} style={styles.selectedImage} />}
-
-                        {!image3 ? <Pressable onPress={() => pickImage3()}>
+                        <View>
+                            <Image source={{ uri: image4 }} style={styles.selectedImage} />
+                            <Pressable onPress={() => createAlert4()} style={styles.deleteButton}>
+                                <Delete></Delete>
+                            </Pressable>
+                        </View>
+                    }
+                    {(!image5 && !wantsToDelete5) || (wantsToDelete5) ?
+                        <Pressable onPress={() => pickImage5()}>
                             <BlankImage style={styles.blank}></BlankImage>
                         </Pressable> :
-                            <Image source={{ uri: image3 }} style={styles.selectedImage} />}
-                    </View>
-                    <View style={styles.bottomRow}>
-                        {!image4 ? <Pressable onPress={() => pickImage4()}>
+                        <View>
+                            <Image source={{ uri: image5 }} style={styles.selectedImage} />
+                            <Pressable onPress={() => createAlert5()} style={styles.deleteButton}>
+                                <Delete></Delete>
+                            </Pressable>
+                        </View>
+                    }
+                    {(!image6 && !wantsToDelete6) || (wantsToDelete6) ?
+                        <Pressable onPress={() => pickImage6()}>
                             <BlankImage style={styles.blank}></BlankImage>
                         </Pressable> :
-                            <Image source={{ uri: image4 }} style={styles.selectedImage} />}
-                        {!image5 ? <Pressable onPress={() => pickImage()}>
-                            <BlankImage style={styles.blank}></BlankImage>
-                        </Pressable> :
-                            <Image source={{ uri: image5 }} style={styles.selectedImage} />}
-                        {!image6 ? <Pressable onPress={() => pickImage()}>
-                            <BlankImage style={styles.blank}></BlankImage>
-                        </Pressable> :
-                            <Image source={{ uri: image6 }} style={styles.selectedImage} />}
-                    </View>
+                        <View>
+                            <Image source={{ uri: image6 }} style={styles.selectedImage} />
+                            <Pressable onPress={() => createAlert6()} style={styles.deleteButton}>
+                                <Delete></Delete>
+                            </Pressable>
+                        </View>
+                    }
                 </View>
-            </ImageBackground>
+            </View>
+        </ImageBackground>
     );
 }
 
@@ -271,13 +392,18 @@ const styles = StyleSheet.create({
         margin: 5
     },
     body: {
-        bottom: 150,
+        bottom: 155,
         justifyContent: 'center'
     },
     selectedImage: {
         width: 112,
         height: 112,
         borderRadius: 24,
-        margin: 5
-    }
+        margin: 5,
+    },
+    deleteButton: {
+        position: 'absolute',
+        right: 13,
+        top: 13
+    },
 });

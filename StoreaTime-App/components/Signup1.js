@@ -2,9 +2,6 @@ import { Text, TouchableWithoutFeedback, Keyboard, View, StyleSheet, Button, Ima
 import { useEffect, useState } from 'react';
 import React from "react";
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
 import BackArrow from '../assets/icons/back_arrow.svg';
 import DimmedNextArrow from '../assets/icons/dimmed_next_arrow.svg';
 import NextArrow from '../assets/icons/next_arrow.svg';
@@ -21,8 +18,6 @@ const DimmedNext = () => {
 
 export default function Signup1({ navigation }) {
     loadBackgroundImageAsync();
-    let contentDisplayed = null
-    const [isEmpty, empty] = React.useState(true);
     const [text, onChangeText] = React.useState("");
 
     const [loaded] = useFonts({
@@ -39,27 +34,27 @@ export default function Signup1({ navigation }) {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View>
-            <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
-            <Pressable onPress={() => navigation.navigate("Back ")}>
-                <BackArrow style={styles.backButton}></BackArrow>
-            </Pressable>
-            <Text style={styles.title}>Hello...</Text>
-            <View style={styles.inputBox}>
+                <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
+                    <Pressable onPress={() => navigation.navigate("Back ")}>
+                        <BackArrow style={styles.backButton}></BackArrow>
+                    </Pressable>
+                    <Text style={styles.title}>Hello...</Text>
+                    <View style={styles.inputBox}>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeText}
-                    value={text}
-                    placeholder="Full Name"
-                    placeholderTextColor={'#ebdedd'}
-                    placeholderFontFamily={'JakartaSans'}
-                />
-                {(text != "") ?
-                    <Pressable onPress={() => navigation.navigate('Signup2')}>
-                        <NextArrow style={styles.nextButton}></NextArrow>
-                    </Pressable> : <DimmedNext></DimmedNext>}
-            </View>
-        </ImageBackground>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={onChangeText}
+                            value={text}
+                            placeholder="Full Name"
+                            placeholderTextColor={'#ebdedd'}
+                            placeholderFontFamily={'JakartaSans'}
+                        />
+                        {(text != "") ?
+                            <Pressable onPress={() => navigation.navigate('Signup2')}>
+                                <NextArrow style={styles.nextButton}></NextArrow>
+                            </Pressable> : <DimmedNext></DimmedNext>}
+                    </View>
+                </ImageBackground>
             </View>
         </TouchableWithoutFeedback>
     );

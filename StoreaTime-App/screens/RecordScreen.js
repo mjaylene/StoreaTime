@@ -5,26 +5,13 @@ import Prompt from '../components/Prompt';
 import BackArrow from '../assets/icons/back_arrow.svg';
 import MicCircle from '../assets/icons/mic_circle.svg';
 import TypeInstead from '../assets/icons/type.svg';
-import RecordAnimation from '../assets/icons/circle_animation.svg'
-import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 
-
-
-const animationFunction = () => {
-    console.log('hi')
-    const Pulse = require('react-native-pulse').default;
-    return (
-        <Pulse color='white' numPulses={3} diameter={400} speed={20} duration={2000} />
-    );
-}
 
 export default function RecordScreen({ navigation, route }) {
     loadBackgroundImageAsync();
     const Pulse = require('react-native-pulse').default;
-    const dishName  = route.params.paramDish;
-    let contentDisplayed = null;
-    const [text, onChangeText] = React.useState("");
+    const dishName = route.params.paramDish;
     // These lines of code hide the tab bar
     useEffect(() => {
         navigation.getParent()?.setOptions({
@@ -47,10 +34,7 @@ export default function RecordScreen({ navigation, route }) {
 
         // setIsActive(true);
     };
-    useEffect(() => {
-        console.log('side effect function 2');
-        console.log(text)
-    }, [text]);
+
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
@@ -60,7 +44,7 @@ export default function RecordScreen({ navigation, route }) {
                 </Pressable>
                 <Text style={styles.screenTitle}>Record</Text>
                 {count % 2 !== 1 && count !== 0 ?
-                    <Pressable onPress={() => navigation.navigate("PhotoScreen1", {paramDish: dishName})}>
+                    <Pressable onPress={() => navigation.navigate("PhotoScreen1", { paramDish: dishName })}>
                         <View style={styles.reviewFilledButton}>
                             <Text style={styles.reviewFilledText}>Review</Text></View>
                     </Pressable>
@@ -78,7 +62,7 @@ export default function RecordScreen({ navigation, route }) {
                     </View>
                 }
             </Pressable>
-            <Pressable onPress={() => navigation.navigate('TextScreen1', {paramDish:dishName})}>
+            <Pressable onPress={() => navigation.navigate('TextScreen1', { paramDish: dishName })}>
                 <TypeInstead style={styles.type}></TypeInstead>
             </Pressable>
             <Prompt

@@ -1,5 +1,4 @@
 import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image } from 'react-native';
-import { useEffect, useState } from 'react';
 import { useFonts } from 'expo-font';
 import React from "react";
 import Public from '../assets/icons/public.svg';
@@ -10,8 +9,6 @@ import Checked from '../assets/icons/checked.svg';
 
 
 export default function community({name, memberCount, privacy, clicked, picture}) {
-    const [click, checkCircle] = React.useState(false);
-    const [click1, checkCircle1] = React.useState(false);
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
