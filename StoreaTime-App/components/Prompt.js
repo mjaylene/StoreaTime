@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        top: 130
+        top: 100
         //left: 190
     },
     promptContainer: {
@@ -59,13 +59,13 @@ const styles = StyleSheet.create({
     backArrow: {
         width: 9.88,
         height: 16,
-        right: 20,
+        right: 10,
         //backgroundColor: 'blue'
     },
     nextArrow: {
         width: 9.88,
         height: 16,
-        left: 20,
+        left: 10,
         //backgroundColor: 'blue'
     },
 });

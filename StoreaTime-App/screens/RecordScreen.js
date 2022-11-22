@@ -6,10 +6,52 @@ import BackArrow from '../assets/icons/back_arrow.svg';
 import MicCircle from '../assets/icons/mic_circle.svg';
 import TypeInstead from '../assets/icons/type.svg';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
+import StopClock from '../components/Stopclock';
+import Time from '../components/Time';
 
 
 export default function RecordScreen({ navigation, route }) {
     loadBackgroundImageAsync();
+
+    //const dishName = route.params.paramDish;
+    const [time,setTime]=useState(0);
+    /* -1 => stopped, 0 => paused, 1 => playing */
+    const [status,setStatus]=useState(-1)
+    const reset=()=>{
+        setTime(0);
+    }
+    useEffect(()=>{
+        let timerID;
+        if(status===1){
+            timerID = setInterval(()=>{
+                setTime((time) => time + 10);
+            },10)
+        }else{
+            clearInterval(timerID)
+            if(status===-1)
+            reset();
+        }
+        return ()=>{clearInterval(timerID)}
+    },[status])
+    const handleStart=()=>{
+        setStatus(1);
+    }
+    const handlePause=()=>{
+        setStatus(status===0?1:0);
+    }
+
+    const handleClick = () => {
+        console.log('record clicked')
+        console.log(count)
+        isClicked(count + 1)
+        setIsActive(current => !current);
+        if (count % 2 == 0) {
+            handleStart();
+        } else {
+            handlePause();
+        }
+        // setIsActive(true);
+    };
     const Pulse = require('react-native-pulse').default;
     const dishName = route.params.paramDish;
     // These lines of code hide the tab bar
@@ -26,15 +68,6 @@ export default function RecordScreen({ navigation, route }) {
     // 
     const [isActive, setIsActive] = useState(false);
     const [count, isClicked] = useState(0);
-    const handleClick = () => {
-        console.log('record clicked')
-        console.log(count)
-        isClicked(count + 1)
-        setIsActive(current => !current);
-
-        // setIsActive(true);
-    };
-
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
@@ -62,10 +95,12 @@ export default function RecordScreen({ navigation, route }) {
                     </View>
                 }
             </Pressable>
-            <Pressable onPress={() => navigation.navigate('TextScreen1', { paramDish: dishName })}>
+            <Time style={styles.timer} time={time} />
+            {count === 0 ? <Pressable onPress={() => navigation.navigate('TextScreen1', { paramDish: dishName })}>
                 <TypeInstead style={styles.type}></TypeInstead>
-            </Pressable>
-            <Prompt
+            </Pressable> : <View style={styles.blankBox}></View>}
+
+            <Prompt 
                 text={dishName}
             />
         </ImageBackground>
@@ -140,11 +175,6 @@ const styles = StyleSheet.create({
         height: 255,
         top: 35
     },
-    type: {
-        width: 220,
-        height: 76,
-        top: 70
-    },
     pulse: {
         top: 150
     },
@@ -152,5 +182,13 @@ const styles = StyleSheet.create({
         width: 102,
         height: 35,
         backgroundColor: 'red',
+    },
+    type: {
+        width: 220,
+        height: 76,
+        top: 70
+    },
+    blankBox: {
+        height: 76
     }
 });
