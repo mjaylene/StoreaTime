@@ -6,7 +6,6 @@ import BackArrow from '../assets/icons/back_arrow.svg';
 import MicCircle from '../assets/icons/mic_circle.svg';
 import TypeInstead from '../assets/icons/type.svg';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
-import StopClock from '../components/Stopclock';
 import Time from '../components/Time';
 
 
