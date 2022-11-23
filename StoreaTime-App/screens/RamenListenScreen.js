@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
         fontFamily: "JakartaSansBold",
         color: Themes.colors.white,
         fontSize: 17,
-        right: 5
+        right: 6
     },
     downArrow: {
         right: 133
