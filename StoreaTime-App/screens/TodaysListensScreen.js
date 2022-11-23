@@ -15,6 +15,7 @@ import CommunityIconGray from '../assets/icons/community_icon.svg';
 import CommunityIconOrange from '../assets/icons/community_icon_orange.svg';
 import RamenListenScreen from './RamenListenScreen';
 import VerticalAnimation from '../components/animations/VerticalAnimation'
+import DimsumTextScreen from './DimsumTextScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -89,13 +90,14 @@ function ListenStack({ navigation }) {
             <Stack.Screen name="CommunityFinds" component={CommunityFinds}
                 options={VerticalAnimation}
             />
+            <Stack.Screen name="DimsumTextScreen" component={DimsumTextScreen} options={VerticalAnimation} />
             {/* ADD THE REST OF THE LISTEN SCREENS */}
         </Stack.Navigator>
     )
 }
 
 function TodaysListensScreenContent( { navigation }) {
-    loadStoryCardImages();
+    //loadStoryCardImages();
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),

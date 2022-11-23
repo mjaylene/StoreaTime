@@ -80,7 +80,7 @@ const renderStoryCard = ({ item, index }, navigation) => {
 
 export default function CommunityFinds({ navigation }) {
     loadBackgroundImageAsync();
-    loadStoryCardImages();
+    //loadStoryCardImages();
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),

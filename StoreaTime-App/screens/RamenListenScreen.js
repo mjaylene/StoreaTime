@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, Text, View, Pressable, Image, Dimensions, ScrollView, TextInput } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Pressable, Image, Dimensions, ScrollView, TextInput, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 import { useFonts } from 'expo-font';
 import Themes from '../assets/Themes/themes';
 import ListenPlayer from '../components/listenPlayer';
@@ -61,25 +61,15 @@ export default function RamenListenScreen({ navigation }) {
 
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
-            <View>
-                <ScrollView centerContent={true}>
-                    <View style={styles.headerBox}>
-                            <View style={styles.arrowStyle}>
-                            <Pressable onPress={() => navigation.goBack()}>
-                                <DownArrow></DownArrow>
-                            </Pressable>
-                            </View>
-                        <View style={styles.headerStyle}>
-                            <Text style={styles.textStyle}>Listen</Text>
-                        </View>
-                    </View>
-                    {/* <Pressable onPress={() => setImage()}>
-                        {index === 1 ? <Image source={images.image1} style={styles.imageStyle} />
-                            : index === 2 ? <Image source={images.image2} style={styles.imageStyle} />
-                                : index === 3 ? <Image source={images.image3} style={styles.imageStyle} />
-                                    : <Image source={images.image4} style={styles.imageStyle} />
-                        }
-                    </Pressable> */}
+            
+            <KeyboardAvoidingView style={{flex: 1}}behavior="position" enabled>
+            <View style={styles.header} >
+                    <Pressable onPress={() => navigation.goBack()}>
+                        <DownArrow style={styles.downArrow}></DownArrow>
+                    </Pressable>
+                    <Text style={styles.headerText}>Listen</Text>
+                </View>
+                    <ScrollView centerContent={true}>
                     <View style={{width: 358, height: 406}}>
                         <Swiper
                             removeClippedSubviews={false}
@@ -133,22 +123,6 @@ export default function RamenListenScreen({ navigation }) {
                         <View style={styles.commentTitleBox}>
                             <Text style={styles.commentTitle}>Comments</Text>
                         </View>
-                        <View style={styles.addCommentBox}>
-                            <Image style={styles.pfp} source={require('../assets/icons/my_pfp.png')}></Image>
-                            <View style={styles.inputBox}>
-                                <TextInput
-                                    style={styles.input}
-                                    onChangeText={onChangeText}
-                                    value={text}
-                                    placeholder='Add a comment...'
-                                    placeholderTextColor={'#D4D4D4'}
-                                />
-                                <Pressable onPress={postComment}>
-                                    {text !="" ? <SendFilled style={styles.sendIcon}></SendFilled> :
-                                        <SendUnfilled style={styles.sendIcon}></SendUnfilled>}
-                                </Pressable>
-                            </View>
-                        </View>
                         <View>
                         <Comment profileImage={require('../assets/icons/jianna.png')}
                             commentUser={"Jianna"}
@@ -171,10 +145,26 @@ export default function RamenListenScreen({ navigation }) {
                             <View></View>
                         }
                         </View>
+                         <View style={styles.addCommentBox}>
+                            <Image style={styles.pfp} source={require('../assets/icons/my_pfp.png')}></Image>
+                            <View style={styles.inputBox}>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={onChangeText}
+                                    value={text}
+                                    placeholder='Add a comment...'
+                                    placeholderTextColor={'#D4D4D4'}
+                                />
+                                <Pressable onPress={postComment}>
+                                    {text !="" ? <SendFilled style={styles.sendIcon}></SendFilled> :
+                                        <SendUnfilled style={styles.sendIcon}></SendUnfilled>}
+                                </Pressable>
+                            </View>
+                        </View>
                         
                     </View>
                 </ScrollView>
-            </View>
+            </KeyboardAvoidingView>
         </ImageBackground>
     );
 }
@@ -182,6 +172,23 @@ export default function RamenListenScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 61,
+        //backgroundColor: 'green',
+        
+    },
+    headerText: {
+        fontFamily: "JakartaSansBold",
+        color: Themes.colors.white,
+        fontSize: 17,
+        right: 5
+    },
+    downArrow: {
+        right: 133
     },
     headerBox: {
         flexDirection: 'row',
@@ -226,7 +233,7 @@ const styles = StyleSheet.create({
     },
     commentTitleBox: {
         alignItems: 'center',
-        marginBottom: 24
+        marginBottom: 12
     },
     commentTitle: {
         fontSize: 16,
@@ -238,7 +245,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         position: 'absolute',
-        top: 48
+        top: 320
     },
     inputBox: {
         flexDirection: 'row',
