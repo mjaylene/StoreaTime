@@ -114,7 +114,7 @@ export default function RecordScreen({ navigation, route }) {
                 </Pressable>
                 <Text style={styles.screenTitle}>Record</Text>
                 {count % 2 !== 1 && count !== 0 ?
-                    <Pressable onPress={() => navigation.navigate("EditScreen1", { paramDish: dishName, promptNum: selectedPrompt})}>
+                    <Pressable onPress={() => navigation.navigate("EditScreen1", { paramDish: dishName, promptNum: selectedPrompt, recordTime: time})}>
                         <View style={styles.reviewFilledButton}>
                             <Text style={styles.reviewFilledText}>Review</Text></View>
                     </Pressable>

@@ -24,7 +24,8 @@ export default function PhotoScreen1({ navigation, route }) {
             tabBarStyle: undefined
         });
     }, [navigation]);
-
+    const recordTime = route.params.recordTime;
+    const promptNum = route.params.promptNum;
     // Image Picker source: Bug Ninza 
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
     const [image, setImage] = useState(null);
@@ -252,7 +253,7 @@ export default function PhotoScreen1({ navigation, route }) {
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-                <Pressable onPress={() => navigation.navigate('EditScreen1', { paramDish: dishName })}>
+                <Pressable onPress={() => navigation.navigate('EditScreen1', { paramDish: dishName, promptNum:promptNum, recordTime:recordTime})}>
                     <BackArrow style={styles.backButton}></BackArrow>
                 </Pressable>
                 <Text style={styles.screenTitle}>Photos</Text>

@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, Button, ImageBackground, SafeAreaView, Pressable, Image, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useEffect, useState } from 'react';
 import React from "react";
-import Prompt from '../components/Prompt';
+import Prompt from '../components/Prompt1.js';
 import BackArrow from '../assets/icons/back_arrow.svg';
 import TryAudio from '../assets/icons/try_audio.svg';
 import Next from '../assets/icons/next_text.svg';
@@ -10,8 +10,8 @@ import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 
 export default function TextScreen({ navigation, route }) {
     loadBackgroundImageAsync();
-    const dishName = route.params.paramDish;
     const [text, onChangeText] = React.useState("");
+    const dishName = route.params.paramDish;
 
     // These lines of code
     useEffect(() => {
@@ -36,7 +36,7 @@ export default function TextScreen({ navigation, route }) {
                 <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
                     <View style={styles.header}>
 
-                        <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
+                        <Pressable onPress={() => navigation.navigate('RecordScreen')}>
                             <BackArrow style={styles.backButton}></BackArrow>
                         </Pressable>
                         <Text style={styles.screenTitle}>Record</Text>
@@ -55,7 +55,7 @@ export default function TextScreen({ navigation, route }) {
                         multiline={true}
                     />
                     {(text != "") ?
-                        <Pressable onPress={() => navigation.navigate('ShareScreen1')}>
+                        <Pressable onPress={() => navigation.navigate('ShareScreen1', { paramDish: dishName })}>
                             <Next style={styles.nextButton}></Next>
                         </Pressable> : <DimmedNext style={styles.nextButton}></DimmedNext>}
 

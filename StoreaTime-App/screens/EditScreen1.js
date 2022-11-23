@@ -16,6 +16,7 @@ import PlayButton from '../assets/icons/playButton.svg';
 import PauseButton from '../assets/icons/pauseButton.svg';
 import Time from '../components/Time';
 import { m } from 'framer-motion';
+import millisToMinutesAndSeconds from '../utils/TimeConversion.js';
 
 let playBool = false
 const maxTrimDuration = 60000;
@@ -118,6 +119,8 @@ class AudioTrimmer extends Component {
 
 export default function EditScreen1({ navigation, route }) {
     loadBackgroundImageAsync();
+    const recordTime = route.params.recordTime; //millisToMinutesAndSeconds(route.params.recordTime);
+    console.log('time', recordTime)
     const [time, setTime] = useState(0);
     /* -1 => stopped, 0 => paused, 1 => playing */
     const [status, setStatus] = useState(-1)
@@ -182,8 +185,9 @@ export default function EditScreen1({ navigation, route }) {
                 <View style={styles.play2}></View>
             </Pressable>
             <View style={styles.timestamp}>
-                <Time style={styles.timer} time={time} status={1} />
-                <Text style={styles.time}> / 01:20</Text>
+                <Time style={styles.time} time={time} status={1} />
+                <Text style={styles.time}> / </Text>
+                <Time style={styles.time} time={recordTime} status={1}></Time>
             </View>
             <Prompt
                 text={dishName}

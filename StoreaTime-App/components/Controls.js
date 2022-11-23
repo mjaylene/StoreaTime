@@ -3,7 +3,7 @@ import { useState } from 'react';
 import MicCircle from '../assets/icons/mic_circle.svg';
 import TypeInstead from '../assets/icons/type.svg';
 
-
+// Credit for Stopclock Feature: https://www.waldo.com/blog/learn-react-native-timer
 export default function RecordControls({ handleStart, handlePause }) {
     const Pulse = require('react-native-pulse').default;
     const [isActive, setIsActive] = useState(false);
