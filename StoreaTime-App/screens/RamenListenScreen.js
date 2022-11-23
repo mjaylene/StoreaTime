@@ -64,6 +64,7 @@ export default function RamenListenScreen({ navigation }) {
             
             <KeyboardAvoidingView style={{flex: 1}}behavior="position" enabled>
             <View style={styles.header} >
+                {/* IDK WHY THIS BUTTON DOESN"T REGISTER MY CLICK */}
                     <Pressable onPress={() => navigation.goBack()}>
                         <DownArrow style={styles.downArrow}></DownArrow>
                     </Pressable>

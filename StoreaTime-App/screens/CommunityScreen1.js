@@ -4,8 +4,12 @@ import { useFonts } from 'expo-font';
 import Themes from '../assets/Themes/themes';
 import DiscoverIcon from '../assets/icons/discover_icon.svg'
 import PlusIcon from '../assets/icons/plus.svg'
+import CreateNewCommunity1 from './CreateNewCommunity1';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function CommunityScreen1() {
+const Stack = createStackNavigator();
+
+function CommunityScreen1Content({ navigation }) {
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
@@ -31,14 +35,24 @@ export default function CommunityScreen1() {
                     <DiscoverIcon style={styles.discoverIcon}></DiscoverIcon>
                     <Text style={styles.discoverText}>Discover</Text>
                 </View>
-                <View style={styles.newButton}>
-                    <PlusIcon style={styles.newIcon}></PlusIcon>
-                    <Text style={styles.newText}>New</Text>
-                </View>
+                <Pressable onPress={() => navigation.navigate("CreateNewCommunity1")}>
+                    <View style={styles.newButton}>
+                        <PlusIcon style={styles.newIcon}></PlusIcon>
+                        <Text style={styles.newText}>New</Text>
+                    </View>
+                </Pressable>
             </View>
            
         </ImageBackground>
     )
+}
+
+export default function CommunityScreen1({ navigation }) {
+    return (
+    <Stack.Navigator>
+        <Stack.Screen name="CommunityScreen1" component={CommunityScreen1Content} options={{headerShown: false}}/>
+        <Stack.Screen name="CreateNewCommunity1" component={CreateNewCommunity1} options={{headerShown: false}}/>
+    </Stack.Navigator>)
 }
 
 const styles = StyleSheet.create({
@@ -86,7 +100,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         top: 113,
-        marginLeft: 16
+        marginLeft: 16,
+        // How to add shadow???
     },
     discoverIcon: {
         left: 41
