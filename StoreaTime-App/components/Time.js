@@ -20,7 +20,7 @@ export default function Time({ time, status }) {
     return (
         <View style={styles.row}>
             {status === 0 ? <Text style={styles.time}>
-                {transformMinutes()} : <Text></Text>{transformSeconds()}/{transformMinutes()} : <Text></Text>{transformSeconds()}
+                {transformMinutes()} : <Text></Text>{transformSeconds()} / {transformMinutes()} : <Text></Text>{transformSeconds()}
             </Text> :
 
                 <Text style={styles.time}>
