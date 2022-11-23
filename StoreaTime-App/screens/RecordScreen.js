@@ -1,42 +1,80 @@
 import { Text, View, StyleSheet, Button, ImageBackground, TextInput, SafeAreaView, Pressable, Image, Animated } from 'react-native';
 import { useState, useRef, useEffect } from 'react';
 import React from "react";
-import Prompt from '../components/Prompt';
+//import Prompt from '../components/Prompt';
 import BackArrow from '../assets/icons/back_arrow.svg';
 import MicCircle from '../assets/icons/mic_circle.svg';
 import TypeInstead from '../assets/icons/type.svg';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 import Time from '../components/Time';
+import RightArrow from '../assets/icons/keyboard_arrow_right.svg'
+import LeftArrow from '../assets/icons/keyboard_arrow_left.svg'
+
+let selectedPrompt = 0
+
+function Prompt({ text, edit }) {
+    const promptArray = ['Tell us about your first memory of eating/making ' + text + '?', 'Who are you reminded of when making ' + text + '?',
+        'If you could only eat one meal or food item for the rest of your life, what would you eat and why?',
+        'What’s the first dish that you cooked on your own? How did it taste?',
+    'What is the cultural significance of ' + text + '?']
+
+    const [promptIndex, onChangeIndex] = React.useState(0);
+
+    selectedPrompt = promptIndex
 
 
+    useEffect(() => {
+        console.log('side effect function 3');
+        console.log(promptIndex)
+    }, [promptIndex]);
+    return (
+        <View style={styles.promptBox}>
+            {!edit ?             <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1) : onChangeIndex(promptIndex + 0)}>
+                <LeftArrow style={styles.backArrow}></LeftArrow>
+            </Pressable> : <View></View>}
+
+            <View style={styles.promptContainer}>
+                <Text style={styles.prompt}>{promptArray[promptIndex]}</Text>
+            </View>
+            {!edit ?             <Pressable onPress={() => promptIndex + 1 < promptArray.length ? onChangeIndex(promptIndex + 1) : onChangeIndex(promptIndex - 0)}>
+                <RightArrow style={styles.nextArrow}></RightArrow>
+            </Pressable> 
+            :
+            <View></View>}
+
+        </View>
+    );
+}
+
+// Credit for Stopclock Feature: https://www.waldo.com/blog/learn-react-native-timer
 export default function RecordScreen({ navigation, route }) {
     loadBackgroundImageAsync();
 
     //const dishName = route.params.paramDish;
-    const [time,setTime]=useState(0);
+    const [time, setTime] = useState(0);
     /* -1 => stopped, 0 => paused, 1 => playing */
-    const [status,setStatus]=useState(-1)
-    const reset=()=>{
+    const [status, setStatus] = useState(-1)
+    const reset = () => {
         setTime(0);
     }
-    useEffect(()=>{
+    useEffect(() => {
         let timerID;
-        if(status===1){
-            timerID = setInterval(()=>{
+        if (status === 1) {
+            timerID = setInterval(() => {
                 setTime((time) => time + 10);
-            },10)
-        }else{
+            }, 10)
+        } else {
             clearInterval(timerID)
-            if(status===-1)
-            reset();
+            if (status === -1)
+                reset();
         }
-        return ()=>{clearInterval(timerID)}
-    },[status])
-    const handleStart=()=>{
+        return () => { clearInterval(timerID) }
+    }, [status])
+    const handleStart = () => {
         setStatus(1);
     }
-    const handlePause=()=>{
-        setStatus(status===0?1:0);
+    const handlePause = () => {
+        setStatus(status === 0 ? 1 : 0);
     }
 
     const handleClick = () => {
@@ -76,7 +114,7 @@ export default function RecordScreen({ navigation, route }) {
                 </Pressable>
                 <Text style={styles.screenTitle}>Record</Text>
                 {count % 2 !== 1 && count !== 0 ?
-                    <Pressable onPress={() => navigation.navigate("PhotoScreen1", { paramDish: dishName })}>
+                    <Pressable onPress={() => navigation.navigate("EditScreen1", { paramDish: dishName, promptNum: selectedPrompt})}>
                         <View style={styles.reviewFilledButton}>
                             <Text style={styles.reviewFilledText}>Review</Text></View>
                     </Pressable>
@@ -94,14 +132,17 @@ export default function RecordScreen({ navigation, route }) {
                     </View>
                 }
             </Pressable>
-            <Time style={styles.timer} time={time} />
+            {count % 2 === 0 && count !== 0 ? <Time style={styles.timer} time={time} status={0} /> :
+                <Time style={styles.timer} time={time} status={1} />}
             {count === 0 ? <Pressable onPress={() => navigation.navigate('TextScreen1', { paramDish: dishName })}>
                 <TypeInstead style={styles.type}></TypeInstead>
             </Pressable> : <View style={styles.blankBox}></View>}
 
-            <Prompt 
+            <Prompt
                 text={dishName}
+                edit={false}
             />
+
         </ImageBackground>
     );
 }
@@ -113,6 +154,7 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center'
     },
+
     backButton: {
         width: 32,
         height: 32,
@@ -189,5 +231,39 @@ const styles = StyleSheet.create({
     },
     blankBox: {
         height: 76
-    }
+    },
+    prompt: {
+        color: 'white',
+        fontSize: 17,
+        fontWeight: 'bold',
+        fontStyle: 'italic',
+        textAlign: 'center'
+    },
+    promptBox: {
+        width: 304,
+        height: 120,
+        backgroundColor: 'rgba(255, 255, 255, 0.25)',
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        top: 100
+        //left: 190
+    },
+    promptContainer: {
+        //backgroundColor: 'blue',
+        width: '60%'
+    },
+    backArrow: {
+        width: 9.88,
+        height: 16,
+        right: 10,
+        //backgroundColor: 'blue'
+    },
+    nextArrow: {
+        width: 9.88,
+        height: 16,
+        left: 10,
+        //backgroundColor: 'blue'
+    },
 });

@@ -5,7 +5,7 @@ import RightArrow from '../assets/icons/keyboard_arrow_right.svg'
 import LeftArrow from '../assets/icons/keyboard_arrow_left.svg'
 
 
-export default function prompt({ text }) {
+export default function prompt({ text, edit, index }) {
     const promptArray = ['Tell us about your first memory of eating/making ' + text + '?', 'Who are you reminded of when making ' + text + '?',
         'If you could only eat one meal or food item for the rest of your life, what would you eat and why?',
         'What’s the first dish that you cooked on your own? How did it taste?',
@@ -19,15 +19,19 @@ export default function prompt({ text }) {
     }, [promptIndex]);
     return (
         <View style={styles.promptBox}>
-            <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1) : onChangeIndex(promptIndex + 0)}>
+            {!edit ?             <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1) : onChangeIndex(promptIndex + 0)}>
                 <LeftArrow style={styles.backArrow}></LeftArrow>
-            </Pressable>
+            </Pressable> : <View></View>}
+
             <View style={styles.promptContainer}>
-                <Text style={styles.prompt}>{promptArray[promptIndex]}</Text>
+                <Text style={styles.prompt}>{promptArray[index]}</Text>
             </View>
-            <Pressable onPress={() => promptIndex + 1 < promptArray.length ? onChangeIndex(promptIndex + 1) : onChangeIndex(promptIndex - 0)}>
+            {!edit ?             <Pressable onPress={() => promptIndex + 1 < promptArray.length ? onChangeIndex(promptIndex + 1) : onChangeIndex(promptIndex - 0)}>
                 <RightArrow style={styles.nextArrow}></RightArrow>
-            </Pressable>
+            </Pressable> 
+            :
+            <View></View>}
+
         </View>
     );
 }
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        top: 100
+        top: 204
         //left: 190
     },
     promptContainer: {

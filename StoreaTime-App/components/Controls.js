@@ -49,18 +49,6 @@ const styles = StyleSheet.create({
         //height: '100%',
         alignItems: 'center'
     },
-    button: {
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-        backgroundColor: 'crimson',
-        borderRadius: 5,
-        margin: 5
-    },
-    buttonText: {
-        fontSize: 20,
-        color: '#FFFF',
-        fontWeight: 'bold',
-    },
     micIcon: {
         width: 255,
         height: 255,

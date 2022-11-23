@@ -252,7 +252,7 @@ export default function PhotoScreen1({ navigation, route }) {
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-                <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
+                <Pressable onPress={() => navigation.navigate('EditScreen1', { paramDish: dishName })}>
                     <BackArrow style={styles.backButton}></BackArrow>
                 </Pressable>
                 <Text style={styles.screenTitle}>Photos</Text>

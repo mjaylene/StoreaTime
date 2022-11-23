@@ -13,6 +13,7 @@ import ShareScreen1 from './ShareScreen1';
 import ShareScreen2 from './ShareScreen2';
 import PhotoScreen1 from './PhotoScreen1';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
+import EditScreen1 from './EditScreen1';
 
 let dish = ''
 
@@ -45,9 +46,6 @@ function RecordScreen1Content({ navigation, displayTabBar, setDisplayTabBar }) {
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-                <Pressable onPress={() => navigation.navigate("TodaysListens")}>
-                    <BackArrow style={styles.backButton}></BackArrow>
-                </Pressable>
                 <Text style={styles.screenTitle}>Record</Text>
             </View>
             <Text style={styles.questionStyle}>What are you {'\n'} cooking today?</Text>
@@ -87,6 +85,7 @@ export default function RecordScreen2({ navigation, displayTabBar, setDisplayTab
             <Stack.Screen name="ShareScreen1" component={ShareScreen1} options={{ headerShown: false }} />
             <Stack.Screen name="ShareScreen2" component={ShareScreen2} options={{ headerShown: false }} />
             <Stack.Screen name="PhotoScreen1" component={PhotoScreen1} options={{ headerShown: false }} />
+            <Stack.Screen name="EditScreen1" component={EditScreen1} options={{ headerShown: false }} />
             {/* ADD THE REST OF THE RECORD SCREENS */}
         </Stack.Navigator>
     )
@@ -97,10 +96,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         // alignItems: 'center',
         justifyContent: 'center',
+        //alignItems: 'center',
         top: 61,
         //backgroundColor: 'cyan',
         flex: 1,
-        left: 20
     },
     image: {
         justifyContent: 'center',
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         //   marginRight: 190,
-        right: 35
+        //right: 35
     },
     body: {
         flex: 1,
