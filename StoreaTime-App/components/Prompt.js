@@ -19,7 +19,7 @@ export default function prompt({ text, edit, index }) {
     }, [promptIndex]);
     return (
         <View style={styles.promptBox}>
-            {!edit ?             <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1) : onChangeIndex(promptIndex + 0)}>
+            {!edit ? <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1) : onChangeIndex(promptIndex + 0)}>
                 <LeftArrow style={styles.backArrow}></LeftArrow>
             </Pressable> : <View></View>}
 

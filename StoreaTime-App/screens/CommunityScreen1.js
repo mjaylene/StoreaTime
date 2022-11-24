@@ -6,6 +6,7 @@ import DiscoverIcon from '../assets/icons/discover_icon.svg'
 import PlusIcon from '../assets/icons/plus.svg'
 import CreateNewCommunity1 from './CreateNewCommunity1';
 import { createStackNavigator } from '@react-navigation/stack';
+import AddMembersScreen from './AddMembersScreen.js';
 
 const Stack = createStackNavigator();
 
@@ -52,6 +53,7 @@ export default function CommunityScreen1({ navigation }) {
     <Stack.Navigator>
         <Stack.Screen name="CommunityScreen1" component={CommunityScreen1Content} options={{headerShown: false}}/>
         <Stack.Screen name="CreateNewCommunity1" component={CreateNewCommunity1} options={{headerShown: false}}/>
+        <Stack.Screen name="AddMembersScreen" component={AddMembersScreen} options={{headerShown: false}} />
     </Stack.Navigator>)
 }
 

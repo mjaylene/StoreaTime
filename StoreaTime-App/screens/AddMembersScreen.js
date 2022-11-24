@@ -9,6 +9,7 @@ import DimmedNextArrow from '../assets/icons/dimmed_next_arrow.svg';
 import NextArrow from '../assets/icons/next_arrow.svg';
 import * as ImagePicker from 'expo-image-picker';
 import { NavigationHelpersContext } from '@react-navigation/native';
+import MultiSelect from 'react-native-multiple-select';
 
 const DimmedNext = () => {
     return (
@@ -18,34 +19,8 @@ const DimmedNext = () => {
     );
 }
 
-export default function CreateNewCommunity1({ navigation }) {
+export default function AddMembersScreen({ navigation, route }) {
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
-    const [image, setImage] = useState(null);
-
-    useEffect(() => {
-        (async () => {
-            const galleryStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
-            setHasGalleryPermission(galleryStatus.status === 'granted');
-        })();
-    }, []);
-
-    const pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-
-
-        console.log(result);
-        console.log('------------------------------------------------')
-        //console.log('URI', result.assets[0].uri)
-
-        if (result) {
-            setImage(result.assets[0].uri);
-        }
-    };
 
     const [text, onChangeText] = useState("");
     loadBackgroundImageAsync();
@@ -66,33 +41,37 @@ export default function CreateNewCommunity1({ navigation }) {
                 <Pressable onPress={() => navigation.goBack()}>
                     <BackArrow style={styles.backArrow}></BackArrow>
                 </Pressable>
-                <Text style={styles.headerText}>New Community</Text>
+                <Text style={styles.headerText}>Add Members</Text>
             </View>
-            <View style={styles.uploadPhotoBox}>
-                {!image ? <Pressable onPress={() => pickImage()}>
-                    <UploadPhoto style={{ top: 145 }}></UploadPhoto>
-                </Pressable> :
-                    <View>
-                        <Image source={{ uri: image }} style={styles.selectedImage} />
-                    </View>
-                }
 
-            </View>
-            <View style={styles.nameSection}>
-                <Text style={styles.communityName}>Community Name</Text>
-                <View style={styles.inputBox}>
+            <View style={styles.body}>
+
+                <View style={styles.members}>
+                    <Text style={styles.boxTitle}>Members</Text>
+                    <View style={styles.inputBox}>
                     <TextInput
                         style={styles.input}
                         onChangeText={onChangeText}
                         value={text}
-                        placeholder='e.g. "Asian Food Collective"'
+                        placeholder='e.g. "Ho Sae Young"'
                         placeholderTextColor={'#CCCCCC'}
                     />
-                    {(text != "") ?
+                </View>
+                </View>
+
+                <View style={styles.recent}>
+                    <Text style={styles.boxTitle}>Recent</Text>
+                </View>
+
+
+                <View style={styles.friends}>
+                    <Text style={styles.boxTitle}>Friends</Text>
+                </View>
+
+                {(text != "") ?
                         <Pressable onPress={() => navigation.navigate("AddMembersScreen", {commName: text})}>
                             <NextArrow style={styles.nextButton}></NextArrow>
                         </Pressable> : <DimmedNext></DimmedNext>}
-                </View>
             </View>
 
         </ImageBackground>
@@ -117,7 +96,6 @@ const styles = StyleSheet.create({
     },
     backArrow: {
         marginLeft: 26.67,
-        //backgroundColor: 'cyan'
     },
     uploadPhotoBox: {
         alignItems: 'center',
@@ -148,7 +126,8 @@ const styles = StyleSheet.create({
         marginLeft: 16,
     },
     nextButton: {
-        top: 332
+        top: 235,
+        left: 310
     },
     selectedImage: {
         width: 110,
@@ -156,5 +135,31 @@ const styles = StyleSheet.create({
         borderRadius: '100%',
         top: 144
 
+    },
+    members: {
+        backgroundColor: 'blue',
+        flex: 1,
+        margin: 16,
+        marginBottom: 25
+    },
+    recent: {
+        backgroundColor: 'red',
+        flex: 1,
+        margin: 16,
+        marginBottom: 25
+    },
+    friends: {
+        backgroundColor: 'green',
+        flex: 1,
+        margin: 16
+    },
+    body: {
+        flex: 0.5,
+        top: 110,
+    },
+    boxTitle: {
+        fontFamily: "JakartaSansBold",
+        fontSize: 17,
+        color: 'white'
     }
 })

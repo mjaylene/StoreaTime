@@ -86,7 +86,6 @@ export default function RecordScreen2({ navigation, displayTabBar, setDisplayTab
             <Stack.Screen name="ShareScreen2" component={ShareScreen2} options={{ headerShown: false }} />
             <Stack.Screen name="PhotoScreen1" component={PhotoScreen1} options={{ headerShown: false }} />
             <Stack.Screen name="EditScreen1" component={EditScreen1} options={{ headerShown: false }} />
-            {/* ADD THE REST OF THE RECORD SCREENS */}
         </Stack.Navigator>
     )
 }
