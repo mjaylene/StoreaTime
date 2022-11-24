@@ -17,7 +17,11 @@ import LitPublic from '../assets/icons/litPublicButton.svg';
 import { m } from 'framer-motion';
 import DimmedPublished from '../assets/icons/dimmed_published';
 import LitPublished from '../assets/icons/lit_published';
-import MultipleSelection from '../Multiselect'
+import MultipleSelection from '../Multiselect';
+//import TagInput from 'react-native-tag-input';
+//import TagComponent from '../Tags'
+import ReactNativeChipInput from 'react-native-chip-input';
+
 const DimmedNext = () => {
     return (
         <Pressable>
@@ -34,6 +38,7 @@ export default function CommunitySettingsScreen({ navigation, route }) {
     const [selected, settingSelected] = useState(false);
     const [privateSelected, privateSelection] = useState(false);
     const [publicSelected, publicSelection] = useState(false);
+    const [tagCount, enterPressed] = useState(0);
 
     const handlePrivate = () => {
         settingSelected(true);
@@ -79,13 +84,15 @@ export default function CommunitySettingsScreen({ navigation, route }) {
             </View>
     } else {
         privacyContent =
-        <View style={styles.settingBox}>
-            <Pressable onPress={handlePrivate}>
-                <DimmedPrivate style={styles.privateStyle}></DimmedPrivate>
-            </Pressable>
-            <LitPublic></LitPublic>
-        </View>
+            <View style={styles.settingBox}>
+                <Pressable onPress={handlePrivate}>
+                    <DimmedPrivate style={styles.privateStyle}></DimmedPrivate>
+                </Pressable>
+                <LitPublic></LitPublic>
+            </View>
     }
+
+
 
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
@@ -104,11 +111,26 @@ export default function CommunitySettingsScreen({ navigation, route }) {
                 </View>
 
                 <View style={styles.tags}>
-                    <MultipleSelection></MultipleSelection>
+                    <Text style={styles.boxTitle}>Tags (Optional)</Text>
+                    <ReactNativeChipInput
+                        variant="contained"
+                        inputVarint="outlined"
+                        showChipIcon={true}
+                        label="email"
+                        placeholder='e.g. "Bulgogi", "Korean"'
+                        placeholderStyle={{ fontSize: 15, color: '#ebdedd' }}
+                        primaryColor="#E4E4E4"
+                        secondaryColor="#00000"
+                        autoCorrect={false}
+                        autoFocus={false}
+                        size={'small'}
+                        inputStyle={{ borderRadius: 24, width: 358, backgroundColor: 'white', height: 150, justifyContent:'center', marginTop: 15}}
+                        inputTextStyle={{ fontSize: 15, marginLeft: 10, marginBottom: 20, bottom: 0}}
+                    />
                 </View>
 
                 {!selected ?
-                    <DimmedPublished style={styles.publishButton}></DimmedPublished> : 
+                    <DimmedPublished style={styles.publishButton}></DimmedPublished> :
                     <Pressable>
                         <LitPublished style={styles.publishButton}></LitPublished>
                     </Pressable>}
@@ -177,17 +199,16 @@ const styles = StyleSheet.create({
     },
     members: {
         //backgroundColor: 'blue',
-        flex: 1,
         margin: 16,
         marginBottom: 25,
         bottom: 30
     },
     tags: {
         //backgroundColor: 'red',
-        flex: 0.5,
+        //flex: 0.5,
         margin: 16,
         marginBottom: 25,
-        bottom: 145
+        bottom: 0
     },
     body: {
         flex: 0.5,
@@ -206,6 +227,6 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     publishButton: {
-        top: 255
+        top: 200
     }
 })

@@ -26,7 +26,7 @@ export default function AddMembersScreen({ navigation, route }) {
     const labelExtractor = (tag) => tag;
 
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
-    const [text, onChangeText] = useState("");
+    const [text, onChangeText] = useState(" ");
     loadBackgroundImageAsync();
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
