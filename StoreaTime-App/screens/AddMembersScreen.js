@@ -11,6 +11,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { NavigationHelpersContext } from '@react-navigation/native';
 import AutocompleteTags from 'react-native-autocomplete-tags';
 import MultipleSelection from '../Multiselect1'
+import { m } from 'framer-motion';
 
 const DimmedNext = () => {
     return (
@@ -60,7 +61,10 @@ export default function AddMembersScreen({ navigation, route }) {
 
 
                 <View style={styles.friends}>
-                    <Text style={styles.boxTitle}>Friends</Text>
+                    <View style={styles.friendsText}>
+                        <Text style={styles.boxTitle}>All Friends </Text>
+                        <Text style={{fontFamily: 'JakartaSans', fontSize: 13, color: 'white', marginTop: 2}}> 8</Text>
+                    </View>
                 </View>
             </View>
             <View style={styles.footer}>
@@ -168,5 +172,9 @@ const styles = StyleSheet.create({
         fontFamily: "JakartaSansBold",
         fontSize: 17,
         color: 'white'
+    },
+    friendsText: {
+        flexDirection: 'row',
+        alignItems: 'center',
     }
 })

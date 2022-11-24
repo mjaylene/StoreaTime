@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
         //flex: 0.5,
         margin: 16,
         marginBottom: 25,
-        bottom: 0
+        bottom: 45
     },
     body: {
         flex: 0.5,
