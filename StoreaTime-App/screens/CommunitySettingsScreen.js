@@ -15,6 +15,8 @@ import DimmedPublic from '../assets/icons/publicButton.svg';
 import LitPrivate from '../assets/icons/litPrivateButton.svg';
 import LitPublic from '../assets/icons/litPublicButton.svg';
 import { m } from 'framer-motion';
+import DimmedPublished from '../assets/icons/dimmed_published';
+import LitPublished from '../assets/icons/lit_published';
 
 const DimmedNext = () => {
     return (
@@ -102,7 +104,7 @@ export default function CommunitySettingsScreen({ navigation, route }) {
                 </View>
 
                 <View style={styles.tags}>
-                    <Text style={styles.boxTitle}>Tags</Text>
+                    <Text style={styles.boxTitle}>Tags (Optional)</Text>
                     <View style={styles.inputBox}>
                         <TextInput
                             style={styles.input}
@@ -113,10 +115,11 @@ export default function CommunitySettingsScreen({ navigation, route }) {
                         />
                     </View>
                 </View>
-                {(text != "") ?
-                    <Pressable onPress={() => navigation.navigate("AddMembersScreen", { commName: text })}>
-                        <NextArrow style={styles.nextButton}></NextArrow>
-                    </Pressable> : <DimmedNext></DimmedNext>}
+                {!selected ?
+                    <DimmedPublished style={styles.publishButton}></DimmedPublished> : 
+                    <Pressable>
+                        <LitPublished style={styles.publishButton}></LitPublished>
+                    </Pressable>}
             </View>
         </ImageBackground>
     )
@@ -184,14 +187,15 @@ const styles = StyleSheet.create({
         //backgroundColor: 'blue',
         flex: 1,
         margin: 16,
-        marginBottom: 25
+        marginBottom: 25,
+        bottom: 30
     },
     tags: {
         //backgroundColor: 'red',
         flex: 1,
         margin: 16,
         marginBottom: 25,
-        bottom: 10
+        bottom: 70
     },
     body: {
         flex: 0.5,
@@ -208,5 +212,8 @@ const styles = StyleSheet.create({
     },
     privateStyle: {
         marginRight: 8,
+    },
+    publishButton: {
+        top: 255
     }
 })
