@@ -17,7 +17,7 @@ import LitPublic from '../assets/icons/litPublicButton.svg';
 import { m } from 'framer-motion';
 import DimmedPublished from '../assets/icons/dimmed_published';
 import LitPublished from '../assets/icons/lit_published';
-
+import MultipleSelection from '../Multiselect'
 const DimmedNext = () => {
     return (
         <Pressable>
@@ -104,17 +104,9 @@ export default function CommunitySettingsScreen({ navigation, route }) {
                 </View>
 
                 <View style={styles.tags}>
-                    <Text style={styles.boxTitle}>Tags (Optional)</Text>
-                    <View style={styles.inputBox}>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={onChangeText}
-                            value={text}
-                            placeholder='e.g. “Bulgogi”, “Korean”'
-                            placeholderTextColor={'#CCCCCC'}
-                        />
-                    </View>
+                    <MultipleSelection></MultipleSelection>
                 </View>
+
                 {!selected ?
                     <DimmedPublished style={styles.publishButton}></DimmedPublished> : 
                     <Pressable>
@@ -192,10 +184,10 @@ const styles = StyleSheet.create({
     },
     tags: {
         //backgroundColor: 'red',
-        flex: 1,
+        flex: 0.5,
         margin: 16,
         marginBottom: 25,
-        bottom: 70
+        bottom: 145
     },
     body: {
         flex: 0.5,

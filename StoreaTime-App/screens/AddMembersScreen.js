@@ -10,6 +10,7 @@ import NextArrow from '../assets/icons/next_arrow.svg';
 import * as ImagePicker from 'expo-image-picker';
 import { NavigationHelpersContext } from '@react-navigation/native';
 import AutocompleteTags from 'react-native-autocomplete-tags';
+import MultipleSelection from '../Multiselect1'
 
 const DimmedNext = () => {
     return (
@@ -50,16 +51,7 @@ export default function AddMembersScreen({ navigation, route }) {
             <View style={styles.body}>
 
                 <View style={styles.members}>
-                    <Text style={styles.boxTitle}>Members</Text>
-                    <View style={styles.inputBox}>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={onChangeText}
-                        value={text}
-                        placeholder='e.g. "Ho Sae Young"'
-                        placeholderTextColor={'#CCCCCC'}
-                    />
-                </View>
+                    <MultipleSelection></MultipleSelection>
                 </View>
 
                 <View style={styles.recent}>
@@ -70,19 +62,13 @@ export default function AddMembersScreen({ navigation, route }) {
                 <View style={styles.friends}>
                     <Text style={styles.boxTitle}>Friends</Text>
                 </View>
-
+            </View>
+            <View style={styles.footer}>
                 {(text != "") ?
                         <Pressable onPress={() => navigation.navigate("CommunitySettingsScreen", {commName: text})}>
                             <NextArrow style={styles.nextButton}></NextArrow>
                         </Pressable> : <DimmedNext></DimmedNext>}
-            </View>
-            <AutocompleteTags
-                tags={tags}
-                suggestions={suggestions}
-                onChangeTags={setTags}
-                labelExtractor={labelExtractor}
-    />
-
+                </View>
         </ImageBackground>
     )
 }
@@ -135,8 +121,15 @@ const styles = StyleSheet.create({
         marginLeft: 16,
     },
     nextButton: {
-        top: 235,
-        left: 310
+        //position: 'absolute',
+        //top: 190,
+        //left: 310
+    },
+    footer: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20
+
     },
     selectedImage: {
         width: 110,
@@ -147,20 +140,25 @@ const styles = StyleSheet.create({
     },
     members: {
         //backgroundColor: 'blue',
-        flex: 1,
+        //flex: 1,
         margin: 16,
-        marginBottom: 25
+        marginBottom: 25,
+        bottom: 100
     },
     recent: {
         //backgroundColor: 'red',
-        flex: 1,
+        //flex: 1,
         margin: 16,
-        marginBottom: 25
+        marginBottom: 25,
+        bottom: 100
+
     },
     friends: {
         //backgroundColor: 'green',
-        flex: 1,
-        margin: 16
+        //flex: 1,
+        margin: 16,
+        bottom: 100
+
     },
     body: {
         flex: 0.5,

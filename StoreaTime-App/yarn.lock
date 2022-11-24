@@ -6128,6 +6128,11 @@ react-native-linear-gradient@^2.6.2:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz#56598a76832724b2afa7889747635b5c80948f38"
   integrity sha512-Z8Xxvupsex+9BBFoSYS87bilNPWcRfRsGC0cpJk72Nxb5p2nEkGSBv73xZbEHnW2mUFvP+huYxrVvjZkr/gRjQ==
 
+react-native-multi-selectbox@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-multi-selectbox/-/react-native-multi-selectbox-1.5.0.tgz#a2bbb3ae9a76f10f6f0404ae9c9b0b573a051614"
+  integrity sha512-yRxV8PPD0TIRoXK4WduHcADzroB2UWGbJIlKEGkvz8sPPs80o8wdJDthuqbvO7U6rIP2ABb/TRaJAFAxFTi8jw==
+
 react-native-multiple-select@^0.5.12:
   version "0.5.12"
   resolved "https://registry.yarnpkg.com/react-native-multiple-select/-/react-native-multiple-select-0.5.12.tgz#be9204f49bc1bb734c40422a89acc173959bcd70"
@@ -6194,10 +6199,10 @@ react-native-svg-transformer@^1.0.0:
     "@svgr/plugin-svgo" "^6.1.2"
     path-dirname "^1.0.2"
 
-react-native-svg@13.4.0:
-  version "13.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.4.0.tgz#82399ba0956c454144618aa581e2d748dd3f010a"
-  integrity sha512-B3TwK+H0+JuRhYPzF21AgqMt4fjhCwDZ9QUtwNstT5XcslJBXC0FoTkdZo8IEb1Sv4suSqhZwlAY6lwOv3tHag==
+react-native-svg@^13.6.0:
+  version "13.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.6.0.tgz#46e95a44aabbd778db7c46d8a1047da376b28058"
+  integrity sha512-1wjHCMJ8siyZbDZ0MX5wM+Jr7YOkb6GADn4/Z+/u1UwJX8WfjarypxDF3UO1ugMHa+7qor39oY+URMcrgPpiww==
   dependencies:
     css-select "^5.1.0"
     css-tree "^1.1.3"
