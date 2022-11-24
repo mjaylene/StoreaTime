@@ -64,7 +64,6 @@ export default function RamenListenScreen({ navigation }) {
             
             <KeyboardAvoidingView style={{flex: 1}}behavior="position" enabled>
             <View style={styles.header} >
-                {/* IDK WHY THIS BUTTON DOESN"T REGISTER MY CLICK */}
                     <Pressable onPress={() => navigation.goBack()}>
                         <DownArrow style={styles.downArrow}></DownArrow>
                     </Pressable>
@@ -119,7 +118,7 @@ export default function RamenListenScreen({ navigation }) {
                             </View>
                         </Swiper>
                     </View>
-                    <ListenPlayer textLine1={"How did you learn to make "} textLine2={"Kanagawa Ramen?"} endDuration={"1:20"}></ListenPlayer>
+                    <ListenPlayer textLine1={"How did you learn to make "} textLine2={"Kanagawa Ramen?"} endDuration={"1:40"}></ListenPlayer>
                     <View style={styles.commentSectionBox}>
                         <View style={styles.commentTitleBox}>
                             <Text style={styles.commentTitle}>Comments</Text>

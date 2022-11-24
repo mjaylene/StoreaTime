@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button, ImageBackground, Image, Pressable } from 'react-native';
 import { useFonts } from 'expo-font';
 import Themes from '../assets/Themes/themes';
@@ -7,11 +7,11 @@ import PlayButton from '../assets/icons/play_button.svg'
 import ClappingHands from '../assets/icons/clapping_hands.svg'
 import Rewind15 from '../assets/icons/rewind_15.svg'
 import Forward15 from '../assets/icons/forward_15.svg'
-import PlaybarZero from '../assets/icons/playbar_zero.svg'
-import PlaybarAdvance from '../assets/icons/playbar_advanced.svg'
 import ClappingHandsFilled from '../assets/icons/clapping_hands_filled.svg'
 import PauseButton from '../assets/icons/pause_button.svg'
-
+import Slider from '@react-native-community/slider';
+import Time from '../components/TimeListenScreen';
+import { set } from 'react-native-reanimated';
 
 export default function ListenPlayer({ textLine1, textLine2, endDuration }) {
   const [loaded] = useFonts({
@@ -24,6 +24,36 @@ export default function ListenPlayer({ textLine1, textLine2, endDuration }) {
 
   const [sound, setSound] = useState();
   const [played, setPlayed] = useState(false);
+  const [val, setVal] = useState(0)
+  const [play, setPlay] = useState(false)
+  const [liked, setLiked] = useState(false)
+  const [time, setTime] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+  /* -1 => stopped, 0 => paused, 1 => playing */
+  const [status, setStatus] = useState(-1)
+  const [count, isClicked] = useState(0);
+
+  const reset = () => {
+    setTime(0);
+  }
+  useEffect(() => {
+    let timerID;
+    if (status === 1) {
+      timerID = setInterval(handleTimes, 1000)
+    } else {
+      clearInterval(timerID)
+      if (status === -1)
+        reset();
+    }
+    return () => { clearInterval(timerID) }
+  }, [status])
+
+  const handleStart = () => {
+    setStatus(1);
+  }
+  const handlePause = () => {
+    setStatus(status === 0 ? 1 : 0);
+  }
 
   async function playSound() {
     if (!played) {
@@ -45,18 +75,71 @@ export default function ListenPlayer({ textLine1, textLine2, endDuration }) {
       : undefined;
   }, [sound]);
 
-  const [liked, setLiked] = useState(false)
-
-
   function playFunction() {
     setPlayed(!played)
-
+    setPlay(!play)
     playSound()
+    isClicked(count + 1)
+    setIsActive(current => !current);
+    if (count % 2 == 0) {
+      handleStart();
+    } else {
+      handlePause();
+    }
+
 
   }
 
   if (!loaded) {
     return null;
+  }
+
+  const thumb = require('../assets/icons/thumb.png')
+
+  function handleTimes() {
+    if (time >= 100000) {
+      setTime(100000)
+      return
+    }
+    if (val < 0) {
+      setVal(0)
+    }
+    setVal(val => val + 0.01)
+    setTime((time) => time + 1000)
+    if (time < 0) {
+      setTime(0)
+    }
+  }
+
+  function AudioSlider() {
+    if (val < 0) {
+      setVal(0)
+    }
+    if (val > 1) {
+      setVal(1)
+    }
+    return (
+      <View style={styles.container2}>
+        <Slider
+          value={val}
+          thumbImage={thumb}
+          minimumTrackTintColor="#FFFFFF"
+          maximumTrackTintColor={"rgba(181, 181, 181, 0.4)"}
+        />
+      </View>
+
+
+
+    )
+  }
+
+  function handleRewind() {
+    setVal(val => val - 0.15)
+    setTime(time => time - 15000)
+  }
+  function handleForward() {
+    setVal(val => val + 0.15)
+    setTime(time => time + 15000)
   }
 
   return (
@@ -71,19 +154,24 @@ export default function ListenPlayer({ textLine1, textLine2, endDuration }) {
             {liked ? <ClappingHandsFilled style={styles.clappingHands} /> : <ClappingHands style={styles.clappingHands} />}
           </Pressable>
         </View>
-        {played ? <PlaybarAdvance style={styles.playbar} /> : <PlaybarZero style={styles.playbar} />}
+        <AudioSlider></AudioSlider>
         <View style={styles.timeStampsBox}>
-          {played ? <Text style={styles.timeStampBegin}>0:59</Text> : <Text style={styles.timeStampBegin}>0:00</Text>}
+          {count % 2 === 0 && count !== 0 ? <Time style={styles.timer} time={time} status={0} /> :
+            <Time style={styles.timer} time={time} status={1} />}
           <Text style={styles.timeStampEnd}>{endDuration}</Text>
         </View>
         <View style={styles.playButtonAndRewindBox}>
-          <Rewind15 />
+          <Pressable onPress={handleRewind}>
+            <Rewind15 />
+          </Pressable>
           <View style={styles.playButtonBox}>
             <Pressable onPress={playFunction}>
               {played ? <PauseButton style={styles.playButton} /> : <PlayButton style={styles.playButton} />}
             </Pressable>
           </View>
-          <Forward15 />
+          <Pressable onPress={handleForward}>
+            <Forward15 />
+          </Pressable>
         </View>
       </View>
 
@@ -120,7 +208,8 @@ const styles = StyleSheet.create({
     fontSize: 19,
   },
   clappingHands: {
-    top: 22
+    top: 22,
+    left: 10
   },
   playbar: {
     top: 32,
@@ -128,7 +217,7 @@ const styles = StyleSheet.create({
   playButtonAndRewindBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    top: 55,
+    top: 19.69,
   },
   playButton: {
   },
@@ -138,18 +227,27 @@ const styles = StyleSheet.create({
   },
   timeStampsBox: {
     flexDirection: 'row',
-    top: 35,
-  },
-  timeStampBegin: {
-    fontFamily: 'JakartaSans',
-    color: Themes.colors.white,
-    right: 132,
-    position: 'absolute',
+    top: 25,
   },
   timeStampEnd: {
     fontFamily: 'JakartaSans',
     color: Themes.colors.white,
-    left: 135,
+    left: 150,
     position: 'absolute'
-  }
+  },
+  container2: {
+    top: 25,
+    justifyContent: 'center',
+    width: '95%',
+
+
+  },
+  thumb: {
+    backgroundColor: 'white',
+  },
+  track: {
+    backgroundColor: 'rgba(181, 181, 181, 0.4)',
+    borderRadius: 4.18,
+    height: 8.36,
+  },
 })
