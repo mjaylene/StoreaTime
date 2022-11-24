@@ -10,6 +10,11 @@ import NextArrow from '../assets/icons/next_arrow.svg';
 import * as ImagePicker from 'expo-image-picker';
 import { NavigationHelpersContext } from '@react-navigation/native';
 import AutocompleteTags from 'react-native-autocomplete-tags';
+import DimmedPrivate from '../assets/icons/privateButton.svg';
+import DimmedPublic from '../assets/icons/publicButton.svg';
+import LitPrivate from '../assets/icons/litPrivateButton.svg';
+import LitPublic from '../assets/icons/litPublicButton.svg';
+import { m } from 'framer-motion';
 
 const DimmedNext = () => {
     return (
@@ -19,13 +24,27 @@ const DimmedNext = () => {
     );
 }
 
-export default function AddMembersScreen({ navigation, route }) {
-    const suggestions = ['Angel', 'Daryl', 'Lisette', 'Jaylene'];
-    const [tags, setTags] = useState([]);
-    const labelExtractor = (tag) => tag;
 
-    const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
+
+
+export default function CommunitySettingsScreen({ navigation, route }) {
     const [text, onChangeText] = useState("");
+    const [selected, settingSelected] = useState(false);
+    const [privateSelected, privateSelection] = useState(false);
+    const [publicSelected, publicSelection] = useState(false);
+
+    const handlePrivate = () => {
+        settingSelected(true);
+        privateSelection(true);
+        publicSelection(false);
+    }
+
+    const handlePublic = () => {
+        settingSelected(true);
+        privateSelection(false);
+        publicSelection(true);
+    }
+
     loadBackgroundImageAsync();
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
@@ -37,6 +56,34 @@ export default function AddMembersScreen({ navigation, route }) {
     if (!loaded) {
         return null;
     }
+    let privacyContent = null;
+    if (!selected) {
+        privacyContent =
+            <View style={styles.settingBox}>
+                <Pressable onPress={handlePrivate}>
+                    <DimmedPrivate style={styles.privateStyle}></DimmedPrivate>
+                </Pressable>
+                <Pressable onPress={handlePublic}>
+                    <DimmedPublic></DimmedPublic>
+                </Pressable>
+            </View>
+    } else if (selected && privateSelected) {
+        privacyContent =
+            <View style={styles.settingBox}>
+                <LitPrivate style={styles.privateStyle}></LitPrivate>
+                <Pressable onPress={handlePublic}>
+                    <DimmedPublic></DimmedPublic>
+                </Pressable>
+            </View>
+    } else {
+        privacyContent =
+        <View style={styles.settingBox}>
+            <Pressable onPress={handlePrivate}>
+                <DimmedPrivate style={styles.privateStyle}></DimmedPrivate>
+            </Pressable>
+            <LitPublic></LitPublic>
+        </View>
+    }
 
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
@@ -44,45 +91,33 @@ export default function AddMembersScreen({ navigation, route }) {
                 <Pressable onPress={() => navigation.goBack()}>
                     <BackArrow style={styles.backArrow}></BackArrow>
                 </Pressable>
-                <Text style={styles.headerText}>Add Members</Text>
+                <Text style={styles.headerText}>Settings</Text>
             </View>
 
             <View style={styles.body}>
 
                 <View style={styles.members}>
-                    <Text style={styles.boxTitle}>Members</Text>
+                    <Text style={styles.boxTitle}>Sharing Options</Text>
+                    {privacyContent}
+                </View>
+
+                <View style={styles.tags}>
+                    <Text style={styles.boxTitle}>Tags</Text>
                     <View style={styles.inputBox}>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={onChangeText}
-                        value={text}
-                        placeholder='e.g. "Ho Sae Young"'
-                        placeholderTextColor={'#CCCCCC'}
-                    />
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={onChangeText}
+                            value={text}
+                            placeholder='e.g. “Bulgogi”, “Korean”'
+                            placeholderTextColor={'#CCCCCC'}
+                        />
+                    </View>
                 </View>
-                </View>
-
-                <View style={styles.recent}>
-                    <Text style={styles.boxTitle}>Recent</Text>
-                </View>
-
-
-                <View style={styles.friends}>
-                    <Text style={styles.boxTitle}>Friends</Text>
-                </View>
-
                 {(text != "") ?
-                        <Pressable onPress={() => navigation.navigate("CommunitySettingsScreen", {commName: text})}>
-                            <NextArrow style={styles.nextButton}></NextArrow>
-                        </Pressable> : <DimmedNext></DimmedNext>}
+                    <Pressable onPress={() => navigation.navigate("AddMembersScreen", { commName: text })}>
+                        <NextArrow style={styles.nextButton}></NextArrow>
+                    </Pressable> : <DimmedNext></DimmedNext>}
             </View>
-            <AutocompleteTags
-                tags={tags}
-                suggestions={suggestions}
-                onChangeTags={setTags}
-                labelExtractor={labelExtractor}
-    />
-
         </ImageBackground>
     )
 }
@@ -101,7 +136,7 @@ const styles = StyleSheet.create({
         fontFamily: "JakartaSansBold",
         color: Themes.colors.white,
         fontSize: 17,
-        left: 91.45
+        left: 125
     },
     backArrow: {
         marginLeft: 26.67,
@@ -151,16 +186,12 @@ const styles = StyleSheet.create({
         margin: 16,
         marginBottom: 25
     },
-    recent: {
+    tags: {
         //backgroundColor: 'red',
         flex: 1,
         margin: 16,
-        marginBottom: 25
-    },
-    friends: {
-        //backgroundColor: 'green',
-        flex: 1,
-        margin: 16
+        marginBottom: 25,
+        bottom: 10
     },
     body: {
         flex: 0.5,
@@ -170,5 +201,12 @@ const styles = StyleSheet.create({
         fontFamily: "JakartaSansBold",
         fontSize: 17,
         color: 'white'
+    },
+    settingBox: {
+        flexDirection: 'row',
+        marginTop: 14
+    },
+    privateStyle: {
+        marginRight: 8,
     }
 })
