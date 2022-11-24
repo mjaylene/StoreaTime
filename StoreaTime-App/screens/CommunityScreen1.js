@@ -8,6 +8,7 @@ import CreateNewCommunity1 from './CreateNewCommunity1';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddMembersScreen from './AddMembersScreen.js';
 import CommunitySettingsScreen from './CommunitySettingsScreen';
+import RiveraFamilyScreen from './RiveraFamilyScreen';
 
 const Stack = createStackNavigator();
 
@@ -28,7 +29,9 @@ function CommunityScreen1Content({ navigation }) {
             <Text style={styles.headerText}>Communities</Text>
             <Text style={styles.myCommunities}>My Communities</Text>
             <CommunityBoxArrow name={"Asian Food Collective"} memberCount={"581"} privacy={"Public"} picture={require('../assets/community/community3.png')}></CommunityBoxArrow>
-            <CommunityBoxArrow name={"Rivera Family"} memberCount={"5"} privacy={"Public"} picture={require('../assets/community/community2.png')}></CommunityBoxArrow>
+            <Pressable onPress={() => navigation.navigate("RiveraFamilyScreen")}>
+                <CommunityBoxArrow name={"Rivera Family"} memberCount={"5"} privacy={"Public"} picture={require('../assets/community/community2.png')}></CommunityBoxArrow>
+            </Pressable>
             <Text style={styles.suggested}>Suggested</Text>
             <CommunityBoxArrow name={"Los Tacos Taqueria"} memberCount={"834"} privacy={"Public"} picture={require('../assets/community/tacos_community.png')}></CommunityBoxArrow>
             <CommunityBoxArrow name={"La Casa Italiana"} memberCount={"582"} privacy={"Public"} picture={require('../assets/community/italiana_community.png')}></CommunityBoxArrow>
@@ -56,6 +59,7 @@ export default function CommunityScreen1({ navigation }) {
         <Stack.Screen name="CreateNewCommunity1" component={CreateNewCommunity1} options={{headerShown: false}}/>
         <Stack.Screen name="AddMembersScreen" component={AddMembersScreen} options={{headerShown: false}} />
         <Stack.Screen name='CommunitySettingsScreen' component={CommunitySettingsScreen} options={{headerShown: false}} />
+        <Stack.Screen name="RiveraFamilyScreen" component={RiveraFamilyScreen} options={{headerShown: false}} />
     </Stack.Navigator>)
 }
 

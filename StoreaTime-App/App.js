@@ -11,6 +11,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
+import CommunitySettingsScreen from './screens/CommunitySettingsScreen';
 
 export default function App() {
   return (
