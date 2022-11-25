@@ -18,6 +18,7 @@ import ChurroListenScreen from './listen_screens/ChurroListenScreen';
 import VerticalAnimation from '../components/animations/VerticalAnimation'
 import DimsumTextScreen from './DimsumTextScreen';
 import PadThaiListenScreen from './listen_screens/PadThaiListenScreen';
+import RiveraFamilyScreen from './RiveraFamilyScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -97,6 +98,7 @@ function ListenStack({ navigation }) {
             />
              <Stack.Screen name="PadThaiListenScreen" component={PadThaiListenScreen} options={VerticalAnimation}/>
             <Stack.Screen name="DimsumTextScreen" component={DimsumTextScreen} options={VerticalAnimation} />
+            <Stack.Screen name="RiveraFamilyScreen" component={RiveraFamilyScreen} options={{ headerShown: false }} />
             {/* ADD THE REST OF THE LISTEN SCREENS */}
         </Stack.Navigator>
     )

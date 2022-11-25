@@ -6,15 +6,15 @@ import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 
 const STORIES = [
     {
-        id: 1,
+        id: "Enchiladas",
         card: require('../assets/explore_photocards/community_finds_card5.png'),
     },
     {
-        id: 2,
+        id: "Churros",
         card: require('../assets/explore_photocards/community_finds_card4.png'),
     },
     {
-        id: 3,
+        id: "Elotes",
         card: require('../assets/explore_photocards/community_finds_card6.png'),
     }
 ]
@@ -24,7 +24,7 @@ export default function RiveraFamilyScreen({ navigation }) {
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <AccessCommunityHeader image={require('../assets/community/rivera_family_pfp.png')} communityName={"Rivera Family"} navigation={navigation}></AccessCommunityHeader>
-            <AccessRecentStories STORIES={STORIES}></AccessRecentStories>
+            <AccessRecentStories STORIES={STORIES} navigation={navigation}></AccessRecentStories>
             <AccessCommunityButtons></AccessCommunityButtons>
         </ImageBackground>
     )

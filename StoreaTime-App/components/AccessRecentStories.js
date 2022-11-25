@@ -2,7 +2,7 @@ import { Text, View, StyleSheet, ImageBackground, Pressable, Image, FlatList } f
 import { useFonts } from 'expo-font';
 import Themes from '../assets/Themes/themes';
 
-const renderStoryCard = ({ item, index }) => {
+const renderStoryCard = ({ item, index }, navigation) => {
     let cardStyle;
     if (index == 0) {
         cardStyle = {
@@ -23,14 +23,14 @@ const renderStoryCard = ({ item, index }) => {
     }
     return (
         <View style={cardStyle}>
-            <Pressable>
+            <Pressable onPress={() => item.id === "Churros" ? navigation.navigate("ChurroListenScreen") : console.log("other")}>
                 <Image style={styles.cardImage} source={item.card} />
             </Pressable>
         </View>
     )
 }
 
-export default function AccessRecentStories({ STORIES }) {
+export default function AccessRecentStories({ STORIES, navigation }) {
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
@@ -49,7 +49,7 @@ export default function AccessRecentStories({ STORIES }) {
                 <FlatList
                     horizontal
                     data={STORIES}
-                    renderItem={(params) => renderStoryCard(params)}
+                    renderItem={(params) => renderStoryCard(params, navigation)}
                     keyExtractor={(item) => item.id}
                 />
             </View>
