@@ -4,7 +4,8 @@ import Themes from '../assets/Themes/themes';
 import Message from '../assets/icons/message.svg'
 import Leave from '../assets/icons/leave.svg'
 
-export default function AccessCommunityButtons() {
+export default function AccessCommunityButtons({navigation, messageScreen}) {
+    console.log(messageScreen)
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
@@ -22,10 +23,12 @@ export default function AccessCommunityButtons() {
                 <Leave></Leave>
                 <Text style={styles.leaveText}>Leave</Text>
             </View>
-            <View style={styles.messageButton}>
-                <Message></Message>
-                <Text style={styles.messageText}>Message</Text>
-            </View>
+            <Pressable onPress={() => navigation.navigate(messageScreen)}>
+                <View style={styles.messageButton}>
+                    <Message></Message>
+                    <Text style={styles.messageText}>Message</Text>
+                </View>
+            </Pressable>
         </View>
     )
 }

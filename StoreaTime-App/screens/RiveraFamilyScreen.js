@@ -3,6 +3,7 @@ import AccessCommunityHeader from '../components/AccessCommunityHeader';
 import AccessRecentStories from '../components/AccessRecentStories';
 import AccessCommunityButtons from '../components/AccessCommunityButtons';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
+import RiveraFamilyMessages from './message_screens/RiveraFamilyMessageScreen';
 
 const STORIES = [
     {
@@ -25,7 +26,7 @@ export default function RiveraFamilyScreen({ navigation }) {
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <AccessCommunityHeader image={require('../assets/community/rivera_family_pfp.png')} communityName={"Rivera Family"} navigation={navigation}></AccessCommunityHeader>
             <AccessRecentStories STORIES={STORIES} navigation={navigation}></AccessRecentStories>
-            <AccessCommunityButtons></AccessCommunityButtons>
+            <AccessCommunityButtons navigation={navigation} messageScreen={"RiveraFamilyMessages"}></AccessCommunityButtons>
         </ImageBackground>
     )
 }

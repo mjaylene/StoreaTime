@@ -9,6 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AddMembersScreen from './AddMembersScreen.js';
 import CommunitySettingsScreen from './CommunitySettingsScreen';
 import RiveraFamilyScreen from './RiveraFamilyScreen';
+import RiveraFamilyMessages from './message_screens/RiveraFamilyMessageScreen';
 import ChurroListenScreen from '../screens/listen_screens/ChurroListenScreen'
 import VerticalAnimation from '../components/animations/VerticalAnimation';
 
@@ -62,6 +63,7 @@ export default function CommunityScreen1({ navigation }) {
         <Stack.Screen name="AddMembersScreen" component={AddMembersScreen} options={{headerShown: false}} />
         <Stack.Screen name='CommunitySettingsScreen' component={CommunitySettingsScreen} options={{headerShown: false}} />
         <Stack.Screen name="RiveraFamilyScreen" component={RiveraFamilyScreen} options={{headerShown: false}} />
+        <Stack.Screen name="RiveraFamilyMessages" component={RiveraFamilyMessages} options={{headerShown: false}} />
         <Stack.Screen name="ChurroListenScreen" component={ChurroListenScreen} options={VerticalAnimation} />
     </Stack.Navigator>)
 }
