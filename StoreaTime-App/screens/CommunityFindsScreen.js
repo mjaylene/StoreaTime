@@ -23,15 +23,15 @@ const STORIES1 = [
 
 const STORIES2 = [
     {
-        id: 1,
+        id: 4,
         card: require('../assets/explore_photocards/community_finds_card4.png'),
     },
     {
-        id: 2,
+        id: 5,
         card: require('../assets/explore_photocards/community_finds_card5.png'),
     },
     {
-        id: 3,
+        id: 6,
         card: require('../assets/explore_photocards/community_finds_card6.png'),
     }
 ]
@@ -70,7 +70,7 @@ const renderStoryCard = ({ item, index }, navigation) => {
     }
     return (
         <View style={cardStyle}>
-            <Pressable onPress={() => navigation.navigate('RamenListenScreen')}>
+            <Pressable onPress={() => item.id === 4 ? navigation.navigate('ChurroListenScreen') : navigation.navigate('RamenListenScreen')}>
                 <Image style={styles.cardImage} source={item.card} />
             </Pressable>
         </View>

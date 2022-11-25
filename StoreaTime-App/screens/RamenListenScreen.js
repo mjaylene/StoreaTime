@@ -30,7 +30,7 @@ export default function RamenListenScreen({ navigation }) {
                         image3={require('../assets/food/ramen_image3.png')}
                         image4={require('../assets/food/ramen_image4.png')}
                     ></ImageSwiper>
-                    <ListenPlayer textLine1={"How did you learn to make "} textLine2={"Kanagawa Ramen?"} endDuration={"1:40"}></ListenPlayer>
+                    <ListenPlayer textLine1={"How did you learn to make "} textLine2={"Kanagawa Ramen?"} endDuration={"1:40"} audio={require('../assets/sounds/ramen_story.mp3')}></ListenPlayer>
                     <CommentSection></CommentSection>
                 </ScrollView>
             </KeyboardAvoidingView>

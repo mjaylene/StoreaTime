@@ -13,7 +13,7 @@ import Slider from '@react-native-community/slider';
 import Time from '../components/TimeListenScreen';
 import { set } from 'react-native-reanimated';
 
-export default function ListenPlayer({ textLine1, textLine2, endDuration }) {
+export default function ListenPlayer({ textLine1, textLine2, endDuration, audio }) {
   const [loaded] = useFonts({
     Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
     'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
@@ -57,7 +57,7 @@ export default function ListenPlayer({ textLine1, textLine2, endDuration }) {
 
   async function playSound() {
     if (!played) {
-      const { sound } = await Audio.Sound.createAsync(require('../assets/sounds/ramen_story.mp3')
+      const { sound } = await Audio.Sound.createAsync(audio
       );
       setSound(sound);
 
@@ -148,7 +148,7 @@ export default function ListenPlayer({ textLine1, textLine2, endDuration }) {
         <View style={styles.textAndLikeButton}>
           <View style={styles.textLines}>
             <Text style={styles.textStyle}>{textLine1}</Text>
-            <Text style={styles.textStyle}>{textLine2}</Text>
+            {textLine2 != "" ? <Text style={styles.textStyle}>{textLine2}</Text> : <View></View>}
           </View>
           <Pressable onPress={() => setLiked(!liked)}>
             {liked ? <ClappingHandsFilled style={styles.clappingHands} /> : <ClappingHands style={styles.clappingHands} />}

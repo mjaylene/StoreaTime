@@ -14,6 +14,7 @@ import RecordTabIcon from '../assets/icons/record_tab_icon.svg'
 import CommunityIconGray from '../assets/icons/community_icon.svg';
 import CommunityIconOrange from '../assets/icons/community_icon_orange.svg';
 import RamenListenScreen from './RamenListenScreen';
+import ChurroListenScreen from './listen_screens/ChurroListenScreen';
 import VerticalAnimation from '../components/animations/VerticalAnimation'
 import DimsumTextScreen from './DimsumTextScreen';
 
@@ -70,7 +71,7 @@ const renderStoryCard = ({ item, index }, navigation) => {
      }
     return (
     <View style={cardStyle}>
-        <Pressable onPress={() => navigation.navigate('RamenListenScreen')}>
+        <Pressable onPress={() => index == 1 ? navigation.navigate('ChurroListenScreen') : navigation.navigate('RamenListenScreen')}>
         <Image style={styles.cardImage} source={item.card}/>
         </Pressable>
         <View>
@@ -85,6 +86,9 @@ function ListenStack({ navigation }) {
         <Stack.Navigator>
             <Stack.Screen name="TodaysListens" component={TodaysListensScreenContent} options={{ headerShown: false }} />
             <Stack.Screen name="RamenListenScreen" component={RamenListenScreen}
+                options={VerticalAnimation} 
+            />
+            <Stack.Screen name="ChurroListenScreen" component={ChurroListenScreen}
                 options={VerticalAnimation} 
             />
             <Stack.Screen name="CommunityFinds" component={CommunityFinds}
