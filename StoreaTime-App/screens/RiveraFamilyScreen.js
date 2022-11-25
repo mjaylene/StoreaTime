@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, ImageBackground, Pressable, Image } from 'react
 import AccessCommunityHeader from '../components/AccessCommunityHeader';
 import AccessRecentStories from '../components/AccessRecentStories';
 import AccessCommunityButtons from '../components/AccessCommunityButtons';
+import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 
 const STORIES = [
     {
@@ -19,6 +20,7 @@ const STORIES = [
 ]
 
 export default function RiveraFamilyScreen({ navigation }) {
+    loadBackgroundImageAsync();
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <AccessCommunityHeader image={require('../assets/community/rivera_family_pfp.png')} communityName={"Rivera Family"} navigation={navigation}></AccessCommunityHeader>

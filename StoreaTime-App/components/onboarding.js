@@ -10,6 +10,7 @@ import Welcome1 from './Welcome1';
 import Welcome2 from './Welcome2';
 import Welcome3 from './Welcome3';
 import TodaysListensScreen from '../screens/TodaysListensScreen'
+import loadBackgroundImageAsync from './LoadBackgroundImageAsync';
 
 const token = false
 const Stack = createStackNavigator();
@@ -23,6 +24,7 @@ function HomeScreen({ navigation }) {
         console.log('new user -> signup')
 
     }
+    loadBackgroundImageAsync();
 
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
