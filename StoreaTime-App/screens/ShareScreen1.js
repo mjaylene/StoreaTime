@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     select1: {
-        //backgroundColor: 'red',
+       // backgroundColor: 'red',
         width: 84,
         height: 24,
         top: 13,
@@ -204,10 +204,10 @@ const styles = StyleSheet.create({
         borderRadius: 8
     },
     select2: {
-       //backgroundColor: 'green',
+      // backgroundColor: 'green',
         width: 84,
         height: 24,
-        bottom: 260,
+        bottom: 240,
         borderRadius: 8,
         left: 135
     },
