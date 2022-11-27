@@ -7,7 +7,7 @@ import CommunityBox from '../components/CommunityBox.js';
 import DimmedSend from '../assets/icons/dimmed_send.svg';
 import Send from '../assets/icons/send.svg';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
-
+import SelectAll from '../assets/icons/select_all.svg';
 
 export default function RecordScreen({ navigation, route }) {
     loadBackgroundImageAsync();
@@ -43,16 +43,13 @@ export default function RecordScreen({ navigation, route }) {
                 <Text style={styles.screenTitle}>Share</Text>
             </View>
             <View style={styles.body}>
-                <Text style={styles.title}>My Communities</Text>
-                <View style={styles.communitiesContainer}>
-                </View>
+                <View style={styles.publicCom}>
+                    <View style={styles.comHeader}>
+                        <Text style={styles.title}>My Public Communities</Text>
+                        <SelectAll style={styles.selectAllButton}></SelectAll>
 
-                <Pressable onPress={() => checkCircle(!click)}>
-                    <View style={styles.commOne}></View>
-                </Pressable>
+                    </View>
 
-                <View style={styles.commBox}>
-                    <Pressable onPress={() => checkCircle(!click)}>
                         <CommunityBox
                             style={styles.box}
                             name={'Asian Food Collective'}
@@ -61,7 +58,18 @@ export default function RecordScreen({ navigation, route }) {
                             clicked={click}
                             picture={'1'}
                         />
-                    </Pressable>
+                </View>
+
+                <Pressable onPress={() => checkCircle(!click)}>
+                            <View style={styles.select1}></View>
+                        </Pressable>
+
+                <View style={styles.privateCom}>
+                    <View style={styles.comHeader}>
+                        <Text style={styles.title}>My Private Communities</Text>
+                        <SelectAll style={styles.selectAllButton}></SelectAll>
+
+                    </View>
                     <CommunityBox
                         style={styles.box}
                         name={'Rivera Family'}
@@ -71,15 +79,29 @@ export default function RecordScreen({ navigation, route }) {
                         picture={'2'}
                     />
                 </View>
+
+
+                <View style={styles.commBox}>
+
+                </View>
+                <Pressable onPress={() => checkCircle(!click)}>
+                    <View style={styles.commOne}></View>
+                </Pressable>
+
                 <Pressable onPress={() => checkCircle1(!click1)}>
                     <View style={styles.commTwo}></View>
                 </Pressable>
             </View>
+
+            <Pressable onPress={() => checkCircle1(!click1)}>
+                    <View style={styles.select2}></View>
+                </Pressable>
+            
             {click || click1 ?
                 <Pressable onPress={() => navigation.navigate("ShareScreen2")} style={styles.share}>
                     <Send></Send>
                 </Pressable> : <DimmedSend style={styles.share}></DimmedSend>}
-            <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
+            <Pressable onPress={() => navigation.goBack()}>
                 <BackArrow style={styles.backButton}></BackArrow>
             </Pressable>
         </ImageBackground>
@@ -117,11 +139,15 @@ const styles = StyleSheet.create({
     },
     title: {
         top: 130,
-        right: 100,
+        right: 35,
         textAlign: 'left',
         fontSize: 17,
         color: 'white',
         fontFamily: 'JakartaSansBold'
+    },
+    selectAllButton: {
+        top: 131,
+        left: 32
     },
     body: {
         //backgroundColor: 'blue',
@@ -138,7 +164,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'green',
         width: 355,
         height: 84,
-        top: 140,
+        bottom: 77,
         borderRadius: 12,
         right: 0
     },
@@ -146,7 +172,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'red',
         width: 355,
         height: 84,
-        bottom: 38,
+        bottom: 43,
         borderRadius: 12,
         right: 0
     },
@@ -163,5 +189,29 @@ const styles = StyleSheet.create({
         width: 77,
         height: 77,
         top: 221
+    },
+    comHeader: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    select1: {
+        //backgroundColor: 'red',
+        width: 84,
+        height: 24,
+        top: 13,
+        left: 132,
+        borderRadius: 8
+    },
+    select2: {
+       //backgroundColor: 'green',
+        width: 84,
+        height: 24,
+        bottom: 260,
+        borderRadius: 8,
+        left: 135
+    },
+    publicCom: {
+        marginTop: 20
     }
 });

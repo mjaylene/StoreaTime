@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import React from "react";
 import { useFonts } from 'expo-font';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
+import Close from '../assets/icons/close.svg';
+import GoTo from '../assets/icons/goToCommunities.svg';
 
 
 
@@ -35,10 +37,15 @@ export default function ShareScreen2({ navigation }) {
     // 
 
     return (
-        <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
+        <ImageBackground source={require('../assets/community/sharedConfirmation.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-                <Text style={styles.screenTitle}>Share</Text>
+                <Pressable onPress={() => navigation.navigate('RecordScreen1')}>
+                    <Close style={styles.exit}></Close>
+                </Pressable>
             </View>
+            <Pressable>
+                <GoTo style={styles.goToScreen}></GoTo>
+            </Pressable>
         </ImageBackground>
     );
 }
@@ -50,67 +57,19 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center'
     },
-    backButton: {
-        width: 32,
-        height: 32,
-        //bottom: 240,
-        right: 35,
-        //backgroundColor: 'cyan'
-    },
-    screenTitle: {
-        //backgroundColor: 'cyan',
-        color: 'white',
-        fontSize: 17,
-        fontWeight: 'bold',
-    },
     header: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        //alignItems: 'center',
+        //justifyContent: 'center',
         top: 55,
         //backgroundColor: 'cyan',
         position: 'absolute'
     },
-    title: {
-        top: 130,
-        right: 100,
-        textAlign: 'left',
-        fontSize: 17,
-        color: 'white',
-        fontFamily: 'JakartaSansBold'
+    exit: {
+        right: 150
     },
-    body: {
-        //backgroundColor: 'blue',
-        width: 340,
-        height: 203,
-        bottom: 320,
-        alignItems: 'center',
-    },
-    share: {
-        bottom: 60,
-        position: 'absolute'
-    },
-    commOne: {
-        //backgroundColor: 'green',
-        width: 355,
-        height: 84,
-        top: 140,
-        borderRadius: 12,
-        right: 0
-    },
-    commTwo: {
-        //backgroundColor: 'red',
-        width: 355,
-        height: 84,
-        bottom: 38,
-        borderRadius: 12,
-        right: 0
-    },
-    box: {
-        position: 'absolute'
-    },
-    commBox: {
-        bottom: 79
+    goToScreen: {
+        top: 380
     }
 });

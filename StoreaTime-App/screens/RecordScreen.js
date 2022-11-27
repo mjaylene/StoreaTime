@@ -109,7 +109,7 @@ export default function RecordScreen({ navigation, route }) {
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
 
-                <Pressable onPress={() => navigation.navigate('RecordScreen1')}>
+                <Pressable onPress={() => navigation.goBack()}>
                     <BackArrow style={styles.backButton}></BackArrow>
                 </Pressable>
                 <Text style={styles.screenTitle}>Record</Text>
