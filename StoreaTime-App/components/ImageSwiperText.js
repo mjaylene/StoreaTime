@@ -25,9 +25,9 @@ export default function ImageSwiperText({image1, image2, image3}) {
                 <View>
                     <Image source={image2} style={styles.imageStyle}></Image>
                 </View>
-                <View>
+                {image3 == "" ? console.log("no image4") : <View>
                     <Image source={image3} style={styles.imageStyle}></Image>
-                </View>
+                </View>}
                 
             </Swiper>
         </View>

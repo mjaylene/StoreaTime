@@ -9,7 +9,7 @@ import Themes from '../assets/Themes/themes';
 import ClappingHands from '../assets/icons/clapping_hands.svg'
 import ClappingHandsFilled from '../assets/icons/clapping_hands_filled.svg'
 
-export default function DimsumTextScreen({ navigation }) {
+export default function ElotesReadScreen({ navigation }) {
     loadBackgroundImageAsync();
     const [liked, setLiked] = useState(false)
 
@@ -31,17 +31,17 @@ export default function DimsumTextScreen({ navigation }) {
                 <ScrollView centerContent={true}>
                     <View style={styles.promptBox}>
                         <View style={styles.textBox}>
-                            <Text style={styles.promptText}>Who taught you how to</Text>
-                            <Text style={styles.promptText}>make Dim Sum?</Text>
+                            <Text style={styles.promptText}>What is your favorite</Text>
+                            <Text style={styles.promptText}>memory of Elotes?</Text>
                         </View>
                         <Pressable onPress={() => setLiked(!liked)}>
                             {liked ? <ClappingHandsFilled style={styles.clappingHands} /> : <ClappingHands style={styles.clappingHands} />}
                         </Pressable>
                     </View>
                     <ImageSwiperText 
-                        image1={require('../assets/food/dimsum_text1.png')}
-                        image2={require('../assets/food/dimsum_text2.png')}
-                        image3={require('../assets/food/dimsum_text3.png')}
+                        image1={require('../assets/food/elotes_text1.png')}
+                        image2={require('../assets/food/elotes_text2.png')}
+                        image3={""}
                     >
                     </ImageSwiperText>
                     <CommentSection></CommentSection>

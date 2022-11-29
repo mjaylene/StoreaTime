@@ -114,6 +114,7 @@ const renderStoryCard = ({ item, index }, navigation) => {
             <Pressable onPress={() => item.id === 4 ? navigation.navigate('ChurroListenScreen') 
             : item.id === 3 ? navigation.navigate('PadThaiListenScreen')
             : item.id === 2 ? navigation.navigate('DimsumTextScreen')
+            : item.id === 6 ? navigation.navigate('ElotesReadScreen')
             : navigation.navigate('RamenListenScreen')}>
                 <Image style={styles.cardImage} source={item.card} />
             </Pressable>
