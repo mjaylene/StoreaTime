@@ -10,6 +10,8 @@ import CommunityScreen1 from './CommunityScreen1';
 import CommunityFinds from './CommunityFindsScreen';
 import ExploreIconGray from '../assets/icons/explore_icon_gray.svg'
 import ExploreIconOrange from '../assets/icons/explore_icon_orange.svg'
+import HomeUnfilled from '../assets/icons/home_unfilled.svg'
+import HomeFilled from '../assets/icons/home_filled.svg'
 import RecordTabIcon from '../assets/icons/record_tab_icon.svg'
 import CommunityIconGray from '../assets/icons/community_icon.svg';
 import CommunityIconOrange from '../assets/icons/community_icon_orange.svg';
@@ -155,7 +157,7 @@ export default function TodaysListensScreen({ navigation, route }) {
                     let iconName;
 
                     if (route.name === "Explore") {
-                        iconName = focused ? <ExploreIconOrange style={{ marginTop: 15 }} /> : <ExploreIconGray style={{ marginTop: 15 }} />
+                        iconName = focused ? <HomeFilled style={{ marginTop: 15 }} /> : <HomeUnfilled style={{ marginTop: 15 }} />
                     }
                     else if (route.name === "Record") {
                         iconName = focused ? <RecordTabIcon /> : <RecordTabIcon />
