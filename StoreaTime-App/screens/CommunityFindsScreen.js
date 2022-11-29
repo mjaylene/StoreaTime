@@ -1,10 +1,51 @@
 import { Text, View, StyleSheet, ImageBackground, Pressable, Image, FlatList } from 'react-native';
+import { useState } from 'react' 
 import { useFonts } from 'expo-font';
 import { Asset } from "expo-asset";
 import Themes from '../assets/Themes/themes';
 import UpArrow from '../assets/icons/up_arrow.svg'
 import RightArrow from '../assets/icons/right_arrow_community_finds.svg'
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
+import Filter from '../assets/icons/filter.svg'
+import FilterModal from '../components/FilterModal';
+import { set } from 'lodash';
+
+const TEXT_STORIES1 = [
+    {
+        id: 2,
+        card: require('../assets/explore_photocards/community_finds_card2.png'),
+    },
+]
+
+const TEXT_STORIES2 = [
+    {
+        id: 6,
+        card: require('../assets/explore_photocards/community_finds_card6.png'),
+    },
+]
+
+const AUDIO_STORIES1 = [
+    {
+        id: 1,
+        card: require('../assets/explore_photocards/community_finds_card1.png'),
+
+    },
+    {
+        id: 3,
+        card: require('../assets/explore_photocards/community_finds_card3.png'),
+    }
+]
+
+const AUDIO_STORIES2 = [
+    {
+        id: 4,
+        card: require('../assets/explore_photocards/community_finds_card4.png'),
+    },
+    {
+        id: 5,
+        card: require('../assets/explore_photocards/community_finds_card5.png'),
+    },
+]
 
 const STORIES1 = [
     {
@@ -82,6 +123,12 @@ const renderStoryCard = ({ item, index }, navigation) => {
 
 
 export default function CommunityFinds({ navigation }) {
+    const [all, setAll] = useState(false);
+    const [audio, setAudio] = useState(false)
+    const [text, setText] = useState(true)
+    const [topLevelStories, setTopLevelStories] = useState(STORIES1)
+    const [bottomLevelStories, setBottomLevelStories] = useState(STORIES2)
+
     loadBackgroundImageAsync();
     //loadStoryCardImages();
     const [loaded] = useFonts({
@@ -95,6 +142,38 @@ export default function CommunityFinds({ navigation }) {
         return null;
     }
 
+    const handleAll = () => {
+        setAll(true)
+        setAudio(false)
+        setText(false)
+    }
+
+    const handleAudio = () => {
+        setAudio(true)
+        setAll(false)
+        setText(false)
+    }
+
+    const handleText = () => {
+        setText(true)
+        setAll(false)
+        setAudio(false)
+    }
+
+    function cardsToDisplay() {
+        if (all) {
+            setTopLevelStories(STORIES1)
+            setBottomLevelStories(STORIES2)
+        } else if (text) {
+            setTopLevelStories(TEXT_STORIES1)
+            setBottomLevelStories(TEXT_STORIES2)
+        } else {
+            setTopLevelStories(AUDIO_STORIES1)
+            setBottomLevelStories(AUDIO_STORIES2)
+        }
+    }
+    
+
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
@@ -104,7 +183,10 @@ export default function CommunityFinds({ navigation }) {
                         <Text style={styles.viewMore}>VIEW TODAY'S LISTENS</Text>
                     </Pressable>
                 </View>
-                <Text style={styles.title}>Community Finds</Text>
+                <View style={styles.titleBox}>
+                    <Text style={styles.title}>Community Finds</Text>
+                    <FilterModal handleAll={handleAll} handleAudio={handleAudio} handleText={handleText} cardsToDisplay={cardsToDisplay}></FilterModal>
+                </View>
                 <View style={styles.communitySectionBox}>
                     <Text style={styles.communityName1}>Asian Food Collective</Text>
                     <RightArrow style={{ left: 24, bottom: 372 }}></RightArrow>
@@ -112,7 +194,7 @@ export default function CommunityFinds({ navigation }) {
                 <View style={styles.listContainer1}>
                     <FlatList
                         horizontal
-                        data={STORIES1}
+                        data={topLevelStories}
                         renderItem={(params) => renderStoryCard(params, navigation)}
                         keyExtractor={(item) => item.id}
                     />
@@ -126,7 +208,7 @@ export default function CommunityFinds({ navigation }) {
                 <View style={styles.listContainer2}>
                     <FlatList
                         horizontal
-                        data={STORIES2}
+                        data={bottomLevelStories}
                         renderItem={(params) => renderStoryCard(params, navigation)}
                         keyExtractor={(item) => item.id}
                     />
@@ -147,13 +229,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         //alignItems: 'center',
     },
+    titleBox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        left: 16,
+        top: 50, 
+        marginBottom: 48
+    },
     title: {
         flex: 1,
         fontFamily: 'Romana-Bold',
         color: Themes.colors.white,
         fontSize: 32,
-        left: 16,
-        top: 50
+        //left: 16,
+        //top: 50
     },
     viewTodaysBox: {
         //flex: 1,
