@@ -38,7 +38,10 @@ const styles = StyleSheet.create({
     wrapper: {},
     swiperBox: {
         width: 358,
-        height: 609
+        height: 496,
+        marginBottom: 0,
+        bottom: 20
+        //backgroundColor: 'green'
     },
     dotStyle: {
         backgroundColor: 'rgba(0,0,0,.2)',
@@ -47,9 +50,6 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         marginLeft: 3,
         marginRight: 3,
-        marginTop: 0,
-        marginBottom: 0
-
     },
     activeDotStyle: {
         backgroundColor: '#FFF',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     imageStyle: {
         marginTop: 32,
         width: 358,
-        height: 576,
+        height: 464,
         borderRadius: 24,
         marginBottom: 24,
     },
