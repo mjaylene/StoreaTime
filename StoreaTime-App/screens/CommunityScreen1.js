@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import Themes from '../assets/Themes/themes';
 import DiscoverIcon from '../assets/icons/discover_icon.svg'
 import PlusIcon from '../assets/icons/plus.svg'
+import InfoIcon from '../assets/icons/info.svg'
 import CreateNewCommunity1 from './CreateNewCommunity1';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddMembersScreen from './AddMembersScreen.js';
@@ -12,6 +13,7 @@ import RiveraFamilyScreen from './RiveraFamilyScreen';
 import RiveraFamilyMessages from './message_screens/RiveraFamilyMessageScreen';
 import ChurroListenScreen from '../screens/listen_screens/ChurroListenScreen'
 import VerticalAnimation from '../components/animations/VerticalAnimation';
+import CommunitiesInfoModal from './CommunitiesInfo';
 
 const Stack = createStackNavigator();
 
@@ -29,7 +31,10 @@ function CommunityScreen1Content({ navigation }) {
 
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
-            <Text style={styles.headerText}>Communities</Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text style={styles.headerText}>Communities</Text>
+                <CommunitiesInfoModal></CommunitiesInfoModal>
+            </View>
             <Text style={styles.myCommunities}>My Communities</Text>
             <CommunityBoxArrow name={"Asian Food Collective"} memberCount={"581"} privacy={"Public"} picture={require('../assets/community/community3.png')}></CommunityBoxArrow>
             <Pressable onPress={() => navigation.navigate("RiveraFamilyScreen")}>
@@ -50,7 +55,6 @@ function CommunityScreen1Content({ navigation }) {
                     </View>
                 </Pressable>
             </View>
-           
         </ImageBackground>
     )
 }
@@ -84,6 +88,10 @@ const styles = StyleSheet.create({
         marginTop: 58,
         marginLeft: 17,
         marginBottom: 35
+    },
+    info: {
+        top: 13.5,
+        left: 145.67
     },
     myCommunities: {
         fontFamily: "JakartaSansBold",
