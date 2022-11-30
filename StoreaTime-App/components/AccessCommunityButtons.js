@@ -5,7 +5,6 @@ import Message from '../assets/icons/message.svg'
 import Leave from '../assets/icons/leave.svg'
 
 export default function AccessCommunityButtons({navigation, messageScreen}) {
-    console.log(messageScreen)
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),

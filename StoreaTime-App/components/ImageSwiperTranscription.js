@@ -1,7 +1,7 @@
 import { StyleSheet, View, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-export default function ImageSwiper({image1, image2, image3, image4}) {
+export default function ImageSwiperTranscription({image1, image2, image3}) {
     return (
         <View style={styles.swiperBox}>
             <Swiper
@@ -28,9 +28,6 @@ export default function ImageSwiper({image1, image2, image3, image4}) {
                 <View>
                     <Image source={image3} style={styles.imageStyle}></Image>
                 </View>
-                {image4 == "" ? console.log("no image4") : <View>
-                    <Image source={image4} style={styles.imageStyle}></Image>
-                </View>}
                 
             </Swiper>
         </View>
@@ -38,12 +35,13 @@ export default function ImageSwiper({image1, image2, image3, image4}) {
 }
 
 const styles = StyleSheet.create({
-    wrapper: {},
+    wrapper: {zIndex: 0},
     swiperBox: {
         width: 358,
         height: 353,
         //marginTop: 32,
-        marginBottom: 24
+        marginBottom: 24,
+        zIndex: 0
     },
     dotStyle: {
         backgroundColor: 'rgba(0,0,0,.2)',
@@ -67,10 +65,10 @@ const styles = StyleSheet.create({
         //marginBottom: 16
     },
     imageStyle: {
-        //marginTop: 32,
+        
         width: 358,
         height: 353,
         borderRadius: 24,
-        //marginBottom: 24,
+       
     },
 })
