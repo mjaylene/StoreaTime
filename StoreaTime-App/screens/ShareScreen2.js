@@ -39,12 +39,16 @@ export default function ShareScreen2({ navigation }) {
     return (
         <ImageBackground source={require('../assets/community/sharedConfirmation.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-                <Pressable onPress={() => navigation.navigate('RecordScreen1')}>
-                    <Close style={styles.exit}></Close>
+                <Pressable onPress={() => navigation.navigate('Community')}>
+                    <View style={styles.exit}>
+                        <Close></Close>
+                    </View>
                 </Pressable>
             </View>
-            <Pressable>
-                <GoTo style={styles.goToScreen}></GoTo>
+            <Pressable onPress={() => navigation.navigate('Community')}>
+                <View style={styles.goToScreen}>
+                    <GoTo ></GoTo>
+                </View>
             </Pressable>
         </ImageBackground>
     );

@@ -14,6 +14,7 @@ import ShareScreen2 from './ShareScreen2';
 import PhotoScreen1 from './PhotoScreen1';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 import EditScreen1 from './EditScreen1';
+import CommunityScreen1 from './CommunityScreen1'
 
 let dish = ''
 
@@ -86,6 +87,8 @@ export default function RecordScreen2({ navigation, displayTabBar, setDisplayTab
             <Stack.Screen name="ShareScreen2" component={ShareScreen2} options={{ headerShown: false }} />
             <Stack.Screen name="PhotoScreen1" component={PhotoScreen1} options={{ headerShown: false }} />
             <Stack.Screen name="EditScreen1" component={EditScreen1} options={{ headerShown: false }} />
+            {/* <Stack.Screen name="TodaysListensScreen" component={TodaysListensScreen} options={{ headerShown: false }} /> */}
+            {/* <Stack.Screen name="CommunityScreen1" component={CommunityScreen1} options={{ headerShown: false }} /> */}
         </Stack.Navigator>
     )
 }
