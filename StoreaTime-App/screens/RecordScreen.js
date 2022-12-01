@@ -9,6 +9,7 @@ import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 import Time from '../components/Time';
 import RightArrow from '../assets/icons/keyboard_arrow_right.svg'
 import LeftArrow from '../assets/icons/keyboard_arrow_left.svg'
+import ExitButton from '../assets/icons/exitRecord.svg'
 
 let selectedPrompt = 0
 
@@ -49,6 +50,7 @@ function Prompt({ text, edit }) {
 // Credit for Stopclock Feature: https://www.waldo.com/blog/learn-react-native-timer
 export default function RecordScreen({ navigation, route }) {
     loadBackgroundImageAsync();
+
 
     //const dishName = route.params.paramDish;
     const [time, setTime] = useState(0);
@@ -105,13 +107,25 @@ export default function RecordScreen({ navigation, route }) {
     // 
     const [isActive, setIsActive] = useState(false);
     const [count, isClicked] = useState(0);
+    function resetEverything() {
+        setTime(0);
+        isClicked(0);
+        setIsActive(false);
+        handlePause()
+
+    }
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-
+                {count === 0 ?                 
                 <Pressable onPress={() => navigation.goBack()}>
                     <BackArrow style={styles.backButton}></BackArrow>
                 </Pressable>
+                :
+                <Pressable onPress={() => resetEverything()}>
+                    <ExitButton style={styles.exitButton}></ExitButton>
+                </Pressable> }
+
                 <Text style={styles.screenTitle}>Record</Text>
                 {count % 2 !== 1 && count !== 0 ?
                     <Pressable onPress={() => navigation.navigate("EditScreen1", { paramDish: dishName, promptNum: selectedPrompt, recordTime: time})}>
@@ -160,6 +174,14 @@ const styles = StyleSheet.create({
         height: 32,
         //bottom: 240,
         left: 40,
+        top: 7
+        //backgroundColor: 'cyan'
+    },
+    exitButton: {
+        width: 32,
+        height: 32,
+        //bottom: 240,
+        left: 27,
         top: 7
         //backgroundColor: 'cyan'
     },

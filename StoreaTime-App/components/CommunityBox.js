@@ -8,17 +8,27 @@ import Unchecked from '../assets/icons/unchecked.svg';
 import Checked from '../assets/icons/checked.svg';
 
 
-export default function community({name, memberCount, privacy, clicked, picture}) {
+export default function CommunityBox2({name, memberCount, privacy, clicked, picture}) {
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
         JakartaSans: require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
         JakartaSansBold: require('../assets/fonts/PlusJakartaText-Bold.otf'),
     });
+    let imageSource = null;
+    if (picture === '1') {
+        imageSource = '../assets/community/community1.png'
+    } else if (picture === '2') {
+        imageSource = '../assets/community/community2.png'
+    } else {
+        imageSource = '../assets/community/community3.png'
+    }
     return (
         <View style={styles.communityContainer}>
-            {picture === '1' ? <Image style={styles.profile} source={require('../assets/community/community1.png')} resizeMode="contain"></Image> :
-            <Image style={styles.profile} source={require('../assets/community/community2.png')} resizeMode="contain"></Image>}
+            {picture === '1' ? <Image style={styles.profile} source={require('../assets/community/community1.png')} resizeMode="contain"></Image> 
+            : picture === '2' ? <Image style={styles.profile} source={require('../assets/community/community2.png')} resizeMode="contain"></Image> 
+            : picture === '3' ? <Image style={styles.profile} source={require('../assets/community/community3.png')} resizeMode="contain"></Image> 
+            : <Image style={styles.profile} source={require('../assets/community/community4.png')} resizeMode="contain"></Image>}
             
             <View style={styles.communityText}>
                 <Text style={styles.communityName}>{name}</Text>
