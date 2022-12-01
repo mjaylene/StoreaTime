@@ -21,6 +21,7 @@ import VerticalAnimation from '../components/animations/VerticalAnimation'
 import DimsumTextScreen from './DimsumTextScreen';
 import PadThaiListenScreen from './listen_screens/PadThaiListenScreen';
 import ElotesReadScreen from './ElotesReadScreen';
+import EnchiladasListenScreen from './EnchiladasListenScreen';
 import RiveraFamilyScreen from './RiveraFamilyScreen';
 
 const Tab = createBottomTabNavigator();
@@ -104,6 +105,7 @@ function ListenStack({ navigation }) {
             <Stack.Screen name="PadThaiListenScreen" component={PadThaiListenScreen} options={VerticalAnimation}/>
             <Stack.Screen name="DimsumTextScreen" component={DimsumTextScreen} options={VerticalAnimation} />
             <Stack.Screen name="ElotesReadScreen" component={ElotesReadScreen} options={VerticalAnimation} />
+            <Stack.Screen name="EnchiladasListenScreen" component={EnchiladasListenScreen} options={VerticalAnimation}/>
             <Stack.Screen name="RiveraFamilyScreen" component={RiveraFamilyScreen} options={{ headerShown: false }} />
             {/* ADD THE REST OF THE LISTEN SCREENS */}
         </Stack.Navigator>

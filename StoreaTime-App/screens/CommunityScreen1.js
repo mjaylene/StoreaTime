@@ -12,6 +12,8 @@ import CommunitySettingsScreen from './CommunitySettingsScreen';
 import RiveraFamilyScreen from './RiveraFamilyScreen';
 import RiveraFamilyMessages from './message_screens/RiveraFamilyMessageScreen';
 import ChurroListenScreen from '../screens/listen_screens/ChurroListenScreen'
+import ElotesReadScreen from '../screens/ElotesReadScreen';
+import EnchiladasListenScreen from './EnchiladasListenScreen';
 import VerticalAnimation from '../components/animations/VerticalAnimation';
 import CommunitiesInfoModal from './CommunitiesInfo';
 
@@ -69,6 +71,8 @@ export default function CommunityScreen1({ navigation }) {
         <Stack.Screen name="RiveraFamilyScreen" component={RiveraFamilyScreen} options={{headerShown: false}} />
         <Stack.Screen name="RiveraFamilyMessages" component={RiveraFamilyMessages} options={{headerShown: false}} />
         <Stack.Screen name="ChurroListenScreen" component={ChurroListenScreen} options={VerticalAnimation} />
+        <Stack.Screen name="ElotesReadScreen" component={ElotesReadScreen} options={VerticalAnimation} />
+        <Stack.Screen name="EnchiladasListenScreen" component={EnchiladasListenScreen} options={VerticalAnimation} />
     </Stack.Navigator>)
 }
 
