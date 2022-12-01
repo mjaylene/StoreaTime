@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     info: {
         top: 13.5,
-        left: 120
+        left: 143
     },
     xBox: {
         top: -86,

@@ -19,7 +19,9 @@ export default function AccessCommunityHeader( { image, communityName, navigatio
         <View style={styles.headerBox}>
             <View style={styles.headerContentsBox}>
                 <Pressable onPress={() => navigation.goBack()}>
-                    <BackArrow style={styles.backArrow}></BackArrow>
+                    <View style={styles.backArrow}>
+                        <BackArrow></BackArrow>
+                    </View>
                 </Pressable>
                 <Image style={styles.communityImage} source={(image)}></Image>
                 <Text style={styles.communityNameStyle}>{communityName}</Text>

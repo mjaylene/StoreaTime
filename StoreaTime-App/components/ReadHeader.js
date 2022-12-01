@@ -16,7 +16,9 @@ export default function ReadHeader({ navigation }) {
     return (
         <View style={styles.header}>
             <Pressable onPress={() => navigation.goBack()}>
-                <DownArrow style={styles.downArrow}></DownArrow>
+                <View style={styles.downArrow}>
+                    <DownArrow></DownArrow>
+                </View>
             </Pressable>
             <Text style={styles.headerText}>Read</Text>
         </View>
@@ -37,6 +39,6 @@ const styles = StyleSheet.create({
         right: 6
     },
     downArrow: {
-        right: 133
+        right: 133,
     },
 })

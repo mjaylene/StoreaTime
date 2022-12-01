@@ -64,7 +64,9 @@ export default function CreateNewCommunity1({ navigation }) {
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header} >
                 <Pressable onPress={() => navigation.goBack()}>
-                    <BackArrow style={styles.backArrow}></BackArrow>
+                    <View style={styles.backArrow}>
+                        <BackArrow></BackArrow>
+                    </View>
                 </Pressable>
                 <Text style={styles.headerText}>New Community</Text>
             </View>
@@ -113,11 +115,11 @@ const styles = StyleSheet.create({
         fontFamily: "JakartaSansBold",
         color: Themes.colors.white,
         fontSize: 17,
-        left: 91.45
+        left: 91.45,
     },
     backArrow: {
         marginLeft: 26.67,
-        //backgroundColor: 'cyan'
+        //backgroundColor: 'cyan',
     },
     uploadPhotoBox: {
         alignItems: 'center',

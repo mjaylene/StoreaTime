@@ -36,7 +36,7 @@ export default function TextScreen({ navigation, route }) {
                 <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
                     <View style={styles.header}>
 
-                        <Pressable onPress={() => navigation.navigate('RecordScreen')}>
+                        <Pressable onPress={() => navigation.navigate('RecordScreen', { paramDish: dishName })}>
                             <BackArrow style={styles.backButton}></BackArrow>
                         </Pressable>
                         <Text style={styles.screenTitle}>Record</Text>

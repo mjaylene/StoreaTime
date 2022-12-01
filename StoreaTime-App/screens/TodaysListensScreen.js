@@ -135,12 +135,13 @@ function TodaysListensScreenContent( { navigation }) {
                         keyExtractor={(item) => item.id}
                     />
                 </View>
-                <View style={styles.viewMoreBox}>
-                    <Pressable style={{alignItems: 'center'}} onPress={() => navigation.navigate("CommunityFinds")}>
-                        <Text style={styles.viewMore}>VIEW MORE</Text>
-                        <DownArrow style={{ opacity: 0.7, top: 108.33}}></DownArrow>
-                    </Pressable>
-                </View>
+                <Pressable style={{alignItems: 'center'}} onPress={() => navigation.navigate("CommunityFinds")}>
+                    <View style={styles.viewMoreBox}>
+                            <Text style={styles.viewMore}>VIEW MORE</Text>
+                            <DownArrow style={{ opacity: 0.7}}></DownArrow>
+                    
+                    </View>
+                </Pressable>
              </ImageBackground>
         </View>
     )
@@ -210,7 +211,7 @@ const styles = StyleSheet.create({
         color: Themes.colors.white,
         opacity: 0.7,
         fontSize: 11,
-        top: 94,
+        bottom: 12
     },
     listContainer: {
         flex: 1,
@@ -226,8 +227,8 @@ const styles = StyleSheet.create({
         //margin: 20,
     },
     viewMoreBox: {
-        top: 80,
-        flex: 0.5,
-        alignItems: 'center'
+        bottom: 27.67,
+        alignItems: 'center',
+       
     }
 })
