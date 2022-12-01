@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'cyan',
         //width: 100,
         //bottom: 683,
-        left: 90,
+        left: 105,
         alignItems: 'center',
     },
     topRow: {
