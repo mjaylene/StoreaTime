@@ -14,7 +14,7 @@ async function loadBackgroundImageAsync() {
   }
 
 export default function CommunitiesInfoModal() {
-    loadBackgroundImageAsync();
+    //loadBackgroundImageAsync();
     const [modalVisible, setModalVisible] = useState(false);
 
     const [loaded] = useFonts({

@@ -5,7 +5,7 @@ import { useFonts } from 'expo-font';
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 import Close from '../assets/icons/close.svg';
 import GoTo from '../assets/icons/goToCommunities.svg';
-
+import { CommonActions } from '@react-navigation/native';
 
 
 export default function ShareScreen2({ navigation }) {
@@ -34,20 +34,31 @@ export default function ShareScreen2({ navigation }) {
             tabBarStyle: undefined
         });
     }, [navigation]);
-    // 
+
+
 
     return (
         <ImageBackground source={require('../assets/community/sharedConfirmation.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-                <Pressable onPress={() => navigation.navigate('Community')}>
+                <Pressable onPress={() => navigation.dispatch(
+                    CommonActions.reset({
+                        index: 0,
+                        routes: [{ name: 'Community' }]
+                    })
+                )}>
                     <View style={styles.exit}>
                         <Close></Close>
                     </View>
                 </Pressable>
             </View>
-            <Pressable onPress={() => navigation.navigate('Community')}>
+            <Pressable onPress={() => navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{ name: 'Community' }]
+                })
+            )}>
                 <View style={styles.goToScreen}>
-                    <GoTo ></GoTo>
+                    <GoTo></GoTo>
                 </View>
             </Pressable>
         </ImageBackground>
