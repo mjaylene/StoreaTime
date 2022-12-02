@@ -13,35 +13,36 @@ import ExitButton from '../assets/icons/exitRecord.svg'
 
 let selectedPrompt = 0
 
-function Prompt({ text, edit }) {
+function Prompt({ text, edit, record }) {
     const promptArray = ['Tell us about your first memory of eating/making ' + text + '?', 'Who are you reminded of when making ' + text + '?',
         'If you could only eat one meal or food item for the rest of your life, what would you eat and why?',
         'What’s the first dish that you cooked on your own? How did it taste?',
     'What is the cultural significance of ' + text + '?']
 
     const [promptIndex, onChangeIndex] = React.useState(0);
-
+    //console.log('record', record)
     selectedPrompt = promptIndex
-
-
+    //console.log("PROMPT i", selectedPrompt)
+   // console.log("PROMPT itself", promptArray[selectedPrompt])
+   const arrLen = 4; 
     useEffect(() => {
         console.log('side effect function 3');
         console.log(promptIndex)
     }, [promptIndex]);
     return (
         <View style={styles.promptBox}>
-            {!edit ?             <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1) : onChangeIndex(promptIndex + 0)}>
+            {!edit && !record && promptIndex > 0?             <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1) : onChangeIndex(promptIndex + 0)}>
                 <LeftArrow style={styles.backArrow}></LeftArrow>
-            </Pressable> : <View></View>}
+            </Pressable> : <View style={styles.space}></View>}
 
             <View style={styles.promptContainer}>
                 <Text style={styles.prompt}>{promptArray[promptIndex]}</Text>
             </View>
-            {!edit ?             <Pressable onPress={() => promptIndex + 1 < promptArray.length ? onChangeIndex(promptIndex + 1) : onChangeIndex(promptIndex - 0)}>
+            {!edit && !record && promptIndex < arrLen ?             <Pressable onPress={() => promptIndex + 1 < promptArray.length ? onChangeIndex(promptIndex + 1) : onChangeIndex(promptIndex - 0)}>
                 <RightArrow style={styles.nextArrow}></RightArrow>
             </Pressable> 
             :
-            <View></View>}
+            <View style={styles.space}></View>}
 
         </View>
     );
@@ -50,8 +51,6 @@ function Prompt({ text, edit }) {
 // Credit for Stopclock Feature: https://www.waldo.com/blog/learn-react-native-timer
 export default function RecordScreen({ navigation, route }) {
     loadBackgroundImageAsync();
-
-
     //const dishName = route.params.paramDish;
     const [time, setTime] = useState(0);
     /* -1 => stopped, 0 => paused, 1 => playing */
@@ -114,6 +113,8 @@ export default function RecordScreen({ navigation, route }) {
         handlePause()
 
     }
+    let isRecord = false;
+
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
@@ -152,9 +153,12 @@ export default function RecordScreen({ navigation, route }) {
                 <TypeInstead style={styles.type}></TypeInstead>
             </Pressable> : <View style={styles.blankBox}></View>}
 
+            {count > 0 ? isRecord = true : isRecord = false}
+            
             <Prompt
                 text={dishName}
                 edit={false}
+                record={isRecord}
             />
 
         </ImageBackground>
@@ -288,4 +292,8 @@ const styles = StyleSheet.create({
         left: 10,
         //backgroundColor: 'blue'
     },
+    space: {
+        width: 32,
+        height: 32
+    }
 });
