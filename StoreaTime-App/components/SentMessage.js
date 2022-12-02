@@ -2,7 +2,7 @@ import { StyleSheet, View, Image, Text } from 'react-native';
 import { useFonts } from 'expo-font';
 import Themes from '../assets/Themes/themes';
 
-export default function Message({ name, text1, text2, pfp}) {
+export default function SentMessage({ name, text1, text2, pfp}) {
     const [loaded] = useFonts({
         JakartaSans: require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
         JakartaSansBold: require('../assets/fonts/PlusJakartaText-Bold.otf'),
@@ -16,11 +16,11 @@ export default function Message({ name, text1, text2, pfp}) {
         <View style={styles.container}>
             <Text style={styles.nameStyle}>{name}</Text>
             <View style={styles.body}>
-                <Image style={styles.image} source={pfp}></Image>
                 <View style={styles.messageBody}>
                     <Text style={styles.textStyle}>{text1}</Text>
-                    <Text style={styles.textStyle}>{text2}</Text>
+                    {/* <Text style={styles.textStyle}>{text2}</Text> */}
                 </View>
+                <Image style={styles.image} source={pfp}></Image>
             </View>
         </View>
     )
@@ -28,7 +28,7 @@ export default function Message({ name, text1, text2, pfp}) {
 
 const styles = StyleSheet.create({
     container: {
-        marginLeft: 20.68,
+        marginLeft: 170.38,
     },
     body: {
         flexDirection: 'row',
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     nameStyle: {
         fontFamily: "JakartaSans",
         color: 'rgba(255, 255, 255, 0.5)',
-        left: 26.54,
+        left: 7,
         marginBottom: 4
     },
     textStyle: {
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: 21.86,
-        height: 21.86
+        height: 21.86,
+        left: 4
     }
 })
