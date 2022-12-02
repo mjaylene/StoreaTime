@@ -14,8 +14,13 @@ import RiveraFamilyMessages from './message_screens/RiveraFamilyMessageScreen';
 import ChurroListenScreen from '../screens/listen_screens/ChurroListenScreen'
 import ElotesReadScreen from '../screens/ElotesReadScreen';
 import EnchiladasListenScreen from './EnchiladasListenScreen';
+import RamenListenScreen from '../screens/RamenListenScreen';
+import PadThaiListenScreen from './listen_screens/PadThaiListenScreen';
+import DimsumTextScreen from '../screens/DimsumTextScreen';
 import VerticalAnimation from '../components/animations/VerticalAnimation';
 import CommunitiesInfoModal from './CommunitiesInfo';
+import AsianFoodCollectiveScreen from './AsianFoodCollective';
+import AsianFoodCollectiveMessages from './message_screens/AsianFoodCollectiveMessageScreen';
 
 const Stack = createStackNavigator();
 
@@ -38,7 +43,9 @@ function CommunityScreen1Content({ navigation }) {
                 <CommunitiesInfoModal></CommunitiesInfoModal>
             </View>
             <Text style={styles.myCommunities}>My Communities</Text>
-            <CommunityBoxArrow name={"Asian Food Collective"} memberCount={"581"} privacy={"Public"} picture={require('../assets/community/community3.png')}></CommunityBoxArrow>
+            <Pressable onPress={() => navigation.navigate("AsianFoodCollectiveScreen")}>
+                <CommunityBoxArrow name={"Asian Food Collective"} memberCount={"581"} privacy={"Public"} picture={require('../assets/community/asian_food_collective_pfp.png')}></CommunityBoxArrow>
+            </Pressable>
             <Pressable onPress={() => navigation.navigate("RiveraFamilyScreen")}>
                 <CommunityBoxArrow name={"Rivera Family"} memberCount={"5"} privacy={"Public"} picture={require('../assets/community/community2.png')}></CommunityBoxArrow>
             </Pressable>
@@ -69,10 +76,15 @@ export default function CommunityScreen1({ navigation }) {
         <Stack.Screen name="AddMembersScreen" component={AddMembersScreen} options={{headerShown: false}} />
         <Stack.Screen name='CommunitySettingsScreen' component={CommunitySettingsScreen} options={{headerShown: false}} />
         <Stack.Screen name="RiveraFamilyScreen" component={RiveraFamilyScreen} options={{headerShown: false}} />
+        <Stack.Screen name="AsianFoodCollectiveScreen" component={AsianFoodCollectiveScreen} options={{headerShown: false}} />
         <Stack.Screen name="RiveraFamilyMessages" component={RiveraFamilyMessages} options={{headerShown: false}} />
+        <Stack.Screen name="AsianFoodCollectiveMessages" component={AsianFoodCollectiveMessages} options={{headerShown: false}} />
         <Stack.Screen name="ChurroListenScreen" component={ChurroListenScreen} options={VerticalAnimation} />
         <Stack.Screen name="ElotesReadScreen" component={ElotesReadScreen} options={VerticalAnimation} />
         <Stack.Screen name="EnchiladasListenScreen" component={EnchiladasListenScreen} options={VerticalAnimation} />
+        <Stack.Screen name="RamenListenScreen" component={RamenListenScreen} options={VerticalAnimation} />
+        <Stack.Screen name="PadThaiListenScreen" component={PadThaiListenScreen} options={VerticalAnimation} />
+        <Stack.Screen name="DimsumTextScreen" component={DimsumTextScreen} options={VerticalAnimation} />
     </Stack.Navigator>)
 }
 

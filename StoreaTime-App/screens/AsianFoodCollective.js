@@ -7,7 +7,7 @@ import RiveraFamilyMessages from './message_screens/RiveraFamilyMessageScreen';
 
 const STORIES = [
     {
-        id: "PadThai",
+        id: "Dimsum",
         card: require('../assets/explore_photocards/community_finds_card2.png'),
     },
     {
@@ -15,18 +15,18 @@ const STORIES = [
         card: require('../assets/explore_photocards/community_finds_card1.png'),
     },
     {
-        id: "Dimsum",
+        id: "PadThai",
         card: require('../assets/explore_photocards/community_finds_card3.png'),
     }
 ]
 
-export default function RiveraFamilyScreen({ navigation }) {
+export default function AsianFoodCollectiveScreen({ navigation }) {
     loadBackgroundImageAsync();
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
-            <AccessCommunityHeader image={require('../assets/community/rivera_family_pfp.png')} communityName={"Asian Food Collective"} navigation={navigation}></AccessCommunityHeader>
+            <AccessCommunityHeader image={require('../assets/community/asian_food_collective_header.png')} communityName={"Asian Food Collective"} navigation={navigation}></AccessCommunityHeader>
             <AccessRecentStories STORIES={STORIES} navigation={navigation}></AccessRecentStories>
-            <AccessCommunityButtons navigation={navigation} messageScreen={"RiveraFamilyMessages"}></AccessCommunityButtons>
+            <AccessCommunityButtons navigation={navigation} messageScreen={"AsianFoodCollectiveMessages"}></AccessCommunityButtons>
         </ImageBackground>
     )
 }
