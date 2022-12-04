@@ -35,8 +35,8 @@ const DimmedNext = () => {
 
 export default function CommunitySettingsScreen({ navigation, route }) {
     const [text, onChangeText] = useState("");
-    const [selected, settingSelected] = useState(false);
-    const [privateSelected, privateSelection] = useState(false);
+    const [selected, settingSelected] = useState(true);
+    const [privateSelected, privateSelection] = useState(true);
     const [publicSelected, publicSelection] = useState(false);
     const [tagCount, enterPressed] = useState(0);
 
@@ -131,7 +131,7 @@ export default function CommunitySettingsScreen({ navigation, route }) {
 
                 {!selected ?
                     <DimmedPublished style={styles.publishButton}></DimmedPublished> :
-                    <Pressable>
+                    <Pressable onPress={() => navigation.navigate('CommunityPublished')}> 
                         <LitPublished style={styles.publishButton}></LitPublished>
                     </Pressable>}
             </View>

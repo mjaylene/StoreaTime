@@ -21,6 +21,7 @@ import VerticalAnimation from '../components/animations/VerticalAnimation';
 import CommunitiesInfoModal from './CommunitiesInfo';
 import AsianFoodCollectiveScreen from './AsianFoodCollective';
 import AsianFoodCollectiveMessages from './message_screens/AsianFoodCollectiveMessageScreen';
+import CommunityPublished from './CommunityPublished'
 
 const Stack = createStackNavigator();
 
@@ -75,6 +76,7 @@ export default function CommunityScreen1({ navigation }) {
         <Stack.Screen name="CreateNewCommunity1" component={CreateNewCommunity1} options={{headerShown: false}}/>
         <Stack.Screen name="AddMembersScreen" component={AddMembersScreen} options={{headerShown: false}} />
         <Stack.Screen name='CommunitySettingsScreen' component={CommunitySettingsScreen} options={{headerShown: false}} />
+        <Stack.Screen name='CommunityPublished' component={CommunityPublished} options={{headerShown: false}} />
         <Stack.Screen name="RiveraFamilyScreen" component={RiveraFamilyScreen} options={{headerShown: false}} />
         <Stack.Screen name="AsianFoodCollectiveScreen" component={AsianFoodCollectiveScreen} options={{headerShown: false}} />
         <Stack.Screen name="RiveraFamilyMessages" component={RiveraFamilyMessages} options={{headerShown: false}} />
