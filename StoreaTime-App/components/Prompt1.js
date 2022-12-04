@@ -12,6 +12,7 @@ export default function prompt1({text}) {
     'What is the cultural significance of ' + text + '?']
    // console.log(promptArray)
     //var promptIndex = 0
+    let arrLen = 4;
     const [promptIndex, onChangeIndex] = React.useState(0);
 
     useEffect(() => {
@@ -20,15 +21,17 @@ export default function prompt1({text}) {
     }, [promptIndex]);
     return (
         <View style={styles.promptBox}>
-        <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1):  onChangeIndex(promptIndex + 0)}>
-            <LeftArrow style={styles.backArrow}></LeftArrow>
-        </Pressable>
+            {promptIndex > 0?             <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1) : onChangeIndex(promptIndex + 0)}>
+                <LeftArrow style={styles.backArrow}></LeftArrow>
+            </Pressable> : <View style={styles.space}></View>}
             <View style={styles.promptContainer}>
                 <Text style={styles.prompt}>{promptArray[promptIndex]}</Text>
             </View>
-            <Pressable onPress={() => promptIndex + 1 < promptArray.length ? onChangeIndex(promptIndex + 1) : onChangeIndex(promptIndex - 0)}>
-            <RightArrow style={styles.nextArrow}></RightArrow>
-            </Pressable>
+            {promptIndex < arrLen ?             <Pressable onPress={() => promptIndex + 1 < promptArray.length ? onChangeIndex(promptIndex + 1) : onChangeIndex(promptIndex - 0)}>
+                <RightArrow style={styles.nextArrow}></RightArrow>
+            </Pressable> 
+            :
+            <View style={styles.space}></View>}
         </View>
   );
 }
@@ -69,4 +72,8 @@ const styles = StyleSheet.create({
         left: 10,
         //backgroundColor: 'blue'
     },
+    space: {
+        width: 32,
+        height: 32
+    }
 });
