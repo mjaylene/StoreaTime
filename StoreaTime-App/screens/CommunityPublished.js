@@ -43,7 +43,7 @@ export default function CommunityPublished({ navigation }) {
                 <Pressable onPress={() => navigation.dispatch(
                     CommonActions.reset({
                         index: 0,
-                        routes: [{ name: 'Community' }]
+                        routes: [{ name: 'AddedCommunityScreen' }]
                     })
                 )}>
                     <View style={styles.exit}>
@@ -54,7 +54,7 @@ export default function CommunityPublished({ navigation }) {
             <Pressable onPress={() => navigation.dispatch(
                 CommonActions.reset({
                     index: 0,
-                    routes: [{ name: 'Community' }]
+                    routes: [{ name: 'AddedCommunityScreen' }]
                 })
             )}>
                 <View style={styles.goToScreen}>

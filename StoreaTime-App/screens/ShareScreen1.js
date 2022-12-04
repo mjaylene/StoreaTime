@@ -92,14 +92,6 @@ export default function RecordScreen({ navigation, route }) {
                     />
                     <CommunityBox
                         style={styles.box}
-                        name={'Yummy Deserts'}
-                        memberCount={'12'}
-                        privacy={'Private'}
-                        clicked={click2}
-                        picture={'3'}
-                    />
-                    <CommunityBox
-                        style={styles.box}
                         name={'Birthday Bashes'}
                         memberCount={'10'}
                         privacy={'Private'}

@@ -91,6 +91,13 @@ export default function AddMembersScreen({ navigation, route }) {
         memberCount5 > 0 || memberCount6 > 0 || memberCount7 > 0 || memberCount8 > 0) {
         allMemberCounts = true;
     }
+    let newCommunityName = route.params.commName;
+
+    console.log(newCommunityName)
+    let imageUri = route.params.imagePath;
+
+    console.log(imageUri)
+
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header} >
@@ -271,7 +278,7 @@ export default function AddMembersScreen({ navigation, route }) {
             </View>
             <View style={styles.footer}>
                 {(totalCount > 0) ?
-                    <Pressable onPress={() => navigation.navigate("CommunitySettingsScreen", { commName: text })}>
+                    <Pressable onPress={() => navigation.navigate("CommunitySettingsScreen", { commName: newCommunityName }, {imageUri: imageUri})}>
                         <NextArrow style={styles.nextButton}></NextArrow>
                     </Pressable> : <DimmedNext></DimmedNext>}
             </View>

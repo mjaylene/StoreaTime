@@ -92,6 +92,8 @@ export default function CommunitySettingsScreen({ navigation, route }) {
             </View>
     }
 
+    let newCommunityName = route.params.commName;
+    let imageUri = route.params.imageUri;
 
 
     return (
