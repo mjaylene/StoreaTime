@@ -97,9 +97,9 @@ class AudioTrimmer extends Component {
                         scrubberColor="white"
                         scrubberPosition={scrubberPosition}
                         onScrubbingComplete={this.onScrubbingComplete}
-                        onLeftHandlePressIn={() => console.log('onLeftHandlePressIn')}
-                        onRightHandlePressIn={() => console.log('onRightHandlePressIn')}
-                        onScrubberPressIn={() => console.log('onScrubberPressIn')}
+                        //onLeftHandlePressIn={() => console.log('onLeftHandlePressIn')}
+                        //onRightHandlePressIn={() => console.log('onRightHandlePressIn')}
+                        //onScrubberPressIn={() => console.log('onScrubberPressIn')}
                     />
                 </View>
                 {
@@ -120,7 +120,7 @@ class AudioTrimmer extends Component {
 export default function EditScreen1({ navigation, route }) {
     loadBackgroundImageAsync();
     const recordTime = route.params.recordTime; //millisToMinutesAndSeconds(route.params.recordTime);
-    console.log('time', recordTime)
+    //console.log('time', recordTime)
     const [time, setTime] = useState(0);
     /* -1 => stopped, 0 => paused, 1 => playing */
     const [status, setStatus] = useState(-1)

@@ -87,7 +87,7 @@ export default function RecordScreen({ navigation, route }) {
                         name={'Rivera Family'}
                         memberCount={'5'}
                         privacy={'Private'}
-                        clicked={click1}
+                        clicked={click2}
                         picture={'2'}
                     />
                     <CommunityBox
@@ -110,10 +110,6 @@ export default function RecordScreen({ navigation, route }) {
                 </View>
                 <Pressable onPress={() => checkCircle(!click)}>
                     <View style={styles.commOne}></View>
-                </Pressable>
-
-                <Pressable onPress={() => checkCircle1(!click1)}>
-                    <View style={styles.commTwo}></View>
                 </Pressable>
 
                 <Pressable onPress={() => checkCircle2(!click2)}>
@@ -196,15 +192,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'green',
         width: 355,
         height: 84,
-        bottom: 290,
-        borderRadius: 12,
-        right: 0
-    },
-    commTwo: {
-        //backgroundColor: 'red',
-        width: 355,
-        height: 84,
-        bottom: 230,
+        bottom: 195,
         borderRadius: 12,
         right: 0
     },
@@ -212,7 +200,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'yellow',
         width: 355,
         height: 84,
-        bottom: 220,
+        bottom: 138,
         borderRadius: 12,
         right: 0
     },
@@ -220,7 +208,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'blue',
         width: 355,
         height: 84,
-        bottom: 210,
+        bottom: 128,
         borderRadius: 12,
         right: 0
     },

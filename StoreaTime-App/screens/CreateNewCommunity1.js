@@ -38,8 +38,8 @@ export default function CreateNewCommunity1({ navigation }) {
         });
 
 
-        console.log(result);
-        console.log('------------------------------------------------')
+        //console.log(result);
+        //console.log('------------------------------------------------')
         //console.log('URI', result.assets[0].uri)
 
         if (result) {
@@ -60,7 +60,7 @@ export default function CreateNewCommunity1({ navigation }) {
         return null;
     }
     let commImageUri = image;
-    console.log('image', commImageUri)
+    //console.log('image', commImageUri)
 
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>

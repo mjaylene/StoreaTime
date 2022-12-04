@@ -79,8 +79,8 @@ export default function RecordScreen({ navigation, route }) {
     }
 
     const handleClick = () => {
-        console.log('record clicked')
-        console.log(count)
+        //console.log('record clicked')
+        //console.log(count)
         isClicked(count + 1)
         setIsActive(current => !current);
         if (count % 2 == 0) {
