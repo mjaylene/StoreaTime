@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontSize: 13.27,
-        marginLeft: 11.71
+        marginLeft: 11.71,
     },
     image: {
         width: 21.86,

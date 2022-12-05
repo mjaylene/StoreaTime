@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     messageBody: {
         width: 171.77,
         height: 43.73,
-        backgroundColor: Themes.colors.white,
+        backgroundColor: Themes.colors.purple,
         borderRadius: 14.05,
         justifyContent: 'center',
         marginLeft: 4.68,
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontSize: 13.27,
-        marginLeft: 11.71
+        marginLeft: 11.71,
+        color: Themes.colors.white
     },
     image: {
         width: 21.86,
