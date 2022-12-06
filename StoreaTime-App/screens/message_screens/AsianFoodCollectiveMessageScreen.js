@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, ImageBackground, Pressable, Image } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, Pressable, Image, KeyboardAvoidingView } from 'react-native';
 import { useEffect, useState } from 'react';
 import AccessCommunityHeader from '../../components/AccessCommunityHeader';
 import loadBackgroundImageAsync from '../../components/LoadBackgroundImageAsync';
@@ -32,16 +32,18 @@ export default function AsianFoodCollectiveMessages({ navigation }) {
 
     return (
         <ImageBackground source={require('../../assets/background.png')} resizeMode="cover" style={styles.image}>
-            <AccessCommunityHeader image={require('../../assets/community/asian_food_collective_header.png')} communityName={"Asian Food Collective"} navigation={navigation}></AccessCommunityHeader>
-            <View style={styles.sentMessagesBox}>
-                <Message name={"Melissa L"} text1={"Anyone else fail at"} text2={"making ramen before? :("} pfp={require('../../assets/profile/MelissaRivera.png')}></Message>
-                {/* <Message name={"Jianna"} text1={"You should ask dad he"} text2={"knows"} pfp={require('../../assets/profile/AlvaroRiveraReal.png')}></Message> */}
-                <Message name={"James Landay"} text1={"Never in my life hahaha"} text2={"sorry Melissa"} pfp={require('../../assets/profile/DadRivera.png')}></Message>
-                {hasSent1 ? <SentMessage name={"Jordan Nakamura"} text1={message1} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
-                {hasSent2 ? <SentMessage name={"Jordan Nakamura"} text1={message2} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
-                {hasSent3 ? <SentMessage name={"Jordan Nakamura"} text1={message3} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
-            </View>
-            <MessageInput setHasSent1={setHasSent1} setHasSent2={setHasSent2} setHasSent3={setHasSent3} setMessage1={setMessage1} setMessage2={setMessage2} setMessage3={setMessage3}></MessageInput>
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior="position" enabled>
+                <AccessCommunityHeader image={require('../../assets/community/asian_food_collective_header.png')} communityName={"Asian Food Collective"} navigation={navigation}></AccessCommunityHeader>
+                <View style={styles.sentMessagesBox}>
+                    <Message name={"Melissa L"} text1={"Anyone else fail at"} text2={"making ramen before? :("} pfp={require('../../assets/profile/MelissaRivera.png')}></Message>
+                    {/* <Message name={"Jianna"} text1={"You should ask dad he"} text2={"knows"} pfp={require('../../assets/profile/AlvaroRiveraReal.png')}></Message> */}
+                    <Message name={"James Landay"} text1={"Never in my life hahaha"} text2={"sorry Melissa"} pfp={require('../../assets/profile/DadRivera.png')}></Message>
+                    {hasSent1 ? <SentMessage name={"Jordan Nakamura"} text1={message1} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
+                    {hasSent2 ? <SentMessage name={"Jordan Nakamura"} text1={message2} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
+                    {hasSent3 ? <SentMessage name={"Jordan Nakamura"} text1={message3} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
+                </View>
+                <MessageInput setHasSent1={setHasSent1} setHasSent2={setHasSent2} setHasSent3={setHasSent3} setMessage1={setMessage1} setMessage2={setMessage2} setMessage3={setMessage3}></MessageInput>
+            </KeyboardAvoidingView>
         </ImageBackground>
     )
 }

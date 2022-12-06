@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 import Themes from '../assets/Themes/themes';
 import Comment from './Comment';
 import SendUnfilled from '../assets/icons/send_unfilled.svg'
-import SendFilled from '../assets/icons/send_filled.svg'
+import SendFilled from '../assets/icons/send_filled_purple.svg'
 
 export default function CommentSection() {
     const [text, onChangeText] = useState("");

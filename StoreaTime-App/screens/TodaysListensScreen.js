@@ -23,6 +23,7 @@ import PadThaiListenScreen from './listen_screens/PadThaiListenScreen';
 import ElotesReadScreen from './ElotesReadScreen';
 import EnchiladasListenScreen from './EnchiladasListenScreen';
 import RiveraFamilyScreen from './RiveraFamilyScreen';
+import AsianFoodCollectiveScreen from './AsianFoodCollective';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -107,6 +108,7 @@ function ListenStack({ navigation }) {
             <Stack.Screen name="ElotesReadScreen" component={ElotesReadScreen} options={VerticalAnimation} />
             <Stack.Screen name="EnchiladasListenScreen" component={EnchiladasListenScreen} options={VerticalAnimation}/>
             <Stack.Screen name="RiveraFamilyScreen" component={RiveraFamilyScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="AsianFoodCollectiveScreen" component={AsianFoodCollectiveScreen} options={{ headerShown: false }} />
             {/* ADD THE REST OF THE LISTEN SCREENS */}
         </Stack.Navigator>
     )
