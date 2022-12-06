@@ -62,8 +62,8 @@ export default function PhotoScreen1({ navigation, route }) {
         });
 
 
-        console.log(result);
-        console.log('------------------------------------------------')
+        //console.log(result);
+        //console.log('------------------------------------------------')
         //console.log('URI', result.assets[0].uri)
 
         if (result) {
@@ -79,8 +79,8 @@ export default function PhotoScreen1({ navigation, route }) {
         });
 
 
-        console.log(result);
-        console.log('------------------------------------------------')
+        ///console.log(result);
+        //console.log('------------------------------------------------')
         //console.log('URI', result.assets[0].uri)
 
         if (result) {
@@ -96,11 +96,6 @@ export default function PhotoScreen1({ navigation, route }) {
             quality: 1,
         });
 
-
-        console.log(result);
-        console.log('------------------------------------------------')
-        //console.log('URI', result.assets[0].uri)
-
         if (result) {
             setImage3(result.assets[0].uri);
         }
@@ -113,10 +108,6 @@ export default function PhotoScreen1({ navigation, route }) {
             quality: 1,
         });
 
-
-        console.log(result);
-        console.log('------------------------------------------------')
-        //console.log('URI', result.assets[0].uri)
 
         if (result) {
             setImage4(result.assets[0].uri);
@@ -131,11 +122,6 @@ export default function PhotoScreen1({ navigation, route }) {
             quality: 1,
         });
 
-
-        //console.log(result);
-        //console.log('------------------------------------------------')
-        //console.log('URI', result.assets[0].uri)
-
         if (result) {
             setImage5(result.assets[0].uri);
         }
@@ -148,11 +134,6 @@ export default function PhotoScreen1({ navigation, route }) {
             aspect: [4, 3],
             quality: 1,
         });
-
-
-        console.log(result);
-        console.log('------------------------------------------------')
-        //console.log('URI', result.assets[0].uri)
 
         if (result) {
             setImage6(result.assets[0].uri);

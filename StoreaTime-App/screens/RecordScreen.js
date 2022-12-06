@@ -10,6 +10,11 @@ import Time from '../components/Time';
 import RightArrow from '../assets/icons/keyboard_arrow_right.svg'
 import LeftArrow from '../assets/icons/keyboard_arrow_left.svg'
 import ExitButton from '../assets/icons/exitRecord.svg'
+import RestartButton from '../assets/icons/restart'
+import Carousel from 'react-native-reanimated-carousel';
+
+
+
 
 let selectedPrompt = 0
 
@@ -23,29 +28,33 @@ function Prompt({ text, edit, record }) {
     //console.log('record', record)
     selectedPrompt = promptIndex
     //console.log("PROMPT i", selectedPrompt)
-   // console.log("PROMPT itself", promptArray[selectedPrompt])
-   const arrLen = 4; 
+    // console.log("PROMPT itself", promptArray[selectedPrompt])
+    const arrLen = 4;
     useEffect(() => {
         console.log('side effect function 3');
         console.log(promptIndex)
     }, [promptIndex]);
     return (
         <View style={styles.promptBox}>
-            {!edit && !record && promptIndex > 0?             <Pressable onPress={() => promptIndex - 1 >= 0 ? onChangeIndex(promptIndex - 1) : onChangeIndex(promptIndex + 0)}>
-                <LeftArrow style={styles.backArrow}></LeftArrow>
-            </Pressable> : <View style={styles.space}></View>}
-
-            <View style={styles.promptContainer}>
-                <Text style={styles.prompt}>{promptArray[promptIndex]}</Text>
-            </View>
-            {!edit && !record && promptIndex < arrLen ?             <Pressable onPress={() => promptIndex + 1 < promptArray.length ? onChangeIndex(promptIndex + 1) : onChangeIndex(promptIndex - 0)}>
-                <RightArrow style={styles.nextArrow}></RightArrow>
-            </Pressable> 
-            :
-            <View style={styles.space}></View>}
-
+        <LeftArrow style={styles.backArrow}></LeftArrow>
+            <Carousel
+                width={304}
+                height={120}
+                data={promptArray}
+                onSnapToItem={(index) => console.log('current index:', index)}
+                renderItem={({ index }) => (
+                    <View style={styles.innerPromptBox}>
+                        <View style={styles.promptContainer}>
+                            <Text style={styles.prompt}>{promptArray[index]}</Text>
+                        </View>
+                    </View>
+                )}
+            />
+            <RightArrow style={styles.nextArrow}></RightArrow>
         </View>
+
     );
+
 }
 
 // Credit for Stopclock Feature: https://www.waldo.com/blog/learn-react-native-timer
@@ -118,18 +127,13 @@ export default function RecordScreen({ navigation, route }) {
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
             <View style={styles.header}>
-                {count === 0 ?                 
                 <Pressable onPress={() => navigation.goBack()}>
                     <BackArrow style={styles.backButton}></BackArrow>
                 </Pressable>
-                :
-                <Pressable onPress={() => resetEverything()}>
-                    <ExitButton style={styles.exitButton}></ExitButton>
-                </Pressable> }
 
                 <Text style={styles.screenTitle}>Record</Text>
                 {count % 2 !== 1 && count !== 0 ?
-                    <Pressable onPress={() => navigation.navigate("EditScreen1", { paramDish: dishName, promptNum: selectedPrompt, recordTime: time})}>
+                    <Pressable onPress={() => navigation.navigate("EditScreen1", { paramDish: dishName, promptNum: selectedPrompt, recordTime: time })}>
                         <View style={styles.reviewFilledButton}>
                             <Text style={styles.reviewFilledText}>Review</Text></View>
                     </Pressable>
@@ -139,7 +143,7 @@ export default function RecordScreen({ navigation, route }) {
             </View>
             <Pressable onPress={handleClick}>
                 {!isActive ? <MicCircle style={styles.micIcon}></MicCircle> :
-                    <View>
+                    <View style={styles.inProgress}>
                         <View style={styles.pulse}>
                             <Pulse color='white' numPulses={3} diameter={400} speed={10} duration={1000} initialDiameter={200} />
                         </View>
@@ -151,15 +155,20 @@ export default function RecordScreen({ navigation, route }) {
                 <Time style={styles.timer} time={time} status={1} />}
             {count === 0 ? <Pressable onPress={() => navigation.navigate('TextScreen1', { paramDish: dishName })}>
                 <TypeInstead style={styles.type}></TypeInstead>
-            </Pressable> : <View style={styles.blankBox}></View>}
+            </Pressable> :
+                <Pressable onPress={() => resetEverything()}>
+                    <RestartButton style={styles.type}></RestartButton>
+                </Pressable>
+            }
 
             {count > 0 ? isRecord = true : isRecord = false}
-            
-            <Prompt
-                text={dishName}
-                edit={false}
-                record={isRecord}
-            />
+            <View style={styles.outerPromptBox}>
+                <Prompt
+                    text={dishName}
+                    edit={false}
+                    record={isRecord}
+                />
+            </View>
 
         </ImageBackground>
     );
@@ -273,8 +282,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        top: 100
         //left: 190
+    },
+    innerPromptBox: {
+        width: 304,
+        height: 120,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    outerPromptBox: {
+        alignItems: 'center',
+        top: 100
+
     },
     promptContainer: {
         //backgroundColor: 'blue',
@@ -283,17 +303,25 @@ const styles = StyleSheet.create({
     backArrow: {
         width: 9.88,
         height: 16,
-        right: 10,
+        left: 45,
         //backgroundColor: 'blue'
     },
     nextArrow: {
         width: 9.88,
         height: 16,
-        left: 10,
+        right: 45,
         //backgroundColor: 'blue'
     },
     space: {
         width: 32,
         height: 32
+    },
+    restart: {
+        //width: 220,
+        //height: 76,
+        top: 40,
+    },
+    inProgress: {
+        alignItems: 'center'
     }
 });
