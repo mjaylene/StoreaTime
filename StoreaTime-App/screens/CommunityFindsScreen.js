@@ -8,7 +8,6 @@ import RightArrow from '../assets/icons/right_arrow_community_finds.svg'
 import loadBackgroundImageAsync from '../components/LoadBackgroundImageAsync';
 import Filter from '../assets/icons/filter.svg'
 import FilterModal from '../components/FilterModal';
-import { set } from 'lodash';
 
 const TEXT_STORIES1 = [
     {
@@ -190,8 +189,10 @@ export default function CommunityFinds({ navigation }) {
                     <FilterModal handleAll={handleAll} handleAudio={handleAudio} handleText={handleText} cardsToDisplay={cardsToDisplay}></FilterModal>
                 </View>
                 <View style={styles.communitySectionBox}>
-                    <Text style={styles.communityName1}>Asian Food Collective</Text>
-                    <RightArrow style={{ left: 24, bottom: 372 }}></RightArrow>
+                    <Pressable style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.navigate("AsianFoodCollectiveScreen")}>
+                        <Text style={styles.communityName1}>Asian Food Collective</Text>
+                        <RightArrow style={{ left: 24, bottom: 372 }}></RightArrow>
+                    </Pressable>
                 </View>
                 <View style={styles.listContainer1}>
                     <FlatList
@@ -203,8 +204,8 @@ export default function CommunityFinds({ navigation }) {
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', top: 300 }}>
                     <Pressable style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.navigate("RiveraFamilyScreen")}>
-                    <Text style={styles.communityName2}>Rivera Family</Text>
-                    <RightArrow style={{ left: 24, bottom: 328 }}></RightArrow>
+                        <Text style={styles.communityName2}>Rivera Family</Text>
+                        <RightArrow style={{ left: 24, bottom: 328 }}></RightArrow>
                     </Pressable>
                 </View>
                 <View style={styles.listContainer2}>
