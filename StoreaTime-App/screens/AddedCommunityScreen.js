@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         backgroundColor: Themes.colors.white,
         justifyContent: 'space-between',
         alignItems: 'center',
-        top: 113,
+        top: 22,
         marginLeft: 16,
         // How to add shadow???
     },
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         backgroundColor: Themes.colors.white,
         justifyContent: 'center',
         alignItems: 'center',
-        top: 113,
+        top: 22,
         marginRight: 16
     }
 })
