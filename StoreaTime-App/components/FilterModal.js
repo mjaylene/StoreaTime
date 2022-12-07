@@ -83,6 +83,9 @@ export default function FilterModal( {handleAll, handleAudio, handleText, cardsT
                 }}
               >
                 <View style={styles.centeredView}>
+                    <View style={styles.topView}>
+
+                    
                     <View style={styles.modalView}>
                         <View style={styles.modalHeader}>
                             <Pressable onPress={ClearSelection}>
@@ -117,6 +120,7 @@ export default function FilterModal( {handleAll, handleAudio, handleText, cardsT
                             </View>
                             </Pressable> 
                     </View>
+                    </View>
                 </View>
             </Modal>
             
@@ -134,6 +138,12 @@ const styles = StyleSheet.create({
         //flex: 1,
         right: 28,
         //backgroundColor: 'black'
+    },
+    topView: {
+        backgroundColor: 'rgba(0, 0, 0, 0.58)',
+        width: 391,
+        height: 845,
+        justifyContent: "flex-end",
     },
     centeredView: {
         flex: 1,
