@@ -191,7 +191,7 @@ export default function CommunityFinds({ navigation }) {
                 <View style={styles.communitySectionBox}>
                     <Pressable style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.navigate("AsianFoodCollectiveScreen")}>
                         <Text style={styles.communityName1}>Asian Food Collective</Text>
-                        <RightArrow style={{ left: 24, bottom: 372 }}></RightArrow>
+                        <RightArrow style={{ left: 24, bottom: 364 }}></RightArrow>
                     </Pressable>
                 </View>
                 <View style={styles.listContainer1}>
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: Themes.colors.white,
         left: 16,
-        bottom: 374,
+        bottom: 366,
 
     },
     communityName2: {
