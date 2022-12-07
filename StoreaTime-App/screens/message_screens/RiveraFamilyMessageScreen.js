@@ -40,6 +40,8 @@ export default function RiveraFamilyMessages({ navigation }) {
                     <Message name={"Melissa Rivera"} text1={"Was thinking of making"} text2={"Guac tonight but idk how"} pfp={require('../../assets/profile/MelissaRivera.png')}></Message>
                     <Message name={"Alvaro Rivera"} text1={"You should ask dad he"} text2={"knows"} pfp={require('../../assets/profile/AlvaroRiveraReal.png')}></Message>
                     <Message name={"Dad Rivera"} text1={"I can record and share"} text2={"in a few min"} pfp={require('../../assets/profile/DadRivera.png')}></Message>
+                    <Message name={"Melissa Rivera"} text1={"Ahhh thank you Dad "} text2={"you're the best!"} pfp={require('../../assets/profile/MelissaRivera.png')}></Message>
+                    <Message name={"Alvaro Rivera"} text1={"I'm gonna be the first"} text2={"like and comment :P"} pfp={require('../../assets/profile/AlvaroRivera.png')}></Message>
                     {hasSent1 ? <SentMessage name={"Jordan Nakamura"} text1={message1} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
                     {hasSent2 ? <SentMessage name={"Jordan Nakamura"} text1={message2} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
                     {hasSent3 ? <SentMessage name={"Jordan Nakamura"} text1={message3} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}

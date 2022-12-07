@@ -28,7 +28,7 @@ export default function Message({ name, text1, text2, pfp}) {
 
 const styles = StyleSheet.create({
     container: {
-        marginLeft: 20.68,
+        marginLeft: 17.14,
     },
     body: {
         flexDirection: 'row',

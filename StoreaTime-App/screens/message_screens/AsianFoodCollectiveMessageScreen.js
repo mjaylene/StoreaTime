@@ -35,9 +35,11 @@ export default function AsianFoodCollectiveMessages({ navigation }) {
             <KeyboardAvoidingView style={{ flex: 1 }} behavior="position" enabled>
                 <AccessCommunityHeader image={require('../../assets/community/asian_food_collective_header.png')} communityName={"Asian Food Collective"} navigation={navigation}></AccessCommunityHeader>
                 <View style={styles.sentMessagesBox}>
-                    <Message name={"Melissa L"} text1={"Anyone else fail at"} text2={"making ramen before? :("} pfp={require('../../assets/profile/MelissaRivera.png')}></Message>
-                    {/* <Message name={"Jianna"} text1={"You should ask dad he"} text2={"knows"} pfp={require('../../assets/profile/AlvaroRiveraReal.png')}></Message> */}
-                    <Message name={"James Landay"} text1={"Never in my life hahaha"} text2={"sorry Melissa"} pfp={require('../../assets/profile/DadRivera.png')}></Message>
+                    <Message name={"Melissa L"} text1={"Anyone want to have"} text2={"a story off on Sunday?"} pfp={require('../../assets/profile/MelissaRivera.png')}></Message>
+                    <Message name={"James Landay"} text1={"Oooooooooo you're on  "} text2={"Melissa!"} pfp={require('../../assets/profile/DadRivera.png')}></Message>
+                    <Message name={"Ric"} text1={"Down! Y'all are not ready"} text2={"for what I'm making"} pfp={require('../../assets/profile/AlvaroRiveraReal.png')}></Message>
+                    <Message name={"Melissa L"} text1={":OO can we have"} text2={"a hint on what it is Ric?"} pfp={require('../../assets/profile/MelissaRivera.png')}></Message>
+                    <Message name={"Ric"} text1={"Let's just say that it's"} text2={"veryyyy delicious"} pfp={require('../../assets/profile/AlvaroRiveraReal.png')}></Message>
                     {hasSent1 ? <SentMessage name={"Jordan Nakamura"} text1={message1} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
                     {hasSent2 ? <SentMessage name={"Jordan Nakamura"} text1={message2} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
                     {hasSent3 ? <SentMessage name={"Jordan Nakamura"} text1={message3} text2={""} pfp={require('../../assets/profile/AlvaroRivera.png')}></SentMessage> : console.log("nothing")}
