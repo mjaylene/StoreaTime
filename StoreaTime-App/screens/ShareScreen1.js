@@ -93,7 +93,7 @@ export default function RecordScreen({ navigation, route }) {
                     <CommunityBox
                         style={styles.box}
                         name={'Birthday Bashes'}
-                        memberCount={'8'}
+                        memberCount={'3'}
                         privacy={'Private'}
                         clicked={click3}
                         picture={'4'}

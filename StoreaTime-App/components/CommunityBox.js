@@ -25,7 +25,7 @@ export default function CommunityBox2({name, memberCount, privacy, clicked, pict
     }
     return (
         <View style={styles.communityContainer}>
-            {picture === '1' ? <Image style={styles.profile} source={require('../assets/community/community1.png')} resizeMode="contain"></Image> 
+            {picture === '1' ? <Image style={styles.profile} source={require('../assets/community/asian_food_collective_pfp.png')} resizeMode="contain"></Image> 
             : picture === '2' ? <Image style={styles.profile} source={require('../assets/community/community2.png')} resizeMode="contain"></Image> 
             : picture === '3' ? <Image style={styles.profile} source={require('../assets/community/community3.png')} resizeMode="contain"></Image> 
             : <Image style={styles.profile} source={require('../assets/community/community4.png')} resizeMode="contain"></Image>}

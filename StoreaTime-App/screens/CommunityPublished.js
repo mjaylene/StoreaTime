@@ -8,7 +8,7 @@ import GoTo from '../assets/icons/goToCommunities.svg';
 import { CommonActions } from '@react-navigation/native';
 
 
-export default function CommunityPublished({ navigation }) {
+export default function CommunityPublished({ navigation, route }) {
     loadBackgroundImageAsync();
     const Pulse = require('react-native-pulse').default;
 
@@ -35,7 +35,11 @@ export default function CommunityPublished({ navigation }) {
         });
     }, [navigation]);
 
-
+    console.log(route)
+    let newCommunityName = route.params.commName;
+    const count = route.params.count;
+    const privacy = route.params.privacy;
+    const imageUri = route.params.imageUri;
 
     return (
         <ImageBackground source={require('../assets/community/publishedCommunities.png')} resizeMode="cover" style={styles.image}>
@@ -43,7 +47,8 @@ export default function CommunityPublished({ navigation }) {
                 <Pressable onPress={() => navigation.dispatch(
                     CommonActions.reset({
                         index: 0,
-                        routes: [{ name: 'AddedCommunityScreen' }]
+                        routes: [{ name: 'AddedCommunityScreen',
+                                   params: { commName: newCommunityName, count: count, privacy: privacy, imageUri: imageUri }, }]
                     })
                 )}>
                     <View style={styles.exit}>
@@ -54,7 +59,8 @@ export default function CommunityPublished({ navigation }) {
             <Pressable onPress={() => navigation.dispatch(
                 CommonActions.reset({
                     index: 0,
-                    routes: [{ name: 'AddedCommunityScreen' }]
+                    routes: [{ name: 'AddedCommunityScreen',
+                               params: { commName: newCommunityName, count: count, privacy: privacy, imageUri: imageUri } }]
                 })
             )}>
                 <View style={styles.goToScreen}>

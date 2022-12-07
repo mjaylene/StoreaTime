@@ -60,7 +60,7 @@ export default function CreateNewCommunity1({ navigation }) {
         return null;
     }
     let commImageUri = image;
-    //console.log('image', commImageUri)
+    console.log(commImageUri)
 
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
@@ -93,7 +93,7 @@ export default function CreateNewCommunity1({ navigation }) {
                         placeholderTextColor={'#CCCCCC'}
                     />
                     {(text != "") ?
-                        <Pressable onPress={() => navigation.navigate("AddMembersScreen", {commName: text}, {imagePath: commImageUri})}>
+                        <Pressable onPress={() => navigation.navigate("AddMembersScreen", {commName: text, imagePath: commImageUri})}>
                             <NextArrow style={styles.nextButton}></NextArrow>
                         </Pressable> : <DimmedNext></DimmedNext>}
                 </View>

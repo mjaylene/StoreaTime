@@ -92,9 +92,8 @@ export default function AddMembersScreen({ navigation, route }) {
         allMemberCounts = true;
     }
     let newCommunityName = route.params.commName;
-
-    console.log(newCommunityName)
-    let imageUri = route.params.imagePath;
+    const count = totalCount;
+    const imageUri = route.params.imagePath;
 
     console.log(imageUri)
 
@@ -278,7 +277,7 @@ export default function AddMembersScreen({ navigation, route }) {
             </View>
             <View style={styles.footer}>
                 {(totalCount > 0) ?
-                    <Pressable onPress={() => navigation.navigate("CommunitySettingsScreen", { commName: newCommunityName }, {imageUri: imageUri})}>
+                    <Pressable onPress={() => navigation.navigate("CommunitySettingsScreen", { commName: newCommunityName, count: count, imageUri: imageUri})}>
                         <NextArrow style={styles.nextButton}></NextArrow>
                     </Pressable> : <DimmedNext></DimmedNext>}
             </View>

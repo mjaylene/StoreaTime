@@ -39,17 +39,20 @@ export default function CommunitySettingsScreen({ navigation, route }) {
     const [privateSelected, privateSelection] = useState(true);
     const [publicSelected, publicSelection] = useState(false);
     const [tagCount, enterPressed] = useState(0);
+    const [privacy, setPrivacy] = useState("Private")
 
     const handlePrivate = () => {
         settingSelected(true);
         privateSelection(true);
         publicSelection(false);
+        setPrivacy("Private")
     }
 
     const handlePublic = () => {
         settingSelected(true);
         privateSelection(false);
         publicSelection(true);
+        setPrivacy("Public")
     }
 
     loadBackgroundImageAsync();
@@ -93,6 +96,7 @@ export default function CommunitySettingsScreen({ navigation, route }) {
     }
 
     let newCommunityName = route.params.commName;
+    const count = route.params.count
     let imageUri = route.params.imageUri;
 
 
@@ -133,7 +137,7 @@ export default function CommunitySettingsScreen({ navigation, route }) {
 
                 {!selected ?
                     <DimmedPublished style={styles.publishButton}></DimmedPublished> :
-                    <Pressable onPress={() => navigation.navigate('CommunityPublished')}> 
+                    <Pressable onPress={() => navigation.navigate('CommunityPublished', { commName: newCommunityName, count: count, privacy: privacy, imageUri: imageUri })}> 
                         <LitPublished style={styles.publishButton}></LitPublished>
                     </Pressable>}
             </View>

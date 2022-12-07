@@ -25,7 +25,7 @@ import CommunityPublished from './CommunityPublished'
 import CommunityBox from '../components/CommunityBox.js';
 
 
-export default function AddedCommunityScreen({ navigation }) {
+export default function AddedCommunityScreen({ navigation, route }) {
     const [loaded] = useFonts({
         Romana: require('../assets/fonts/RomanaRoman-Normal.otf'),
         'Romana-Bold': require('../assets/fonts/RomanaRoman-Bold.otf'),
@@ -36,6 +36,12 @@ export default function AddedCommunityScreen({ navigation }) {
     if (!loaded) {
         return null;
     }
+
+    console.log(route)
+    
+    const newCommunityName = route.params.commName;
+    const count = route.params.count;
+    const privacy = route.params.privacy;
 
     return (
         <ImageBackground source={require('../assets/background.png')} resizeMode="cover" style={styles.image}>
@@ -50,7 +56,7 @@ export default function AddedCommunityScreen({ navigation }) {
             <Pressable onPress={() => navigation.navigate("RiveraFamilyScreen")}>
                 <CommunityBoxArrow name={"Rivera Family"} memberCount={"5"} privacy={"Private"} picture={require('../assets/community/community2.png')}></CommunityBoxArrow>
             </Pressable>
-            <CommunityBoxArrow name={'Birthday Bashes'} memberCount={"8"} privacy={"Private"} picture={require('../assets/community/community4.png')}></CommunityBoxArrow>
+            <CommunityBoxArrow name={newCommunityName} memberCount={count} privacy={privacy} picture={require('../assets/community/community4.png')}></CommunityBoxArrow>
             <Text style={styles.suggested}>Suggested</Text>
             <CommunityBoxArrow name={"Los Tacos Taqueria"} memberCount={"834"} privacy={"Public"} picture={require('../assets/community/tacos_community.png')}></CommunityBoxArrow>
             <CommunityBoxArrow name={"La Casa Italiana"} memberCount={"582"} privacy={"Public"} picture={require('../assets/community/italiana_community.png')}></CommunityBoxArrow>

@@ -84,42 +84,40 @@ export default function FilterModal( {handleAll, handleAudio, handleText, cardsT
               >
                 <View style={styles.centeredView}>
                     <View style={styles.topView}>
-
-                    
-                    <View style={styles.modalView}>
-                        <View style={styles.modalHeader}>
-                            <Pressable onPress={ClearSelection}>
-                                <FilterX style={{marginLeft: 19.67}}></FilterX>
-                            </Pressable>
-                            <Text style={styles.filterTitle}>Filter</Text>
+                        <View style={styles.modalView}>
+                            <View style={styles.modalHeader}>
+                                <Pressable onPress={ClearSelection}>
+                                    <FilterX style={{marginLeft: 19.67}}></FilterX>
+                                </Pressable>
+                                <Text style={styles.filterTitle}>Filter</Text>
+                            </View>
+                            <View style={styles.line}></View>
+                            <View style={{marginLeft: 24, marginTop: 36, marginBottom: 12}}>
+                                <View style={styles.optionBox}>
+                                    <Pressable onPress={() => AllButton()}>
+                                        {radioAll ? <RadioFilled></RadioFilled> : <RadioUnfilled></RadioUnfilled>}
+                                    </Pressable>
+                                    <Text style={styles.optionText}>All</Text>
+                                </View>
+                                <View style={styles.optionBox}>
+                                    <Pressable onPress={() => AudioButton()}>
+                                        {radioAudio ? <RadioFilled></RadioFilled> : <RadioUnfilled></RadioUnfilled>}
+                                    </Pressable>
+                                    <Text style={styles.optionText}>Audio</Text>
+                                </View>
+                                <View style={styles.optionBox}>
+                                    <Pressable onPress={() => TextButton()}>
+                                        {radioText ? <RadioFilled></RadioFilled> : <RadioUnfilled></RadioUnfilled>}
+                                    </Pressable>
+                                    <Text style={styles.optionText}>Text</Text>
+                                </View>
+                            </View>
+                            <Pressable onPress={ApplySelection}>
+                                <View style={styles.applyButton}>
+                                        <Text style={styles.applyText}>Apply</Text>
+                                </View>
+                                </Pressable> 
                         </View>
-                        <View style={styles.line}></View>
-                        <View style={{marginLeft: 24, marginTop: 36, marginBottom: 12}}>
-                            <View style={styles.optionBox}>
-                                <Pressable onPress={() => AllButton()}>
-                                    {radioAll ? <RadioFilled></RadioFilled> : <RadioUnfilled></RadioUnfilled>}
-                                </Pressable>
-                                <Text style={styles.optionText}>All</Text>
-                            </View>
-                            <View style={styles.optionBox}>
-                                <Pressable onPress={() => AudioButton()}>
-                                    {radioAudio ? <RadioFilled></RadioFilled> : <RadioUnfilled></RadioUnfilled>}
-                                </Pressable>
-                                <Text style={styles.optionText}>Audio</Text>
-                            </View>
-                            <View style={styles.optionBox}>
-                                <Pressable onPress={() => TextButton()}>
-                                    {radioText ? <RadioFilled></RadioFilled> : <RadioUnfilled></RadioUnfilled>}
-                                </Pressable>
-                                <Text style={styles.optionText}>Text</Text>
-                            </View>
-                        </View>
-                        <Pressable onPress={ApplySelection}>
-                            <View style={styles.applyButton}>
-                                    <Text style={styles.applyText}>Apply</Text>
-                            </View>
-                            </Pressable> 
-                    </View>
                     </View>
                 </View>
             </Modal>
